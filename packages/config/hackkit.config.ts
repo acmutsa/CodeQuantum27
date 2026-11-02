@@ -15,7 +15,7 @@ import {
 const defaultTheme = "dark";
 
 const c = {
-	hackathonName: "HackKit",
+	hackathonName: "CodeQuantum",
 	itteration: "I",
 	siteUrl: "http://localhost:3000", // Do not have a trailing slash
 	defaultMetaDataDescription: "Your Metadata Description Here",
@@ -96,8 +96,8 @@ const c = {
 	},
 	issueEmail: "team@rowdyhacks.org",
 	links: {
-		discord: "https://go.rowdyhacks.org/discord",
-		instagram: "https://instagram.com/rowdyhacks",
+		discord: "https://discord.gg/EQKANpnGgr",
+		instagram: "https://instagram.com/cqhacks/",
 		facebook: "https://facebook.com/rowdyhacks",
 		twitter: "https://twitter.com/rowdyhacks",
 		github: "https://github.com/acmutsa",
