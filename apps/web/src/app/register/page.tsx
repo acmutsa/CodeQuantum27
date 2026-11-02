@@ -44,11 +44,11 @@ export default async function Page() {
 							</Link>
 							!
 						</p>
-						<RegisterForm
-							defaultEmail={
-								user.emailAddresses[0]?.emailAddress || ""
-							}
-						/>
+						<div className="rounded-xl border border-border bg-card p-5 shadow-md md:p-8">
+							<RegisterForm
+								defaultEmail={user.emailAddresses[0]?.emailAddress || ""}
+							/>
+						</div>
 					</div>
 				</main>
 			</>
