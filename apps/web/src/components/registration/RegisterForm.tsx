@@ -1648,7 +1648,8 @@ export default function RegisterForm({
 														uploadedFile
 															? ""
 															: "cursor-pointer"
-													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-dashed border-white`}
+													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-2 border-dashed border-input bg-background`}
+													
 												>
 													<input
 														type="file"

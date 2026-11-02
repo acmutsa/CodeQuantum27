@@ -44,7 +44,7 @@ export default async function Page() {
 							</Link>
 							!
 						</p>
-						<div className="rounded-xl border border-border bg-card p-5 shadow-md md:p-8">
+						<div className="registration-form rounded-xl border border-border bg-card p-5 shadow-md md:p-8">
 							<RegisterForm
 								defaultEmail={user.emailAddresses[0]?.emailAddress || ""}
 							/>

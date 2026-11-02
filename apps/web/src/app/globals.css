@@ -167,3 +167,14 @@
 		transform: scale(1.1);
 	}
 }
+
+.registration-form input:not([type="checkbox"]):not([type="file"]),
+.registration-form textarea,
+.registration-form button[role="combobox"] {
+	background-color: hsl(var(--background));
+	color: hsl(var(--foreground));
+}
+
+.registration-form button[role="combobox"]:hover {
+	background-color: hsl(var(--muted));
+}
