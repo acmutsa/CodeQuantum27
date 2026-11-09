@@ -7,14 +7,18 @@ export type ScheduleDay = {
 	events: EventType[];
 };
 
-// Tri Nguyen: CodeQuantum is a single hack day, so every visible event goes into one day. Hidden events are removed and the rest are sorted by start time.
+// Tri Nguyen: Figma v4 has 10 event clouds, one for each cloud shape in assets.ts, so the page shows at most 10 events.
+export const MAX_HACK_DAY_EVENTS = 10;
+
+// Tri Nguyen: CodeQuantum is a single hack day, so visible events go into one day. Hidden events are removed, the rest are sorted by start time, and only the first 10 are kept.
 export function buildHackDay(
 	events: EventType[],
 	timezone: string,
 ): ScheduleDay | null {
 	const visibleEvents = events
 		.filter((event) => !event.hidden)
-		.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+		.sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
+		.slice(0, MAX_HACK_DAY_EVENTS);
 
 	if (visibleEvents.length === 0) {
 		return null;

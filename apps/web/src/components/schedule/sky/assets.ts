@@ -30,7 +30,7 @@ export type CloudVariant = {
 	height: number;
 };
 
-// Tri Nguyen: Cards cycle through these in order, so event 11 reuses cloud 1.
+// Tri Nguyen: One cloud shape per card, in order. The page caps at 10 events (MAX_HACK_DAY_EVENTS), so each shape is used once.
 export const CLOUD_VARIANTS: CloudVariant[] = [
 	{ src: `${ART_DIR}/cloud-01.png`, x: -31, y: -27, width: 500, height: 247 },
 	{ src: `${ART_DIR}/cloud-02.png`, x: -32, y: -15, width: 495, height: 237 },

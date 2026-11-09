@@ -13,7 +13,7 @@ Storybook themed schedule page built from the Figma file "CodeQuantum 27 – Sch
 
 ## Events
 
-Events come from the admin events page (`/admin/events`). Hidden events are filtered out on the server. CodeQuantum is one day, so every visible event is shown under a single "Hack Day" heading (`buildHackDay` in `schedule-data.ts`). Cloud art cycles through ten shapes, so any number of events works.
+Events come from the admin events page (`/admin/events`). Hidden events are filtered out on the server. CodeQuantum is one day, so visible events are shown under a single "Hack Day" heading (`buildHackDay` in `schedule-data.ts`). Like Figma v4, the page shows at most 10 events, one per cloud shape (`MAX_HACK_DAY_EVENTS`). Events after the 10th by start time are not shown, so keep the schedule to 10 events or raise that number.
 
 ## Castle finale
 

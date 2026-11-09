@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { EventType } from "@/lib/types/events";
 import {
+	MAX_HACK_DAY_EVENTS,
 	buildHackDay,
 	formatDayLabel,
 	formatHeroDate,
@@ -47,6 +48,22 @@ describe("buildHackDay", () => {
 		const day = buildHackDay([later, earlier, hidden], TIMEZONE);
 
 		expect(day?.events.map((event) => event.id)).toEqual([1, 2]);
+	});
+
+	it("keeps only the first 10 events, one per Figma cloud", () => {
+		const events = Array.from({ length: 12 }, (_, index) =>
+			makeEvent({
+				id: index + 1,
+				startTime: new Date(Date.UTC(2027, 1, 20, 14 + index)),
+			}),
+		);
+
+		const day = buildHackDay(events.reverse(), TIMEZONE);
+
+		expect(MAX_HACK_DAY_EVENTS).toBe(10);
+		expect(day?.events.map((event) => event.id)).toEqual([
+			1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+		]);
 	});
 
 	it("keeps every event in one day keyed by the first start in the hackathon timezone", () => {
