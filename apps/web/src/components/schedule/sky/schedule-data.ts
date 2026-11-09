@@ -46,32 +46,3 @@ export function formatTimeRange(
 	}
 	return `${startText} – ${formatInTimeZone(end, timezone, "h:mm a")}`;
 }
-
-// Tri Nguyen: Short clock text that drops ":00", e.g. "8 AM" but "5:30 PM".
-function formatShortClock(date: Date, timezone: string): string {
-	const minutes = formatInTimeZone(date, timezone, "mm");
-	return formatInTimeZone(
-		date,
-		timezone,
-		minutes === "00" ? "h a" : "h:mm a",
-	);
-}
-
-// Tri Nguyen: Line next to the day title, e.g. "Saturday · Feb 20 · 8 AM – 8 PM".
-export function formatDayLabel(day: ScheduleDay, timezone: string): string {
-	const firstStart = day.events[0].startTime;
-	const lastEnd = new Date(
-		Math.max(...day.events.map((event) => event.endTime.getTime())),
-	);
-
-	const weekday = formatInTimeZone(firstStart, timezone, "EEEE");
-	const date = formatInTimeZone(firstStart, timezone, "MMM d");
-	const span = `${formatShortClock(firstStart, timezone)} – ${formatShortClock(lastEnd, timezone)}`;
-
-	return `${weekday} · ${date} · ${span}`;
-}
-
-// Tri Nguyen: Full date for the hero meta row, e.g. "Saturday, February 20, 2027".
-export function formatHeroDate(date: Date, timezone: string): string {
-	return formatInTimeZone(date, timezone, "EEEE, MMMM d, yyyy");
-}

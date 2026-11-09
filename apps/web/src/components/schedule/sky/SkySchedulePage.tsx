@@ -7,7 +7,7 @@ import DayHeader from "./DayHeader";
 import { grenze, grenzeGotisch } from "./fonts";
 import ScheduleFooter from "./ScheduleFooter";
 import ScheduleHero from "./ScheduleHero";
-import { buildHackDay, formatDayLabel, formatHeroDate } from "./schedule-data";
+import { buildHackDay } from "./schedule-data";
 import SkyTimeline from "./SkyTimeline";
 
 const HACK_DAY_HEADING_ID = "schedule-hack-day";
@@ -17,9 +17,6 @@ const HACK_DAY_HEADING_ID = "schedule-hack-day";
 export default async function SkySchedulePage() {
 	const timezone = c.hackathonTimezone;
 	const hackDay = buildHackDay(await getAllEvents(), timezone);
-	const heroDate = hackDay
-		? formatHeroDate(hackDay.events[0].startTime, timezone)
-		: SCHEDULE_COPY.dateFallback;
 
 	return (
 		<div
@@ -30,14 +27,14 @@ export default async function SkySchedulePage() {
 			<MLHBadge />
 
 			<main>
-				<ScheduleHero dateText={heroDate} />
+				<ScheduleHero />
 
 				{hackDay ? (
 					<section aria-labelledby={HACK_DAY_HEADING_ID}>
 						<DayHeader
 							headingId={HACK_DAY_HEADING_ID}
 							title={SCHEDULE_COPY.dayTitle}
-							label={formatDayLabel(hackDay, timezone)}
+							label={SCHEDULE_COPY.dayLabel}
 						/>
 						<SkyTimeline
 							events={hackDay.events}

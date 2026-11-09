@@ -5,10 +5,10 @@ Storybook themed schedule page built from the Figma file "CodeQuantum 27 – Sch
 ## Where things live
 
 -   `SkySchedulePage.tsx` is the entry. It loads events on the server and builds the page.
--   Change wording in `content.ts`.
+-   Change wording in `content.ts`, including the date line next to "Hack Day".
 -   Change or swap art in `assets.ts`. Images are in `apps/web/public/img/schedule`.
 -   Change spacing of the cards and the path in `sky-layout.ts`.
--   Date and time formatting is in `schedule-data.ts`.
+-   Card time formatting and the 10 event limit are in `schedule-data.ts`.
 -   Colors and animations are the `cq` tokens in `apps/web/tailwind.config.js`.
 
 ## Events

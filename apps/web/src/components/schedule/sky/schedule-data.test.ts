@@ -3,8 +3,6 @@ import type { EventType } from "@/lib/types/events";
 import {
 	MAX_HACK_DAY_EVENTS,
 	buildHackDay,
-	formatDayLabel,
-	formatHeroDate,
 	formatTimeRange,
 } from "./schedule-data";
 
@@ -98,33 +96,5 @@ describe("formatTimeRange", () => {
 	it("shows a single time when start equals end", () => {
 		const deadline = new Date("2027-02-20T23:30:00Z");
 		expect(formatTimeRange(deadline, deadline, TIMEZONE)).toBe("5:30 PM");
-	});
-});
-
-describe("formatDayLabel", () => {
-	it("summarizes the weekday, date, and full day span", () => {
-		const day = {
-			dayKey: "2027-02-20",
-			events: [
-				makeEvent({ id: 1 }),
-				makeEvent({
-					id: 2,
-					startTime: new Date("2027-02-20T23:30:00Z"),
-					endTime: new Date("2027-02-21T02:00:00Z"),
-				}),
-			],
-		};
-
-		expect(formatDayLabel(day, TIMEZONE)).toBe(
-			"Saturday · Feb 20 · 8 AM – 8 PM",
-		);
-	});
-});
-
-describe("formatHeroDate", () => {
-	it("writes the full date for the hero", () => {
-		expect(formatHeroDate(new Date("2027-02-20T14:00:00Z"), TIMEZONE)).toBe(
-			"Saturday, February 20, 2027",
-		);
 	});
 });
