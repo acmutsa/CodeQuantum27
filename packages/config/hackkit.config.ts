@@ -103,11 +103,12 @@ const c = {
 		github: "https://github.com/acmutsa",
 		guide: "https://go.rowdyhacks.org/discord",
 	},
+	// Tri Nguyen: CodeQuantum 27 logo. The "svg" key is kept so existing callers keep working, but it now points at the small PNG.
 	icon: {
-		sm: "/img/logo/hackkit.svg",
-		md: "/img/logo/hackkit-md.png",
-		lg: "/img/logo/hackkit-lg.png",
-		svg: "/img/logo/hackkit.svg",
+		sm: "/img/logo/cq27-logo-sm.png",
+		md: "/img/logo/cq27-logo.png",
+		lg: "/img/logo/cq27-logo.png",
+		svg: "/img/logo/cq27-logo-sm.png",
 	},
 	dashPaths: {
 		dash: {
