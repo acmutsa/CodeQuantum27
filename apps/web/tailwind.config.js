@@ -70,6 +70,18 @@ module.exports = {
 					border: "hsl(var(--sidebar-border))",
 					ring: "hsl(var(--sidebar-ring))",
 				},
+				// Tri Nguyen: CodeQuantum 27 storybook palette used by the sky schedule page.
+				cq: {
+					plum: "#68396B",
+					ink: "#3D2340",
+					title: "#4E2B4F",
+					muted: "#6E5270",
+					gold: "#D7A33D",
+					parchment: "#F6ECD6",
+					sand: "#EBDDBF",
+					path: "#FFFDF3",
+					rope: "#E2CC9C",
+				},
 			},
 			borderRadius: {
 				lg: "var(--radius)",
@@ -93,13 +105,40 @@ module.exports = {
 						height: 0,
 					},
 				},
+				// Tri Nguyen: Gentle up and down hover with a tiny tilt for dragons.
+				"cq-float": {
+					"0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+					"50%": { transform: "translateY(-12px) rotate(-1.5deg)" },
+				},
+				// Tri Nguyen: Slow sideways drift for the small background clouds.
+				"cq-drift": {
+					"0%, 100%": { transform: "translateX(0)" },
+					"50%": { transform: "translateX(24px)" },
+				},
+				// Tri Nguyen: Soft bob so event clouds feel like they are floating.
+				"cq-bob": {
+					"0%, 100%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(-6px)" },
+				},
+				// Tri Nguyen: Fade and rise used when content first appears.
+				"cq-rise": {
+					from: { opacity: "0", transform: "translateY(24px)" },
+					to: { opacity: "1", transform: "translateY(0)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				"cq-float": "cq-float 7s ease-in-out infinite",
+				"cq-float-slow": "cq-float 10s ease-in-out infinite",
+				"cq-drift": "cq-drift 18s ease-in-out infinite",
+				"cq-bob": "cq-bob 6s ease-in-out infinite",
+				"cq-rise": "cq-rise 0.8s ease-out both",
 			},
 			fontFamily: {
 				oswald: ["var(--font-oswald)"],
+				grenze: ["var(--font-grenze)"],
+				gotisch: ["var(--font-grenze-gotisch)"],
 			},
 		},
 	},
