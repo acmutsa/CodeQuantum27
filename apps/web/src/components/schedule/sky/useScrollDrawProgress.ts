@@ -21,8 +21,18 @@ export function useScrollDrawProgress(ref: RefObject<Element>): number {
 		const update = () => {
 			frame = 0;
 			const rect = element.getBoundingClientRect();
+			// Tri Nguyen: The page can run out of scroll before the reading line reaches the path end at the castle, so finish the path at the bottom of the page.
+			const isAtPageBottom =
+				window.innerHeight + window.scrollY >=
+				document.documentElement.scrollHeight - 2;
 			setProgress(
-				getDrawProgress(rect.top, rect.height, window.innerHeight),
+				isAtPageBottom
+					? 1
+					: getDrawProgress(
+							rect.top,
+							rect.height,
+							window.innerHeight,
+						),
 			);
 		};
 		const scheduleUpdate = () => {

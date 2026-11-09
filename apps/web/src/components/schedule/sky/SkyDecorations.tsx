@@ -1,13 +1,10 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils/client/cn";
 import { HERO_ART, SKY_DECORATIONS } from "./assets";
-import { ROW_SCALE } from "./sky-layout";
+import { FINALE_SPACE, ROW_SCALE } from "./sky-layout";
 
 const FRAME_WIDTH = 1440;
 const SWIRLS_HEIGHT = 2440;
-
-// Tri Nguyen: Art that would start this close to the bottom is skipped so it never piles up on the castle finale.
-const FINALE_CLEARANCE = 460;
 
 type SkyDecorationsProps = {
 	sectionHeight: number;
@@ -19,11 +16,11 @@ function toPercent(pixels: number): string {
 }
 
 // Tri Nguyen: Background art behind the event clouds. Purely decorative, so it is hidden from screen readers and only shown on large screens.
-// Tri Nguyen: Positions come from Figma, so they are shrunk by ROW_SCALE to match the smaller rows.
+// Tri Nguyen: Positions come from Figma, so they are shrunk by ROW_SCALE to match the smaller rows. Art that would start inside the castle finale space is skipped.
 export default function SkyDecorations({ sectionHeight }: SkyDecorationsProps) {
 	const visibleDecorations = SKY_DECORATIONS.filter(
 		(decoration) =>
-			decoration.top * ROW_SCALE < sectionHeight - FINALE_CLEARANCE,
+			decoration.top * ROW_SCALE < sectionHeight - FINALE_SPACE,
 	);
 
 	return (

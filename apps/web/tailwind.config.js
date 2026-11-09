@@ -125,15 +125,6 @@ module.exports = {
 					from: { opacity: "0", transform: "translateY(24px)" },
 					to: { opacity: "1", transform: "translateY(0)" },
 				},
-				// Tri Nguyen: Moves a dashed line along itself so the finale swoosh looks like flowing wind.
-				"cq-flow": {
-					to: { strokeDashoffset: "-240" },
-				},
-				// Tri Nguyen: Clouds sweep in from the side when the castle finale scrolls into view.
-				"cq-swoosh": {
-					from: { opacity: "0", transform: "translateX(-6%)" },
-					to: { opacity: "1", transform: "translateX(0)" },
-				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -143,8 +134,6 @@ module.exports = {
 				"cq-drift": "cq-drift 18s ease-in-out infinite",
 				"cq-bob": "cq-bob 6s ease-in-out infinite",
 				"cq-rise": "cq-rise 0.8s ease-out both",
-				"cq-flow": "cq-flow 8s linear infinite",
-				"cq-swoosh": "cq-swoosh 1.4s ease-out both",
 			},
 			fontFamily: {
 				oswald: ["var(--font-oswald)"],

@@ -15,9 +15,10 @@ const BEND = 70;
 const FIRST_CARD_TOP = 24;
 const CARD_SLOT_HEIGHT = 196;
 const MARKER_OFFSET = 96;
-const FINALE_SPACE = 460;
+// Tri Nguyen: Room below the last card for the castle landscape. The last card sits on the mountain tops like Figma.
+export const FINALE_SPACE = 360;
 const PATH_START_Y = -20;
-const PATH_END_LIFT = 300;
+const PATH_END_LIFT = 320;
 const READING_LINE = 0.75;
 
 export type SkyPoint = { x: number; y: number };
@@ -51,7 +52,7 @@ export function buildSkyLayout(eventCount: number): SkyLayout {
 	const points: SkyPoint[] = [
 		{ x: LANE_CENTER, y: PATH_START_Y },
 		...markers,
-		// Tri Nguyen: The path ends inside the cloud swoosh above the castle finale.
+		// Tri Nguyen: The path ends behind the mountains at the castle, so it looks like it leads into it.
 		{ x: LANE_CENTER, y: height - PATH_END_LIFT },
 	];
 

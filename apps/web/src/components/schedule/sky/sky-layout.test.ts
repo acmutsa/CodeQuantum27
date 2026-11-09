@@ -16,7 +16,7 @@ describe("buildSkyLayout", () => {
 	});
 
 	it("leaves room for the castle finale below the last card", () => {
-		expect(buildSkyLayout(10).height).toBe(2120);
+		expect(buildSkyLayout(10).height).toBe(2020);
 	});
 
 	it("bends the path away from each card", () => {
@@ -29,7 +29,7 @@ describe("buildSkyLayout", () => {
 
 	it("draws one smooth curve through every marker", () => {
 		expect(buildSkyLayout(2).path).toBe(
-			"M 200 -20 C 200 50, 270 50, 270 120 C 270 200, 130 200, 130 280 C 130 410, 200 410, 200 540",
+			"M 200 -20 C 200 50, 270 50, 270 120 C 270 200, 130 200, 130 280 C 130 350, 200 350, 200 420",
 		);
 	});
 

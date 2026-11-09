@@ -17,11 +17,11 @@ Events come from the admin events page (`/admin/events`). Hidden events are filt
 
 ## Castle finale
 
-`FinaleTransition.tsx` is the bottom of the page: a flipped cloud bank fades in over the castle landscape and a wind swoosh with a gold dashed line flows across it. The path ends inside the swoosh, which is set by `FINALE_SPACE` and `PATH_END_LIFT` in `sky-layout.ts`.
+`FinaleTransition.tsx` is the castle and lake landscape at the bottom of the page, matching Figma v4. The path runs behind the mountains and ends at the castle. That spacing is set by `FINALE_SPACE` and `PATH_END_LIFT` in `sky-layout.ts`.
 
 ## Animations
 
-Hero copy rises in, dragons float, clouds bob and fade in on scroll, the path draws itself as you scroll, and the castle clouds swoosh in when you reach the bottom. Everything respects "reduce motion" in the operating system settings.
+Hero copy rises in, dragons float, clouds bob and fade in on scroll, the path draws itself as you scroll, finishing at the castle when you reach the bottom. Everything respects "reduce motion" in the operating system settings.
 
 ## MLH badge
 
