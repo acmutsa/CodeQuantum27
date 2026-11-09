@@ -7,22 +7,18 @@ import DayHeader from "./DayHeader";
 import { grenze, grenzeGotisch } from "./fonts";
 import ScheduleFooter from "./ScheduleFooter";
 import ScheduleHero from "./ScheduleHero";
-import {
-	formatDayLabel,
-	formatHeroDate,
-	getDayTitle,
-	groupEventsByDay,
-} from "./schedule-data";
+import { buildHackDay, formatDayLabel, formatHeroDate } from "./schedule-data";
 import SkyTimeline from "./SkyTimeline";
+
+const HACK_DAY_HEADING_ID = "schedule-hack-day";
 
 // Tri Nguyen: Server entry for the sky schedule. Reads events on the server, so hidden events never reach the browser.
 // Tri Nguyen: Not routed yet. To go live, render <SkySchedulePage /> from apps/web/src/app/schedule/page.tsx.
 export default async function SkySchedulePage() {
 	const timezone = c.hackathonTimezone;
-	const days = groupEventsByDay(await getAllEvents(), timezone);
-	const firstStart = days[0]?.events[0]?.startTime;
-	const heroDate = firstStart
-		? formatHeroDate(firstStart, timezone)
+	const hackDay = buildHackDay(await getAllEvents(), timezone);
+	const heroDate = hackDay
+		? formatHeroDate(hackDay.events[0].startTime, timezone)
 		: SCHEDULE_COPY.dateFallback;
 
 	return (
@@ -36,32 +32,22 @@ export default async function SkySchedulePage() {
 			<main>
 				<ScheduleHero dateText={heroDate} />
 
-				{days.length === 0 ? (
-					<p className="relative z-20 px-6 pb-24 pt-32 text-center text-xl text-cq-muted">
+				{hackDay ? (
+					<section aria-labelledby={HACK_DAY_HEADING_ID}>
+						<DayHeader
+							headingId={HACK_DAY_HEADING_ID}
+							title={SCHEDULE_COPY.dayTitle}
+							label={formatDayLabel(hackDay, timezone)}
+						/>
+						<SkyTimeline
+							events={hackDay.events}
+							timezone={timezone}
+						/>
+					</section>
+				) : (
+					<p className="relative z-20 px-6 pb-24 pt-28 text-center text-lg text-cq-muted">
 						{SCHEDULE_COPY.emptyState}
 					</p>
-				) : (
-					days.map((day, index) => {
-						const headingId = `schedule-day-${day.dayKey}`;
-						return (
-							<section
-								key={day.dayKey}
-								aria-labelledby={headingId}
-							>
-								<DayHeader
-									headingId={headingId}
-									title={getDayTitle(index, days.length)}
-									label={formatDayLabel(day, timezone)}
-									isFirst={index === 0}
-								/>
-								<SkyTimeline
-									events={day.events}
-									timezone={timezone}
-									showFinale={index === days.length - 1}
-								/>
-							</section>
-						);
-					})
 				)}
 			</main>
 

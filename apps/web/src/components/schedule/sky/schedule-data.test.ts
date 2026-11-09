@@ -1,11 +1,10 @@
 import { describe, expect, it } from "vitest";
 import type { EventType } from "@/lib/types/events";
 import {
+	buildHackDay,
 	formatDayLabel,
 	formatHeroDate,
 	formatTimeRange,
-	getDayTitle,
-	groupEventsByDay,
 } from "./schedule-data";
 
 const TIMEZONE = "America/Chicago";
@@ -26,9 +25,15 @@ function makeEvent(overrides: Partial<EventType>): EventType {
 	};
 }
 
-describe("groupEventsByDay", () => {
-	it("returns no days when there are no events", () => {
-		expect(groupEventsByDay([], TIMEZONE)).toEqual([]);
+describe("buildHackDay", () => {
+	it("returns null when there are no events", () => {
+		expect(buildHackDay([], TIMEZONE)).toBeNull();
+	});
+
+	it("returns null when every event is hidden", () => {
+		expect(
+			buildHackDay([makeEvent({ hidden: true })], TIMEZONE),
+		).toBeNull();
 	});
 
 	it("drops hidden events and sorts by start time", () => {
@@ -39,13 +44,12 @@ describe("groupEventsByDay", () => {
 		const earlier = makeEvent({ id: 1 });
 		const hidden = makeEvent({ id: 3, hidden: true });
 
-		const days = groupEventsByDay([later, earlier, hidden], TIMEZONE);
+		const day = buildHackDay([later, earlier, hidden], TIMEZONE);
 
-		expect(days).toHaveLength(1);
-		expect(days[0].events.map((event) => event.id)).toEqual([1, 2]);
+		expect(day?.events.map((event) => event.id)).toEqual([1, 2]);
 	});
 
-	it("splits days using the hackathon timezone, not UTC", () => {
+	it("keeps every event in one day keyed by the first start in the hackathon timezone", () => {
 		// Tri Nguyen: 05:00 UTC on Feb 21 is still 11 PM on Feb 20 in Chicago.
 		const lateNight = makeEvent({
 			id: 1,
@@ -56,12 +60,10 @@ describe("groupEventsByDay", () => {
 			startTime: new Date("2027-02-21T15:00:00Z"),
 		});
 
-		const days = groupEventsByDay([lateNight, nextMorning], TIMEZONE);
+		const day = buildHackDay([nextMorning, lateNight], TIMEZONE);
 
-		expect(days.map((day) => day.dayKey)).toEqual([
-			"2027-02-20",
-			"2027-02-21",
-		]);
+		expect(day?.dayKey).toBe("2027-02-20");
+		expect(day?.events.map((event) => event.id)).toEqual([1, 2]);
 	});
 });
 
@@ -107,16 +109,5 @@ describe("formatHeroDate", () => {
 		expect(formatHeroDate(new Date("2027-02-20T14:00:00Z"), TIMEZONE)).toBe(
 			"Saturday, February 20, 2027",
 		);
-	});
-});
-
-describe("getDayTitle", () => {
-	it("calls a single day Hack Day", () => {
-		expect(getDayTitle(0, 1)).toBe("Hack Day");
-	});
-
-	it("numbers days when the event spans several days", () => {
-		expect(getDayTitle(0, 2)).toBe("Day 1");
-		expect(getDayTitle(1, 2)).toBe("Day 2");
 	});
 });

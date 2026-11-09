@@ -18,9 +18,10 @@ export default function WindingPath({ layout }: WindingPathProps) {
 	const progress = useScrollDrawProgress(svgRef);
 
 	// Tri Nguyen: pathLength={1} lets one number control how much is drawn. Offset 1 hides it, 0 shows it all.
+	// Tri Nguyen: The gap is 2 (not 1) so no zero length dash is left at the ends, which would show as a round dot before scrolling.
 	const drawProps = {
 		pathLength: 1,
-		strokeDasharray: 1,
+		strokeDasharray: "1 2",
 		strokeDashoffset: 1 - progress,
 	};
 
@@ -38,20 +39,20 @@ export default function WindingPath({ layout }: WindingPathProps) {
 				d={layout.path}
 				className="stroke-cq-path"
 				strokeOpacity={0.9}
-				strokeWidth={44}
+				strokeWidth={36}
 				strokeLinecap="round"
 				{...drawProps}
 			/>
 			<path
 				d={layout.path}
-				transform="translate(-13 0)"
+				transform="translate(-10 0)"
 				className="stroke-cq-rope"
 				strokeWidth={2}
 				{...drawProps}
 			/>
 			<path
 				d={layout.path}
-				transform="translate(13 0)"
+				transform="translate(10 0)"
 				className="stroke-cq-rope"
 				strokeWidth={2}
 				{...drawProps}
@@ -61,12 +62,12 @@ export default function WindingPath({ layout }: WindingPathProps) {
 				<g key={`${marker.x}-${marker.y}`}>
 					<circle
 						cx={marker.x}
-						cy={marker.y + 34}
-						r={5}
+						cy={marker.y + 28}
+						r={4}
 						className="fill-cq-plum/70"
 					/>
 					<g
-						transform={`translate(${marker.x + (index % 2 === 0 ? 46 : -46)} ${marker.y - 14})`}
+						transform={`translate(${marker.x + (index % 2 === 0 ? 38 : -38)} ${marker.y - 12})`}
 					>
 						<path
 							d={SWIRL_PATH}

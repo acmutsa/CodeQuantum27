@@ -11,30 +11,30 @@ describe("buildSkyLayout", () => {
 		});
 	});
 
-	it("stacks cards 200px apart starting 40px from the top", () => {
-		expect(buildSkyLayout(3).cardTops).toEqual([40, 240, 440]);
+	it("stacks cards 160px apart starting 24px from the top", () => {
+		expect(buildSkyLayout(3).cardTops).toEqual([24, 184, 344]);
 	});
 
-	it("matches the Figma section height for ten events", () => {
-		expect(buildSkyLayout(10).height).toBe(2440);
+	it("leaves room for the castle finale below the last card", () => {
+		expect(buildSkyLayout(10).height).toBe(2120);
 	});
 
 	it("bends the path away from each card", () => {
 		// Tri Nguyen: Even cards sit on the left so the path bends right, odd cards do the opposite.
 		expect(buildSkyLayout(2).markers).toEqual([
-			{ x: 330, y: 160 },
-			{ x: 150, y: 360 },
+			{ x: 270, y: 120 },
+			{ x: 130, y: 280 },
 		]);
 	});
 
 	it("draws one smooth curve through every marker", () => {
 		expect(buildSkyLayout(2).path).toBe(
-			"M 240 -20 C 240 70, 330 70, 330 160 C 330 260, 150 260, 150 360 C 150 500, 240 500, 240 640",
+			"M 200 -20 C 200 50, 270 50, 270 120 C 270 200, 130 200, 130 280 C 130 410, 200 410, 200 540",
 		);
 	});
 
-	it("uses a 480px lane", () => {
-		expect(LANE_WIDTH).toBe(480);
+	it("uses a 400px lane", () => {
+		expect(LANE_WIDTH).toBe(400);
 	});
 });
 

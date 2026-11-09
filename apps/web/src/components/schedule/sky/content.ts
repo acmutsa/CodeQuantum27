@@ -3,6 +3,7 @@ export const SCHEDULE_COPY = {
 	eyebrow: "CODEQUANTUM 27",
 	title: "Schedule",
 	subtitle: "One day of building, learning, and a little bit of magic.",
+	dayTitle: "Hack Day",
 	dateFallback: "Date coming soon",
 	location: "UTSA Main Campus",
 	timezoneNote: "All times in CST",

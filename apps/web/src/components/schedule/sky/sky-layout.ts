@@ -1,16 +1,23 @@
-// Tri Nguyen: All numbers come from the Figma frame (1440px wide). Change them here and every card, the path, and the markers move together.
-export const LANE_WIDTH = 480;
+// Tri Nguyen: Layout numbers in pixels. They started from the Figma frame (1440px wide) and are scaled to about 80% so the page feels lighter. Change them here and every card, the path, and the markers move together.
+export const LANE_WIDTH = 400;
+
+// Tri Nguyen: The Figma card is 560 x 246. Cloud art offsets in assets.ts are measured against this box, so keep these as the Figma values.
 export const CARD_WIDTH = 560;
 export const CARD_HEIGHT = 246;
 
+// Tri Nguyen: Figma spaced rows 200px apart. Background art positions in assets.ts are Figma pixels, so they get multiplied by ROW_SCALE.
+const FIGMA_ROW_STEP = 200;
+const ROW_STEP = 160;
+export const ROW_SCALE = ROW_STEP / FIGMA_ROW_STEP;
+
 const LANE_CENTER = LANE_WIDTH / 2;
-const BEND = 90;
-const FIRST_CARD_TOP = 40;
-const ROW_STEP = 200;
-const MARKER_OFFSET = 120;
-const FINALE_SPACE = 354;
+const BEND = 70;
+const FIRST_CARD_TOP = 24;
+const CARD_SLOT_HEIGHT = 196;
+const MARKER_OFFSET = 96;
+const FINALE_SPACE = 460;
 const PATH_START_Y = -20;
-const PATH_END_LIFT = 200;
+const PATH_END_LIFT = 300;
 const READING_LINE = 0.75;
 
 export type SkyPoint = { x: number; y: number };
@@ -32,7 +39,8 @@ export function buildSkyLayout(eventCount: number): SkyLayout {
 		{ length: eventCount },
 		(_, index) => FIRST_CARD_TOP + index * ROW_STEP,
 	);
-	const height = cardTops[cardTops.length - 1] + CARD_HEIGHT + FINALE_SPACE;
+	const height =
+		cardTops[cardTops.length - 1] + CARD_SLOT_HEIGHT + FINALE_SPACE;
 
 	// Tri Nguyen: Even cards are on the left, so their marker bends right, and odd cards bend left.
 	const markers = cardTops.map((top, index) => ({
@@ -43,6 +51,7 @@ export function buildSkyLayout(eventCount: number): SkyLayout {
 	const points: SkyPoint[] = [
 		{ x: LANE_CENTER, y: PATH_START_Y },
 		...markers,
+		// Tri Nguyen: The path ends inside the cloud swoosh above the castle finale.
 		{ x: LANE_CENTER, y: height - PATH_END_LIFT },
 	];
 

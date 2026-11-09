@@ -13,11 +13,15 @@ Storybook themed schedule page built from the Figma file "CodeQuantum 27 – Sch
 
 ## Events
 
-Events come from the admin events page (`/admin/events`). Hidden events are filtered out on the server. Cloud art cycles through ten shapes, so any number of events works.
+Events come from the admin events page (`/admin/events`). Hidden events are filtered out on the server. CodeQuantum is one day, so every visible event is shown under a single "Hack Day" heading (`buildHackDay` in `schedule-data.ts`). Cloud art cycles through ten shapes, so any number of events works.
+
+## Castle finale
+
+`FinaleTransition.tsx` is the bottom of the page: a flipped cloud bank fades in over the castle landscape and a wind swoosh with a gold dashed line flows across it. The path ends inside the swoosh, which is set by `FINALE_SPACE` and `PATH_END_LIFT` in `sky-layout.ts`.
 
 ## Animations
 
-Hero copy rises in, dragons float, clouds bob and fade in on scroll, and the path draws itself as you scroll. Everything respects "reduce motion" in the operating system settings.
+Hero copy rises in, dragons float, clouds bob and fade in on scroll, the path draws itself as you scroll, and the castle clouds swoosh in when you reach the bottom. Everything respects "reduce motion" in the operating system settings.
 
 ## MLH badge
 

@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils/client/cn";
 import { HERO_ART, SKY_DECORATIONS } from "./assets";
+import { ROW_SCALE } from "./sky-layout";
 
 const FRAME_WIDTH = 1440;
+const SWIRLS_HEIGHT = 2440;
+
+// Tri Nguyen: Art that would start this close to the bottom is skipped so it never piles up on the castle finale.
+const FINALE_CLEARANCE = 460;
+
+type SkyDecorationsProps = {
+	sectionHeight: number;
+};
 
 // Tri Nguyen: Turns a Figma x or width (on a 1440 frame) into a percentage so art scales with the screen.
 function toPercent(pixels: number): string {
@@ -10,7 +19,13 @@ function toPercent(pixels: number): string {
 }
 
 // Tri Nguyen: Background art behind the event clouds. Purely decorative, so it is hidden from screen readers and only shown on large screens.
-export default function SkyDecorations() {
+// Tri Nguyen: Positions come from Figma, so they are shrunk by ROW_SCALE to match the smaller rows.
+export default function SkyDecorations({ sectionHeight }: SkyDecorationsProps) {
+	const visibleDecorations = SKY_DECORATIONS.filter(
+		(decoration) =>
+			decoration.top * ROW_SCALE < sectionHeight - FINALE_CLEARANCE,
+	);
+
 	return (
 		<div
 			aria-hidden
@@ -20,21 +35,21 @@ export default function SkyDecorations() {
 				src={HERO_ART.windSwirls}
 				alt=""
 				width={FRAME_WIDTH}
-				height={2440}
+				height={SWIRLS_HEIGHT}
 				unoptimized
-				className="absolute left-0 top-0 h-auto w-full opacity-80"
+				className="absolute left-0 top-0 w-full opacity-80"
+				style={{ height: SWIRLS_HEIGHT * ROW_SCALE }}
 			/>
 
-			{SKY_DECORATIONS.map((decoration) => (
+			{visibleDecorations.map((decoration) => (
 				<div
-					key={`${decoration.src}-${decoration.top ?? decoration.bottom}`}
+					key={`${decoration.src}-${decoration.top}`}
 					className={cn("absolute", decoration.animationClass)}
 					style={{
 						left: toPercent(decoration.left),
-						width: toPercent(decoration.width),
+						width: toPercent(decoration.width * ROW_SCALE),
 						aspectRatio: `${decoration.width} / ${decoration.height}`,
-						top: decoration.top,
-						bottom: decoration.bottom,
+						top: decoration.top * ROW_SCALE,
 						opacity: decoration.opacity,
 					}}
 				>
@@ -42,7 +57,7 @@ export default function SkyDecorations() {
 						src={decoration.src}
 						alt=""
 						fill
-						sizes="25vw"
+						sizes="20vw"
 						className="object-contain"
 					/>
 				</div>

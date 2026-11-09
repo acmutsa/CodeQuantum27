@@ -1,37 +1,33 @@
 import { formatInTimeZone } from "date-fns-tz";
 import type { EventType } from "@/lib/types/events";
 
-// Tri Nguyen: One calendar day of the schedule. dayKey is "yyyy-MM-dd" in the hackathon timezone.
+// Tri Nguyen: The hack day shown on the page. dayKey is the "yyyy-MM-dd" date of the first event in the hackathon timezone.
 export type ScheduleDay = {
 	dayKey: string;
 	events: EventType[];
 };
 
-// Tri Nguyen: Removes hidden events, sorts by start time, and buckets events by local calendar day.
-export function groupEventsByDay(
+// Tri Nguyen: CodeQuantum is a single hack day, so every visible event goes into one day. Hidden events are removed and the rest are sorted by start time.
+export function buildHackDay(
 	events: EventType[],
 	timezone: string,
-): ScheduleDay[] {
+): ScheduleDay | null {
 	const visibleEvents = events
 		.filter((event) => !event.hidden)
 		.sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
 
-	const days: ScheduleDay[] = [];
-	for (const event of visibleEvents) {
-		const dayKey = formatInTimeZone(
-			event.startTime,
+	if (visibleEvents.length === 0) {
+		return null;
+	}
+
+	return {
+		dayKey: formatInTimeZone(
+			visibleEvents[0].startTime,
 			timezone,
 			"yyyy-MM-dd",
-		);
-		const currentDay = days[days.length - 1];
-
-		if (currentDay && currentDay.dayKey === dayKey) {
-			currentDay.events.push(event);
-		} else {
-			days.push({ dayKey, events: [event] });
-		}
-	}
-	return days;
+		),
+		events: visibleEvents,
+	};
 }
 
 // Tri Nguyen: Card time text, e.g. "8:00 AM – 9:00 AM", or just "5:30 PM" for deadlines.
@@ -74,9 +70,4 @@ export function formatDayLabel(day: ScheduleDay, timezone: string): string {
 // Tri Nguyen: Full date for the hero meta row, e.g. "Saturday, February 20, 2027".
 export function formatHeroDate(date: Date, timezone: string): string {
 	return formatInTimeZone(date, timezone, "EEEE, MMMM d, yyyy");
-}
-
-// Tri Nguyen: A one day event is "Hack Day". Longer events fall back to "Day 1", "Day 2", and so on.
-export function getDayTitle(index: number, totalDays: number): string {
-	return totalDays === 1 ? "Hack Day" : `Day ${index + 1}`;
 }

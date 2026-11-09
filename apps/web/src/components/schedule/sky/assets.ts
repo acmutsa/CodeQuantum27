@@ -50,14 +50,13 @@ export const CLOUD_VARIANTS: CloudVariant[] = [
 	{ src: `${ART_DIR}/cloud-10.png`, x: -29, y: -63, width: 586, height: 290 },
 ];
 
-// Tri Nguyen: A background picture in the sky section. left and width are Figma pixels on a 1440 frame. Use top to pin from the section top or bottom to pin from the section bottom.
+// Tri Nguyen: A background picture in the sky section. left, top, and width are Figma pixels on a 1440 frame.
 export type Decoration = {
 	src: string;
 	left: number;
 	width: number;
 	height: number;
-	top?: number;
-	bottom?: number;
+	top: number;
 	opacity: number;
 	animationClass?: string;
 };
@@ -99,15 +98,6 @@ export const SKY_DECORATIONS: Decoration[] = [
 		height: 113,
 		opacity: 0.5,
 		animationClass: "motion-safe:animate-cq-float-slow",
-	},
-	{
-		src: DRAGONS.plum,
-		left: 150,
-		bottom: 382,
-		width: 300,
-		height: 179,
-		opacity: 0.85,
-		animationClass: "motion-safe:animate-cq-float",
 	},
 	{
 		src: `${ART_DIR}/deco-cloud-01.png`,

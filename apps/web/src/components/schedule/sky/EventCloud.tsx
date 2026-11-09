@@ -32,14 +32,15 @@ export default function EventCloud({
 	return (
 		<Reveal
 			className={cn(
-				"relative mx-auto w-full max-w-[560px] lg:absolute lg:top-[var(--card-top)] lg:z-10 lg:mx-0 lg:w-[clamp(420px,38.9%,560px)]",
-				isLeft ? "lg:left-[7%]" : "lg:right-[7%]",
+				"relative mx-auto w-full max-w-[440px] lg:absolute lg:top-[var(--card-top)] lg:z-10 lg:mx-0 lg:w-[clamp(340px,30.5%,440px)]",
+				isLeft ? "lg:left-[9%]" : "lg:right-[9%]",
 			)}
 			style={{ "--card-top": `${top}px` } as CSSProperties}
 		>
 			{/* Tri Nguyen: Negative delays stagger the bob so neighboring clouds never move in sync. */}
+			{/* Tri Nguyen: aspect-ratio sets the Figma shape, and because the text below is in normal flow a long title makes the cloud taller instead of spilling out. */}
 			<article
-				className="relative motion-safe:animate-cq-bob"
+				className="relative flex motion-safe:animate-cq-bob"
 				style={{
 					aspectRatio: `${CARD_WIDTH} / ${CARD_HEIGHT}`,
 					animationDelay: `${(index % 3) * -2}s`,
@@ -59,13 +60,13 @@ export default function EventCloud({
 						src={cloud.src}
 						alt=""
 						fill
-						sizes="(min-width: 1024px) 40vw, 100vw"
+						sizes="(min-width: 1024px) 32vw, 100vw"
 						className="object-fill"
 					/>
 				</div>
 
-				<div className="absolute inset-y-0 left-[19%] right-[14%] flex flex-col justify-center gap-1.5">
-					<p className="font-grenze text-lg font-semibold text-cq-plum lg:text-[22px]">
+				<div className="relative flex w-full flex-col justify-center gap-1 break-words py-[7%] pl-[19%] pr-[14%]">
+					<p className="font-grenze text-sm font-semibold text-cq-plum lg:text-lg">
 						<time dateTime={event.startTime.toISOString()}>
 							{formatTimeRange(
 								event.startTime,
@@ -74,11 +75,11 @@ export default function EventCloud({
 							)}
 						</time>
 					</p>
-					<h3 className="font-gotisch text-2xl font-semibold leading-[1.15] text-cq-ink lg:text-[30px]">
+					<h3 className="font-gotisch text-xl font-semibold leading-[1.15] text-cq-ink lg:text-[24px]">
 						{event.title}
 					</h3>
 					{event.location && (
-						<p className="font-grenze text-[15px] italic text-cq-muted">
+						<p className="font-grenze text-[13px] italic text-cq-muted">
 							{event.location}
 						</p>
 					)}
