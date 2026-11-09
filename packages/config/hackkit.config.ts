@@ -18,7 +18,8 @@ const c = {
 	hackathonName: "CodeQuantum",
 	itteration: "I",
 	siteUrl: "http://localhost:3000", // Do not have a trailing slash
-	defaultMetaDataDescription: "Your Metadata Description Here",
+	defaultMetaDataDescription:
+		"CodeQuantum 27 is ACM UTSA's one-day hackathon on February 20th at UTSA. Build, learn, and make a little bit of magic.",
 	rsvpDefaultLimit: 500,
 	botName: "HackKit",
 	botParticipantRole: "Participant",
