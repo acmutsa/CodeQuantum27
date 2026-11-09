@@ -20,14 +20,26 @@ export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
 			aria-labelledby="schedule-title"
 			className="relative h-[440px] sm:h-[380px] lg:h-[440px]"
 		>
-			<Image
-				src={HERO_ART.castle}
-				alt=""
-				fill
-				priority
-				sizes="100vw"
-				className="object-cover"
-			/>
+			{/* Tri Nguyen: The art fades out at the bottom so its edge never shows as a hard line between the cloud puffs. */}
+			<div
+				aria-hidden
+				className="absolute inset-0"
+				style={{
+					maskImage:
+						"linear-gradient(to bottom, black 78%, transparent)",
+					WebkitMaskImage:
+						"linear-gradient(to bottom, black 78%, transparent)",
+				}}
+			>
+				<Image
+					src={HERO_ART.castle}
+					alt=""
+					fill
+					priority
+					sizes="100vw"
+					className="object-cover"
+				/>
+			</div>
 			{/* Tri Nguyen: Parchment fade so the copy stays readable on top of the busy art. */}
 			<div
 				aria-hidden
@@ -100,14 +112,20 @@ export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
 				</ul>
 			</div>
 
-			{/* Tri Nguyen: Cloud bank hangs 80px over the bottom of the hero. It keeps the art's own shape (2880 x 560) so the soft parchment fade at its bottom is never cut off. It is pulled 3% left to hide a grey sliver on the art's left edge. */}
+			{/* Tri Nguyen: Like Figma, about a third of the cloud bank (7vw) overlaps the bottom of the hero so the puffs fully cover the art's edge. It keeps the art's own shape (2880 x 560) so the soft parchment fade at its bottom is never cut off. It is pulled 3% left to hide a grey sliver on the art's left edge, and its tail is masked out so it melts into the page. */}
 			<div
 				aria-hidden
-				className="pointer-events-none absolute inset-x-0 top-[calc(100%-80px)] z-10 overflow-hidden"
+				className="pointer-events-none absolute inset-x-0 top-[calc(100%-7vw)] z-10 overflow-hidden"
 			>
 				<div
 					className="relative -ml-[3%] w-[103%]"
-					style={{ aspectRatio: "2880 / 560" }}
+					style={{
+						aspectRatio: "2880 / 560",
+						maskImage:
+							"linear-gradient(to bottom, black 62%, transparent)",
+						WebkitMaskImage:
+							"linear-gradient(to bottom, black 62%, transparent)",
+					}}
 				>
 					<Image
 						src={HERO_ART.cloudBank}

@@ -61,6 +61,9 @@ export type Decoration = {
 	animationClass?: string;
 };
 
+// Tri Nguyen: Figma's "Deco Cloud 1". It sits over the top of the winding path so the road looks like it comes out of a cloud.
+export const PATH_START_CLOUD = `${ART_DIR}/deco-cloud-01.png`;
+
 export const SKY_DECORATIONS: Decoration[] = [
 	{ src: PEAKS.a, left: 0, top: 353, width: 580, height: 227, opacity: 0.9 },
 	{
@@ -98,15 +101,6 @@ export const SKY_DECORATIONS: Decoration[] = [
 		height: 113,
 		opacity: 0.5,
 		animationClass: "motion-safe:animate-cq-float-slow",
-	},
-	{
-		src: `${ART_DIR}/deco-cloud-01.png`,
-		left: 780,
-		top: -6,
-		width: 206,
-		height: 102,
-		opacity: 0.7,
-		animationClass: "motion-safe:animate-cq-drift",
 	},
 	{
 		src: `${ART_DIR}/deco-cloud-02.png`,
