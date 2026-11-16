@@ -15,7 +15,7 @@ type CursorEffect = { id: number; x: number; y: number };
 
 const MAX_EFFECTS = 6;
 
-// Tri Nguyen: Swaps the mouse cursor for a sword or staff. The weapon follows the pointer without React renders, and clicks give it a quick press and spawn a short effect. Touch devices and coarse pointers keep the normal cursor and render nothing.
+// Tri Nguyen: Swaps the mouse cursor for a sword or staff. The weapon follows the pointer without React renders, and clicks swing it in a quick slice and spawn a short effect. Touch devices and coarse pointers keep the normal cursor and render nothing.
 export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 	const config = CURSOR_WEAPONS[weapon];
 	const layerRef = useRef<HTMLDivElement>(null);
@@ -128,7 +128,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 				ref={layerRef}
 				className="absolute left-0 top-0 opacity-0 will-change-transform"
 			>
-				{/* Tri Nguyen: The click press pivots on the tip, so the point stays on the pointer like a real mouse. */}
+				{/* Tri Nguyen: The pommel is bottom-right, so the slice pivots there like a hand swinging the sword. */}
 				{/* eslint-disable-next-line @next/next/no-img-element */}
 				<img
 					ref={weaponRef}
@@ -137,7 +137,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 					draggable={false}
 					width={config.size}
 					height={config.size}
-					className="max-w-none origin-[8%_8%] select-none"
+					className="max-w-none origin-[85%_85%] select-none"
 				/>
 			</div>
 		</div>

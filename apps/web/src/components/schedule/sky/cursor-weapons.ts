@@ -11,7 +11,7 @@ type CursorWeaponConfig = {
 	effectSize: number;
 };
 
-// Tri Nguyen: Art is 48 units wide with the tip at (3.5, 3.5), so at 40px the tip sits near (3, 3). Effects are 64 unit art; the sword glint is drawn small at 36px and the staff spark at 64px.
+// Tri Nguyen: Art is 48 units wide with the tip at (3.5, 3.5), so at 40px the tip sits near (3, 3). Effects are 64 units drawn at 64px.
 export const CURSOR_WEAPONS: Record<CursorWeapon, CursorWeaponConfig> = {
 	sword: {
 		src: "/img/cursor/sword.svg",
@@ -21,7 +21,7 @@ export const CURSOR_WEAPONS: Record<CursorWeapon, CursorWeaponConfig> = {
 		hotspotY: 3,
 		clickAnimation: "animate-cq-sword-swing",
 		effectAnimation: "animate-cq-slash",
-		effectSize: 36,
+		effectSize: 64,
 	},
 	staff: {
 		src: "/img/cursor/staff.svg",
