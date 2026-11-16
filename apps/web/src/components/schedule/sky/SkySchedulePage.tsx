@@ -14,7 +14,7 @@ import ThemedCursor from "./ThemedCursor";
 const HACK_DAY_HEADING_ID = "schedule-hack-day";
 
 // Tri Nguyen: Server entry for the sky schedule. Reads events on the server, so hidden events never reach the browser.
-// Tri Nguyen: Not routed yet. To go live, render <SkySchedulePage /> from apps/web/src/app/schedule/page.tsx.
+// Tri Nguyen: Rendered by apps/web/src/app/schedule/page.tsx. The landing page links here with a placeholder Schedule button for now.
 export default async function SkySchedulePage() {
 	const timezone = c.hackathonTimezone;
 	const hackDay = buildHackDay(await getAllEvents(), timezone);
