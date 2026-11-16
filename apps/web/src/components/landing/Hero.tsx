@@ -1,4 +1,5 @@
 import { Grenze_Gotisch } from "next/font/google";
+import Image from "next/image";
 import c from "config";
 import HeroClouds from "./HeroClouds";
 
@@ -22,8 +23,19 @@ export default function Hero() {
 
 			{/* Title */}
 			<div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 pb-[40vh] text-center">
-				<h1 className="font-[family-name:var(--font-gothic)] text-6xl font-bold leading-none text-[#2f1e30] drop-shadow-[0_2px_12px_rgba(255,241,216,0.6)] sm:text-7xl md:text-8xl lg:text-9xl">
-					{c.hackathonName}
+				<h1
+					aria-label={c.hackathonName}
+					className="flex items-end font-[family-name:var(--font-gothic)] text-5xl font-bold leading-none text-[#2f1e30] drop-shadow-[0_2px_12px_rgba(255,241,216,0.6)] sm:text-7xl md:text-8xl lg:text-9xl"
+				>
+					<Image
+						src="/img/logo/cq-logo.png"
+						alt=""
+						width={640}
+						height={640}
+						priority
+						className="mr-[0.04em] h-[1.15em] w-[1.15em] shadow-[0_4px_16px_rgba(47,30,48,0.35)]"
+					/>
+					<span aria-hidden>{c.hackathonName.slice(1)}</span>
 				</h1>
 			</div>
 
