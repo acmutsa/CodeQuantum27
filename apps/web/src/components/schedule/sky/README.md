@@ -29,7 +29,7 @@ Hero copy rises in, dragons float, clouds bob and fade in on scroll, the path dr
 
 ## Cursor
 
-`<ThemedCursor weapon="sword" />` replaces the mouse cursor with a sword that swings on click and leaves a slash. Change `weapon` to `"staff"` in `SkySchedulePage.tsx` for the magic staff, which casts and bursts into sparks. Art lives in `apps/web/public/img/cursor/` and sizes and hotspots live in `cursor-weapons.ts`. The cursor layer is `z-[9999]`, the one exception to the z-20 rule, and it is `pointer-events-none`. With "reduce motion" the cursor is still replaced but nothing animates. Touch and coarse pointers keep the normal cursor and render nothing.
+`<ThemedCursor weapon="sword" />` replaces the mouse cursor with a sword that gives a quick press on click, like a mouse button, and leaves a small gold glint. Change `weapon` to `"staff"` in `SkySchedulePage.tsx` for the magic staff, which casts and bursts into sparks. Art lives in `apps/web/public/img/cursor/` and sizes and hotspots live in `cursor-weapons.ts`. The cursor layer is `z-[9999]`, the one exception to the z-20 rule, and it is `pointer-events-none`. With "reduce motion" the cursor is still replaced but nothing animates. Touch and coarse pointers keep the normal cursor and render nothing.
 
 ## Going live
 
