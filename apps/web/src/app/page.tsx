@@ -8,6 +8,7 @@ import MLHBadge from "@/components/landing/MLHBadge";
 
 import { Oswald } from "next/font/google";
 import WorkWithUs from "@/components/landing/WorkWithUs";
+import ScrollDragon from "@/components/landing/ScrollDragon";
 
 const oswald = Oswald({
 	variable: "--font-oswald",
@@ -19,6 +20,7 @@ export default function Home() {
 		<div className={`${oswald.variable} w-full overflow-x-hidden`}>
 			<Navbar />
 			<MLHBadge />
+			<ScrollDragon />
 			<main className="overflow-x-hidden">
 				<Hero />
 
