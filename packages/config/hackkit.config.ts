@@ -102,6 +102,9 @@ const c = {
 		twitter: "https://twitter.com/rowdyhacks",
 		github: "https://github.com/acmutsa",
 		guide: "https://go.rowdyhacks.org/discord",
+		// TODO: replace with the real Tally form URLs
+		mentorForm: "#",
+		volunteerForm: "#",
 	},
 	icon: {
 		sm: "/img/logo/hackkit.svg",

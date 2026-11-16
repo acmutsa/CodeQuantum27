@@ -178,3 +178,38 @@
 .registration-form button[role="combobox"]:hover {
 	background-color: hsl(var(--muted));
 }
+/* ── Landing hero clouds ── */
+@keyframes cq-cloud-drift {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+	50% {
+		transform: translate3d(1.5%, -2%, 0);
+	}
+}
+
+@keyframes cq-cloud-bob {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+}
+
+.cq-cloud-drift {
+	animation: cq-cloud-drift 14s ease-in-out infinite;
+}
+
+.cq-cloud-bob {
+	animation: cq-cloud-bob 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cq-cloud-drift,
+	.cq-cloud-bob {
+		animation: none;
+	}
+}

@@ -1,56 +1,37 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../shadcn/ui/button";
+import { Grenze_Gotisch } from "next/font/google";
+import c from "config";
+import HeroClouds from "./HeroClouds";
+
+const gothic = Grenze_Gotisch({
+	subsets: ["latin"],
+	weight: ["500", "700"],
+	variable: "--font-gothic",
+});
 
 export default function Hero() {
 	return (
-		<section className="grid w-full grid-cols-1 overflow-hidden">
-			<div className="relative flex min-h-screen w-full flex-col items-center justify-center">
-				<div className="absolute left-[20%] top-[-30vh] h-[110vh] w-[225px] -translate-x-5 -rotate-[50deg] bg-white opacity-20 blur-3xl"></div>
-				<div className="relative">
-					<div className="absolute h-full w-full rounded-3xl bg-hackathon opacity-10 blur-3xl"></div>
-					<div className="z-10 grid h-min grid-cols-2">
-						<div className="relative">
-							<Image
-								src="/img/logo/hackkit-md.png"
-								alt="HackKit Logo"
-								fill
-								className="object-contain"
-							/>
-						</div>
-						<div className="z-10 flex py-5">
-							<h1 className="text-7xl font-black text-hackathon dark:bg-gradient-to-tl dark:from-hackathon/80 dark:to-white dark:bg-clip-text dark:text-transparent md:text-8xl">
-								Hack
-								<br />
-								Kit
-							</h1>
-						</div>
-					</div>
-					<p className="text-md pl-5 pt-10 text-center font-bold text-muted-foreground">
-						Feature-packed Hackathon managment software{" "}
-						<u>that just works</u>.
-					</p>
-				</div>
+		<section
+			className={`${gothic.variable} relative z-10 min-h-[100svh] w-full`}
+		>
+			{/* Background — placeholder sky until the castle/mountain landscape art exists.
+			    Swap this div for an <Image fill> of the landscape when it's ready. */}
+			<div
+				aria-hidden
+				className="absolute inset-0 -z-20 bg-gradient-to-b from-[#7478a6] via-[#e9c48a] to-[#fff1d8]"
+			/>
+
+			{/* Title */}
+			<div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 pb-[40vh] text-center">
+				<h1 className="font-[family-name:var(--font-gothic)] text-6xl font-bold leading-none text-[#2f1e30] drop-shadow-[0_2px_12px_rgba(255,241,216,0.6)] sm:text-7xl md:text-8xl lg:text-9xl">
+					{c.hackathonName}
+				</h1>
 			</div>
-			<div className="absolute top-[80vh] flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-4">
-				<Link href={"https://github.com/acmutsa/hackkit"}>
-					<Button variant={"outline"} size={"lg"}>
-						GitHub
-					</Button>
-				</Link>
-				<Link href={"https://github.com/acmutsa/hackkit"}>
-					<Button variant={"outline"} size={"lg"}>
-						Docs
-					</Button>
-				</Link>
-				<Link href={"https://github.com/acmutsa/hackkit"}>
-					<Button variant={"outline"} size={"lg"}>
-						Channel Log
-					</Button>
-				</Link>
-				<div className="h-0 basis-full" />
-				<div className="max-h-[50px] overflow-hidden"></div>
-			</div>
+
+			<HeroClouds
+				applyHref="/register"
+				mentorHref={c.links.mentorForm}
+				volunteerHref={c.links.volunteerForm}
+			/>
 		</section>
 	);
 }
