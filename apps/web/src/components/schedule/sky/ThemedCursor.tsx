@@ -56,6 +56,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 		};
 
 		const onMove = (event: PointerEvent) => {
+			if (event.pointerType === "touch") return;
 			x = event.clientX;
 			y = event.clientY;
 			// Tri Nguyen: Stay hidden until the first move, and show again after the pointer comes back into the window.
@@ -68,6 +69,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 		};
 
 		const onDown = (event: PointerEvent) => {
+			if (event.pointerType === "touch") return;
 			if (event.button !== 0 || reducedMotion.matches) return;
 			// Tri Nguyen: Remove the class and force a reflow so the swing restarts even on rapid clicks.
 			const classes = config.clickAnimation.split(" ");
@@ -85,12 +87,10 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 		window.addEventListener("pointermove", onMove);
 		window.addEventListener("pointerdown", onDown);
 		document.addEventListener("mouseout", onLeave);
-		document.addEventListener("pointerleave", onLeave);
 		return () => {
 			window.removeEventListener("pointermove", onMove);
 			window.removeEventListener("pointerdown", onDown);
 			document.removeEventListener("mouseout", onLeave);
-			document.removeEventListener("pointerleave", onLeave);
 			if (frame) cancelAnimationFrame(frame);
 		};
 	}, [enabled, weapon, config.clickAnimation]);
@@ -112,7 +112,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 					draggable={false}
 					width={config.effectSize}
 					height={config.effectSize}
-					className={`pointer-events-none fixed ${config.effectAnimation}`}
+					className={`pointer-events-none fixed max-w-none ${config.effectAnimation}`}
 					style={{
 						left: effect.x - config.effectSize / 2,
 						top: effect.y - config.effectSize / 2,
@@ -137,7 +137,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 					draggable={false}
 					width={config.size}
 					height={config.size}
-					className="origin-[85%_85%] select-none"
+					className="max-w-none origin-[85%_85%] select-none"
 				/>
 			</div>
 		</div>
