@@ -125,11 +125,11 @@ module.exports = {
 					from: { opacity: "0", transform: "translateY(24px)" },
 					to: { opacity: "1", transform: "translateY(0)" },
 				},
-				// Tri Nguyen: Sword click. Tiny wind up, fast strike, then snaps straight back, like an attack in a game.
+				// Tri Nguyen: Sword click. Raises the tip a little, chops down fast, then snaps straight back, like an attack in a game.
 				"cq-sword-swing": {
 					"0%, 100%": { transform: "rotate(0deg)" },
-					"15%": { transform: "rotate(-18deg)" },
-					"45%": { transform: "rotate(32deg)" },
+					"15%": { transform: "rotate(18deg)" },
+					"45%": { transform: "rotate(-32deg)" },
 				},
 				// Tri Nguyen: Staff click. Same quick press with a small glow pulse at the end.
 				"cq-staff-cast": {

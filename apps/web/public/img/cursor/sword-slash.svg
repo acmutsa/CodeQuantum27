@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 64" width="256" height="64">
 <g stroke="#3D2340" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-<path d="M4 54Q8 38 24 26Q12 44 4 54Z" fill="#FFFDF3"/>
+<path d="M60 6Q46 8 32 18Q46 14 60 6Z" fill="#FFFDF3"/>
 <g transform="translate(64 0)">
-<path d="M4 54Q12 8 60 6Q18 26 4 54Z" fill="#FFFDF3"/>
-<path d="M10 42Q18 16 50 10" fill="none" stroke="#D7A33D" stroke-width="3"/>
+<path d="M60 6Q12 8 4 54Q18 26 60 6Z" fill="#FFFDF3"/>
+<path d="M50 10Q18 16 10 42" fill="none" stroke="#D7A33D" stroke-width="3"/>
 </g>
 <g transform="translate(128 0)">
-<path d="M20 36Q30 10 60 6Q32 20 20 36Z" fill="#FFFDF3"/>
-<path d="M30 24Q40 14 52 10" fill="none" stroke="#D7A33D" stroke-width="2"/>
+<path d="M40 14Q10 26 4 54Q18 32 40 14Z" fill="#FFFDF3"/>
+<path d="M30 22Q16 32 10 44" fill="none" stroke="#D7A33D" stroke-width="2"/>
 </g>
 <g transform="translate(192 0)">
-<path d="M46 12Q52 8 60 6Q54 10 46 12Z" fill="#FFFDF3"/>
-<circle cx="40" cy="20" r="1.5" fill="#D7A33D" stroke="none"/>
-<circle cx="54" cy="16" r="1.2" fill="#D7A33D" stroke="none"/>
+<path d="M14 40Q6 46 4 54Q10 48 14 40Z" fill="#FFFDF3"/>
+<circle cx="18" cy="50" r="1.5" fill="#D7A33D" stroke="none"/>
+<circle cx="10" cy="38" r="1.2" fill="#D7A33D" stroke="none"/>
 </g>
 </g>
 </svg>
