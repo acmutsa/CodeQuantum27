@@ -178,3 +178,9 @@
 .registration-form button[role="combobox"]:hover {
 	background-color: hsl(var(--muted));
 }
+
+/* Tri Nguyen: Hides the system cursor while ThemedCursor is active (fine pointers only). */
+.cq-themed-cursor,
+.cq-themed-cursor * {
+	cursor: none !important;
+}

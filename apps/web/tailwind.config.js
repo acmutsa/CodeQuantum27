@@ -125,6 +125,31 @@ module.exports = {
 					from: { opacity: "0", transform: "translateY(24px)" },
 					to: { opacity: "1", transform: "translateY(0)" },
 				},
+				// Tri Nguyen: Sword click swing. Winds back, strikes forward, then settles. Pivot is set on the element with origin-[...].
+				"cq-sword-swing": {
+					"0%": { transform: "rotate(0deg)" },
+					"35%": { transform: "rotate(-40deg)" },
+					"65%": { transform: "rotate(25deg)" },
+					"100%": { transform: "rotate(0deg)" },
+				},
+				// Tri Nguyen: Staff click cast. Small tilt back then forward with a quick scale pulse.
+				"cq-staff-cast": {
+					"0%": { transform: "rotate(0deg) scale(1)" },
+					"35%": { transform: "rotate(-15deg) scale(1)" },
+					"65%": { transform: "rotate(10deg) scale(1.1)" },
+					"100%": { transform: "rotate(0deg) scale(1)" },
+				},
+				// Tri Nguyen: Slash arc left at the click point. Fades in, grows, turns a little, fades out.
+				"cq-slash": {
+					"0%": { opacity: "0", transform: "scale(0.6) rotate(-15deg)" },
+					"30%": { opacity: "1" },
+					"100%": { opacity: "0", transform: "scale(1.15) rotate(10deg)" },
+				},
+				// Tri Nguyen: Magic burst at the click point. Grows, spins a quarter turn, fades out.
+				"cq-spark": {
+					"0%": { opacity: "1", transform: "scale(0.3) rotate(0deg)" },
+					"100%": { opacity: "0", transform: "scale(1.4) rotate(45deg)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
@@ -134,6 +159,10 @@ module.exports = {
 				"cq-drift": "cq-drift 18s ease-in-out infinite",
 				"cq-bob": "cq-bob 6s ease-in-out infinite",
 				"cq-rise": "cq-rise 0.8s ease-out both",
+				"cq-sword-swing": "cq-sword-swing 280ms ease-out",
+				"cq-staff-cast": "cq-staff-cast 320ms ease-out",
+				"cq-slash": "cq-slash 350ms ease-out forwards",
+				"cq-spark": "cq-spark 450ms ease-out forwards",
 			},
 			fontFamily: {
 				oswald: ["var(--font-oswald)"],
