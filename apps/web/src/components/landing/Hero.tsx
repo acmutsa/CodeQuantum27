@@ -33,6 +33,10 @@ export default function Hero() {
 				</div>
 			</div>
 			<div className="absolute top-[80vh] flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-4">
+				{/* Tri Nguyen: Placeholder entry to the sky schedule page until the real landing page routing is built. */}
+				<Link href={"/schedule"}>
+					<Button size={"lg"}>Schedule</Button>
+				</Link>
 				<Link href={"https://github.com/acmutsa/hackkit"}>
 					<Button variant={"outline"} size={"lg"}>
 						GitHub
