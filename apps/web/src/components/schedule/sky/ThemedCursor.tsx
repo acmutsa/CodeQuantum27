@@ -102,7 +102,7 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 			aria-hidden="true"
 			className="pointer-events-none fixed left-0 top-0 z-[9999]"
 		>
-			{/* Tri Nguyen: Effects sit at the click point, centered on it, and remove themselves when their animation ends. */}
+			{/* Tri Nguyen: Effects sit at the click point, centered on it, and remove themselves when their animation ends. object-none keeps sprite sheets at full size so only one frame shows through the box. */}
 			{effects.map((effect) => (
 				// eslint-disable-next-line @next/next/no-img-element
 				<img
@@ -112,10 +112,13 @@ export default function ThemedCursor({ weapon = "sword" }: ThemedCursorProps) {
 					draggable={false}
 					width={config.effectSize}
 					height={config.effectSize}
-					className={`pointer-events-none fixed max-w-none ${config.effectAnimation}`}
+					className={`pointer-events-none fixed max-w-none object-none object-left-top ${config.effectAnimation}`}
 					style={{
 						left: effect.x - config.effectSize / 2,
 						top: effect.y - config.effectSize / 2,
+						// Tri Nguyen: Inline size beats Tailwind's img height:auto, which would squash a wide sprite sheet.
+						width: config.effectSize,
+						height: config.effectSize,
 					}}
 					onAnimationEnd={() =>
 						setEffects((current) =>

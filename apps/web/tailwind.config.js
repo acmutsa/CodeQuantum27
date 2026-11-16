@@ -137,11 +137,10 @@ module.exports = {
 					"40%": { transform: "rotate(-8deg) scale(0.88)" },
 					"75%": { transform: "rotate(2deg) scale(1.06)" },
 				},
-				// Tri Nguyen: Slash trail at the click point. Wipes in along the arc, then wipes out from the tail, so it reads as one quick slice.
+				// Tri Nguyen: Slash sprite. Steps through the 4 frames in sword-slash.svg and ends on empty space, so it cuts in and out with no fading.
 				"cq-slash": {
-					"0%": { opacity: "1", clipPath: "inset(0 100% 0 0)" },
-					"45%": { opacity: "1", clipPath: "inset(0 0 0 0)" },
-					"100%": { opacity: "0", clipPath: "inset(0 0 0 100%)" },
+					from: { objectPosition: "0 0" },
+					to: { objectPosition: "-256px 0" },
 				},
 				// Tri Nguyen: Magic burst at the click point. Grows, spins a quarter turn, fades out.
 				"cq-spark": {
@@ -159,7 +158,7 @@ module.exports = {
 				"cq-rise": "cq-rise 0.8s ease-out both",
 				"cq-sword-swing": "cq-sword-swing 170ms cubic-bezier(0.2, 0.9, 0.3, 1)",
 				"cq-staff-cast": "cq-staff-cast 180ms ease-out",
-				"cq-slash": "cq-slash 200ms ease-out forwards",
+				"cq-slash": "cq-slash 140ms steps(4, end) forwards",
 				"cq-spark": "cq-spark 320ms ease-out forwards",
 			},
 			fontFamily: {
