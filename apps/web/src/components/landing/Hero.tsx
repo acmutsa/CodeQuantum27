@@ -40,8 +40,9 @@ export default function Hero() {
 			</div>
 
 			<HeroClouds
-				applyHref="/register"
+				registerHref="/register"
 				mentorHref={c.links.mentorForm}
+				judgeHref={c.links.judgeForm}
 				volunteerHref={c.links.volunteerForm}
 			/>
 		</section>

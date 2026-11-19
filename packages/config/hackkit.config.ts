@@ -104,6 +104,7 @@ const c = {
 		guide: "https://go.rowdyhacks.org/discord",
 		// TODO: replace with the real Tally form URLs
 		mentorForm: "#",
+		judgeForm: "#",
 		volunteerForm: "#",
 	},
 	icon: {

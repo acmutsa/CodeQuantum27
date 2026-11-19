@@ -37,8 +37,9 @@ const CLUMP: ClumpCloud[] = [
 ];
 
 type HeroCloudsProps = {
-	applyHref: string;
+	registerHref: string;
 	mentorHref: string;
+	judgeHref: string;
 	volunteerHref: string;
 };
 
@@ -49,8 +50,9 @@ type HeroCloudsProps = {
  * next section.
  */
 export default function HeroClouds({
-	applyHref,
+	registerHref,
 	mentorHref,
+	judgeHref,
 	volunteerHref,
 }: HeroCloudsProps) {
 	const ref = useRef<HTMLDivElement>(null);
@@ -161,27 +163,37 @@ export default function HeroClouds({
 					transform: "translate3d(0, calc(var(--p) * -6vh), 0)",
 				}}
 			>
+				{/* Register sits on top; the three role forms line up beneath it. */}
+				<div className="flex basis-full justify-center">
+					<CloudButton
+						href={registerHref}
+						src="/img/clouds/btn-register.webp"
+						label="Register for CodeQuantum"
+						height={553}
+						className="w-[72vw] max-w-[440px]"
+						internal
+					/>
+				</div>
 				<CloudButton
 					href={mentorHref}
 					src="/img/clouds/btn-mentor.webp"
 					label="Become a mentor"
 					height={483}
-					className="w-[44vw] max-w-[330px] [animation-delay:-1.5s] sm:order-1"
+					className="w-[30vw] max-w-[280px] [animation-delay:-1.5s]"
 				/>
 				<CloudButton
-					href={applyHref}
-					src="/img/clouds/btn-apply.webp"
-					label="Apply to CodeQuantum"
-					height={526}
-					className="order-first w-[80vw] max-w-[460px] basis-full sm:order-2 sm:basis-auto"
-					internal
+					href={judgeHref}
+					src="/img/clouds/btn-judge.webp"
+					label="Become a judge"
+					height={560}
+					className="w-[30vw] max-w-[280px] [animation-delay:-2.2s]"
 				/>
 				<CloudButton
 					href={volunteerHref}
 					src="/img/clouds/btn-volunteer.webp"
 					label="Volunteer"
 					height={490}
-					className="w-[44vw] max-w-[330px] [animation-delay:-3s] sm:order-3"
+					className="w-[30vw] max-w-[280px] [animation-delay:-3s]"
 				/>
 			</nav>
 		</div>
