@@ -41,3 +41,7 @@ yarn-error.log*
 
 #Jetbrians
 .idea
+# project env files (dev.env / prod.env etc.)
+*.env
+!.env.example
+.env

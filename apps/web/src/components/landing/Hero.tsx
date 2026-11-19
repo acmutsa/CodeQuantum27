@@ -12,8 +12,8 @@ export default function Hero() {
 					<div className="z-10 grid h-min grid-cols-2">
 						<div className="relative">
 							<Image
-								src="/img/logo/hackkit-md.png"
-								alt="HackKit Logo"
+								src="/img/logo/cq27-logo.png"
+								alt="CodeQuantum Logo"
 								fill
 								className="object-contain"
 							/>
@@ -33,6 +33,10 @@ export default function Hero() {
 				</div>
 			</div>
 			<div className="absolute top-[80vh] flex w-full flex-wrap items-center justify-center gap-x-2 gap-y-4">
+				{/* Tri Nguyen: Placeholder entry to the sky schedule page until the real landing page routing is built. */}
+				<Link href={"/schedule"}>
+					<Button size={"lg"}>Schedule</Button>
+				</Link>
 				<Link href={"https://github.com/acmutsa/hackkit"}>
 					<Button variant={"outline"} size={"lg"}>
 						GitHub

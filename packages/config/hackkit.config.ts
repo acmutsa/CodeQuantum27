@@ -15,10 +15,11 @@ import {
 const defaultTheme = "dark";
 
 const c = {
-	hackathonName: "HackKit",
+	hackathonName: "CodeQuantum",
 	itteration: "I",
 	siteUrl: "http://localhost:3000", // Do not have a trailing slash
-	defaultMetaDataDescription: "Your Metadata Description Here",
+	defaultMetaDataDescription:
+		"CodeQuantum 27 is ACM UTSA's one-day hackathon on February 20th at UTSA. Build, learn, and make a little bit of magic.",
 	rsvpDefaultLimit: 500,
 	botName: "HackKit",
 	botParticipantRole: "Participant",
@@ -96,18 +97,19 @@ const c = {
 	},
 	issueEmail: "team@rowdyhacks.org",
 	links: {
-		discord: "https://go.rowdyhacks.org/discord",
-		instagram: "https://instagram.com/rowdyhacks",
+		discord: "https://discord.gg/EQKANpnGgr",
+		instagram: "https://instagram.com/cqhacks/",
 		facebook: "https://facebook.com/rowdyhacks",
 		twitter: "https://twitter.com/rowdyhacks",
 		github: "https://github.com/acmutsa",
 		guide: "https://go.rowdyhacks.org/discord",
 	},
+	// Tri Nguyen: CodeQuantum 27 logo. The "svg" key is kept so existing callers keep working, but it now points at the small PNG.
 	icon: {
-		sm: "/img/logo/hackkit.svg",
-		md: "/img/logo/hackkit-md.png",
-		lg: "/img/logo/hackkit-lg.png",
-		svg: "/img/logo/hackkit.svg",
+		sm: "/img/logo/cq27-logo-sm.png",
+		md: "/img/logo/cq27-logo.png",
+		lg: "/img/logo/cq27-logo.png",
+		svg: "/img/logo/cq27-logo-sm.png",
 	},
 	dashPaths: {
 		dash: {
