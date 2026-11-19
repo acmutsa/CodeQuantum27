@@ -4,11 +4,11 @@
 
 @layer base {
 	:root {
-		--background: 38 100% 92%;          
-		--foreground: 298 27% 19%;         
+		--background: 38 100% 92%;
+		--foreground: 298 27% 19%;
 
-		--nav: 255, 241, 216;              
-		--hackathon-primary: 296 30% 32%;   
+		--nav: 255, 241, 216;
+		--hackathon-primary: 296 30% 32%;
 
 		--muted: 38 60% 86%;
 		--muted-foreground: 296 15% 38%;
@@ -22,13 +22,13 @@
 		--border: 38 35% 78%;
 		--input: 38 35% 78%;
 
-		--primary: 296 30% 32%;            
-		--primary-foreground: 38 100% 92%;  
+		--primary: 296 30% 32%;
+		--primary-foreground: 38 100% 92%;
 
 		--secondary: 38 60% 86%;
 		--secondary-foreground: 298 27% 19%;
 
-		--accent: 40 66% 54%;               
+		--accent: 40 66% 54%;
 		--accent-foreground: 298 27% 19%;
 
 		--destructive: 4 65% 45%;
@@ -38,10 +38,10 @@
 
 		--radius: 0.5rem;
 
-		--gradient-color-1: #d7a33d;       
-		--gradient-color-2: #68396b;      
-		--gradient-color-3: #4e2b4f;       
-		--gradient-color-4: #7478a6;        
+		--gradient-color-1: #d7a33d;
+		--gradient-color-2: #68396b;
+		--gradient-color-3: #4e2b4f;
+		--gradient-color-4: #7478a6;
 
 		--sidebar-background: 38 60% 94%;
 		--sidebar-foreground: 298 27% 19%;
@@ -54,34 +54,34 @@
 	}
 
 	.dark {
-		--background: 298 27% 19%;          
-		--foreground: 38 100% 92%;          
+		--background: 298 27% 19%;
+		--foreground: 38 100% 92%;
 
 		--nav: 298 27% 19%;
 
-		--hackathon-primary: 40 66% 54%;    
+		--hackathon-primary: 40 66% 54%;
 
-		--muted: 298 30% 24%;              
-		--muted-foreground: 235 22% 72%;   
+		--muted: 298 30% 24%;
+		--muted-foreground: 235 22% 72%;
 
 		--popover: 298 30% 24%;
 		--popover-foreground: 38 100% 92%;
 
-		--card: 298 30% 24%;               
+		--card: 298 30% 24%;
 		--card-foreground: 38 100% 92%;
 
-		--border: 296 30% 32%;              
+		--border: 296 30% 32%;
 		--input: 296 30% 32%;
 
-		--primary: 40 66% 54%;              
-		--primary-foreground: 298 27% 19%;  
-		--secondary: 296 30% 32%;          
+		--primary: 40 66% 54%;
+		--primary-foreground: 298 27% 19%;
+		--secondary: 296 30% 32%;
 		--secondary-foreground: 38 100% 92%;
 
 		--accent: 296 30% 32%;
 		--accent-foreground: 38 100% 92%;
 
-		--destructive: 15 54% 24%;        
+		--destructive: 15 54% 24%;
 		--destructive-foreground: 38 100% 92%;
 
 		--ring: 40 66% 54%;
@@ -168,6 +168,7 @@
 	}
 }
 
+/* Tri Nguyen: Gives registration inputs and dropdowns the theme background so they match the form card. */
 .registration-form input:not([type="checkbox"]):not([type="file"]),
 .registration-form textarea,
 .registration-form button[role="combobox"] {
