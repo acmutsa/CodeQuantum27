@@ -28,24 +28,43 @@ describe("buildQuestLog", () => {
 			TIMEZONE,
 		);
 		expect(log.rows).toEqual([
-			{ id: 7, title: "Check-in & Breakfast", scanned: true, note: "Scanned · 8:12 AM" },
+			{
+				id: 7,
+				title: "Check-in & Breakfast",
+				scanned: true,
+				note: "Scanned · 8:12 AM",
+			},
 		]);
 		expect(log.scannedCount).toBe(1);
 	});
 
 	it("shows the start time for events not scanned yet", () => {
 		const log = buildQuestLog(
-			[makeEvent({ id: 2, title: "Dinner", startTime: new Date("2027-02-21T00:00:00Z") })],
+			[
+				makeEvent({
+					id: 2,
+					title: "Dinner",
+					startTime: new Date("2027-02-21T00:00:00Z"),
+				}),
+			],
 			[],
 			TIMEZONE,
 		);
-		expect(log.rows[0]).toEqual({ id: 2, title: "Dinner", scanned: false, note: "Opens 6:00 PM" });
+		expect(log.rows[0]).toEqual({
+			id: 2,
+			title: "Dinner",
+			scanned: false,
+			note: "Opens 6:00 PM",
+		});
 		expect(log.scannedCount).toBe(0);
 	});
 
 	it("keeps the event order and ignores scans for other events", () => {
 		const log = buildQuestLog(
-			[makeEvent({ id: 1, title: "A" }), makeEvent({ id: 2, title: "B" })],
+			[
+				makeEvent({ id: 1, title: "A" }),
+				makeEvent({ id: 2, title: "B" }),
+			],
 			[{ eventID: 99, updatedAt: new Date() }],
 			TIMEZONE,
 		);

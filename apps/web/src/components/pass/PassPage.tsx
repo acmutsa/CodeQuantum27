@@ -20,19 +20,30 @@ export default async function PassPage() {
 
 	const hacker = await getHacker(userId);
 	if (!hacker?.hackerData) redirect("/register");
-	if ((c.featureFlags.core.requireUsersApproval as boolean) === true && !hacker.isApproved) {
+	if (
+		(c.featureFlags.core.requireUsersApproval as boolean) === true &&
+		!hacker.isApproved
+	) {
 		redirect("/i/approval");
 	}
 
 	// Tri Nguyen: The Quest Log uses the same events as the schedule page (hidden ones are removed by buildHackDay). With no events yet it shows the Figma placeholder.
 	const timezone = c.hackathonTimezone;
-	const [events, scans] = await Promise.all([getAllEvents(), getScansForUser(userId)]);
+	const [events, scans] = await Promise.all([
+		getAllEvents(),
+		getScansForUser(userId),
+	]);
 	const hackDay = buildHackDay(events, timezone);
-	const questLog = hackDay ? buildQuestLog(hackDay.events, scans, timezone) : PLACEHOLDER_QUEST_LOG;
+	const questLog = hackDay
+		? buildQuestLog(hackDay.events, scans, timezone)
+		: PLACEHOLDER_QUEST_LOG;
 
 	const hackerClass = getHackerClass(hacker.hackerData.group);
 	// Tri Nguyen: Same QR payload as the old pass, so the admin scanner keeps working.
-	const qrPayload = createQRpayload({ userID: userId, createdAt: new Date() });
+	const qrPayload = createQRpayload({
+		userID: userId,
+		createdAt: new Date(),
+	});
 
 	return (
 		<div
@@ -55,7 +66,11 @@ export default async function PassPage() {
 							qrPayload={qrPayload}
 						/>
 					</div>
-					<ClassPanel hackerClass={hackerClass} questLog={questLog} qrPayload={qrPayload} />
+					<ClassPanel
+						hackerClass={hackerClass}
+						questLog={questLog}
+						qrPayload={qrPayload}
+					/>
 				</div>
 			</main>
 		</div>

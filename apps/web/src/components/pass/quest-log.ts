@@ -20,7 +20,9 @@ export function buildQuestLog(
 	scans: ScanRecord[],
 	timezone: string,
 ): QuestLogData {
-	const scannedAt = new Map(scans.map((scan) => [scan.eventID, scan.updatedAt]));
+	const scannedAt = new Map(
+		scans.map((scan) => [scan.eventID, scan.updatedAt]),
+	);
 	const rows = events.map((event) => {
 		const scanTime = scannedAt.get(event.id);
 		return {
@@ -38,8 +40,18 @@ export function buildQuestLog(
 // Tri Nguyen: Shown until the real schedule is added in /admin/events. Same rows as the Figma mock.
 export const PLACEHOLDER_QUEST_LOG: QuestLogData = {
 	rows: [
-		{ id: -1, title: "Check-in & Breakfast", scanned: true, note: "Scanned · 8:12 AM" },
-		{ id: -2, title: "Opening Ceremony", scanned: true, note: "Scanned · 9:04 AM" },
+		{
+			id: -1,
+			title: "Check-in & Breakfast",
+			scanned: true,
+			note: "Scanned · 8:12 AM",
+		},
+		{
+			id: -2,
+			title: "Opening Ceremony",
+			scanned: true,
+			note: "Scanned · 9:04 AM",
+		},
 		{ id: -3, title: "Lunch", scanned: true, note: "Scanned · 12:41 PM" },
 		{ id: -4, title: "Dinner", scanned: false, note: "Opens 6:00 PM" },
 	],

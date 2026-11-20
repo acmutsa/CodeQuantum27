@@ -16,8 +16,17 @@ export default function PassNav() {
 	return (
 		<header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#D9C49A] bg-cq-parchment/90 px-4 backdrop-blur-sm lg:h-16 lg:px-10">
 			<Link href="/" className="flex items-center gap-2 lg:gap-2.5">
-				<Image src={c.icon.sm} alt="" width={32} height={32} unoptimized className="size-7 rounded-md lg:size-8" />
-				<span className="font-gotisch text-lg font-bold text-[#A7866A]">{c.hackathonName}</span>
+				<Image
+					src={c.icon.sm}
+					alt=""
+					width={32}
+					height={32}
+					unoptimized
+					className="size-7 rounded-md lg:size-8"
+				/>
+				<span className="font-gotisch text-lg font-bold text-[#A7866A]">
+					{c.hackathonName}
+				</span>
 			</Link>
 
 			<nav aria-label="Main" className="hidden gap-7 lg:flex">
@@ -26,7 +35,11 @@ export default function PassNav() {
 						key={link.label}
 						href={link.href}
 						aria-current={"active" in link ? "page" : undefined}
-						className={"active" in link ? "text-sm font-semibold text-cq-plum" : "text-sm font-medium text-cq-muted hover:text-cq-plum"}
+						className={
+							"active" in link
+								? "text-sm font-semibold text-cq-plum"
+								: "text-sm font-medium text-cq-muted hover:text-cq-plum"
+						}
 					>
 						{link.label}
 					</Link>
@@ -39,7 +52,9 @@ export default function PassNav() {
 			>
 				Dashboard
 			</Link>
-			<p className="text-[15px] font-semibold text-cq-plum lg:hidden">{PASS_COPY.pageTitle}</p>
+			<p className="text-[15px] font-semibold text-cq-plum lg:hidden">
+				{PASS_COPY.pageTitle}
+			</p>
 		</header>
 	);
 }

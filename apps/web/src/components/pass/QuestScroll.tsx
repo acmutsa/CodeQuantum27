@@ -20,7 +20,11 @@ type QuestScrollProps = {
 
 // Tri Nguyen: The hacker pass card, a quest scroll from Figma (Cards page, "Hacker Card" Class=*, Crest=Simple).
 // Tri Nguyen: The scroll is 3 images: top and bottom rolls keep their shape, the middle stretches to fit the content.
-export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScrollProps) {
+export default function QuestScroll({
+	hacker,
+	hackerClass,
+	qrPayload,
+}: QuestScrollProps) {
 	const { accent, tint } = hackerClass;
 	const fullName = `${hacker.firstName} ${hacker.lastName}`;
 
@@ -94,19 +98,42 @@ export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScr
 					<h2 className="font-gotisch text-[40px] font-bold leading-[1.05] text-cq-ink">
 						{fullName}
 					</h2>
-					<p className="text-[15px] font-medium text-cq-muted">@{hacker.hackerTag}</p>
+					<p className="text-[15px] font-medium text-cq-muted">
+						@{hacker.hackerTag}
+					</p>
 					<p className="py-0.5 text-[15px] font-bold uppercase tracking-[0.1em] text-[var(--accent)]">
 						{hackerClass.title}
 					</p>
-					<p className="pt-1.5 text-[17px] italic text-cq-plum">{hackerClass.motto}</p>
+					<p className="pt-1.5 text-[17px] italic text-cq-plum">
+						{hackerClass.motto}
+					</p>
 				</div>
 
 				{/* Tri Nguyen: Gold flourish divider, exported from Figma. */}
-				<div aria-hidden className="flex h-[30px] w-full items-center px-[5px]">
-					<svg viewBox="0 0 252 17" fill="none" className="h-auto w-full">
-						<path d="M3.73 8.4h100.8M147.47 8.4h100.8" stroke="#C9A35A" strokeWidth="1.5" strokeLinecap="round" />
-						<path d="M104.53 8.4c5.6-6.53 11.2-6.53 13.07 0-1.87 6.53-7.47 6.53-13.07 0ZM147.47 8.4c-5.6-6.53-11.2-6.53-13.07 0 1.87 6.53 7.47 6.53 13.07 0Z" fill="#D7A33D" />
-						<path d="m126 1.87 6.53 6.53L126 14.93l-6.53-6.53L126 1.87Z" fill="#D7A33D" stroke="#9C7A3A" />
+				<div
+					aria-hidden
+					className="flex h-[30px] w-full items-center px-[5px]"
+				>
+					<svg
+						viewBox="0 0 252 17"
+						fill="none"
+						className="h-auto w-full"
+					>
+						<path
+							d="M3.73 8.4h100.8M147.47 8.4h100.8"
+							stroke="#C9A35A"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+						/>
+						<path
+							d="M104.53 8.4c5.6-6.53 11.2-6.53 13.07 0-1.87 6.53-7.47 6.53-13.07 0ZM147.47 8.4c-5.6-6.53-11.2-6.53-13.07 0 1.87 6.53 7.47 6.53 13.07 0Z"
+							fill="#D7A33D"
+						/>
+						<path
+							d="m126 1.87 6.53 6.53L126 14.93l-6.53-6.53L126 1.87Z"
+							fill="#D7A33D"
+							stroke="#9C7A3A"
+						/>
 						<circle cx="3.73" cy="8.4" r="1.87" fill="#D7A33D" />
 						<circle cx="248.27" cy="8.4" r="1.87" fill="#D7A33D" />
 					</svg>
@@ -124,7 +151,9 @@ export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScr
 							<PassQrCode payload={qrPayload} />
 						</button>
 					</QrDialog>
-					<p className="text-[15px] font-semibold text-cq-ink">{PASS_COPY.qrCaption}</p>
+					<p className="text-[15px] font-semibold text-cq-ink">
+						{PASS_COPY.qrCaption}
+					</p>
 					<p className="text-sm text-cq-muted">{PASS_COPY.qrHint}</p>
 				</div>
 
