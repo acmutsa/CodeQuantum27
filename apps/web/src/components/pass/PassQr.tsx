@@ -36,7 +36,7 @@ export function QrDialog({
 	return (
 		<Dialog>
 			<DialogTrigger asChild>{children}</DialogTrigger>
-			<DialogContent className="w-[min(92vw,460px)] max-w-none rounded-2xl border-cq-gold bg-white p-6">
+			<DialogContent className="w-[92vw] max-w-[460px] rounded-2xl border-cq-gold bg-white p-6">
 				<DialogTitle className="text-center font-grenze text-xl font-semibold text-cq-ink">
 					{PASS_COPY.qrDialogTitle}
 				</DialogTitle>
