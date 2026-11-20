@@ -20,19 +20,15 @@ export const createScan = volunteerAction
 	)
 	.action(
 		async ({
-			parsedInput: {
-				eventID,
-				userID,
-				creationTime,
-				countToSet,
-				alreadyExists,
-			},
+			parsedInput: { eventID, userID, countToSet, alreadyExists },
 			ctx: { user, userId },
 		}) => {
+			// Tri Nguyen: Save the real scan time from the server, not the QR's creation time, so the hacker pass Quest Log shows when the hacker was actually checked in.
+			const scannedAt = new Date();
 			if (alreadyExists) {
 				await db
 					.update(scans)
-					.set({ count: countToSet, updatedAt: creationTime })
+					.set({ count: countToSet, updatedAt: scannedAt })
 					.where(
 						and(
 							eq(scans.eventID, eventID),
@@ -42,7 +38,7 @@ export const createScan = volunteerAction
 			} else {
 				await db.insert(scans).values({
 					userID: userID,
-					updatedAt: creationTime,
+					updatedAt: scannedAt,
 					count: 1,
 					eventID: eventID,
 				});
