@@ -20,7 +20,6 @@ export function PassQrCode({ payload }: { payload: string }) {
 			fgColor="#3D2340"
 			bgColor="#FFFFFF"
 			level="M"
-			viewBox="0 0 256 256"
 			style={{ width: "100%", height: "auto" }}
 		/>
 	);
