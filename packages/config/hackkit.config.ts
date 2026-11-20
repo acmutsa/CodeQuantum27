@@ -63,36 +63,16 @@ const c = {
 				"You have already registered. Please login to your account",
 		},
 	},
+	// Tri Nguyen: Hacker classes. Registration puts each new hacker in the next one (count % 3), and the hacker pass (apps/web/src/components/pass/classes.ts) reads them in this exact order.
 	groups: {
-		"Guild A | Group A": {
-			discordRole: "Group A",
+		Knights: {
+			discordRole: "Knights",
 		},
-		"Guild A | Group B": {
-			discordRole: "Group A",
+		Wizards: {
+			discordRole: "Wizards",
 		},
-		"Guild B | Group A": {
-			discordRole: "Group B",
-		},
-		"Guild B | Group B": {
-			discordRole: "Group B",
-		},
-		"Guild C | Group A": {
-			discordRole: "Group C",
-		},
-		"Guild C | Group B": {
-			discordRole: "Group C",
-		},
-		"Guild D | Group A": {
-			discordRole: "Group D",
-		},
-		"Guild D | Group B": {
-			discordRole: "Group D",
-		},
-		"Guild E | Group A": {
-			discordRole: "Group E",
-		},
-		"Guild E | Group B": {
-			discordRole: "Group E",
+		Archers: {
+			discordRole: "Archers",
 		},
 	},
 	issueEmail: "team@rowdyhacks.org",
