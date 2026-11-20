@@ -82,7 +82,7 @@ export default function QuestScroll({
 						>
 							{hacker.firstName.charAt(0)}
 							{hacker.profilePhoto ? (
-								// eslint-disable-next-line @next/next/no-img-element -- Tri Nguyen: profile photos can come from any host, so next/image remotePatterns would block some.
+								// eslint-disable-next-line @next/next/no-img-element -- Tri Nguyen: a plain img keeps the 62px avatar simple; photos are Clerk image URLs saved at registration.
 								<img
 									src={hacker.profilePhoto}
 									alt=""

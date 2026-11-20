@@ -71,6 +71,7 @@ export function SavePassButton({ className }: { className?: string }) {
 			link.download = PASS_COPY.qrFileName;
 			link.click();
 		};
+		image.onerror = () => URL.revokeObjectURL(svgUrl);
 		image.src = svgUrl;
 	}
 
