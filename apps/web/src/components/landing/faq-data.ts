@@ -5,7 +5,7 @@ export const faqItems = [
 	{
 		id: "event",
 		question: "What is CodeQuantum?",
-		answer: "CodeQuantum is a student-run hackathon hosted by ACM at UTSA. Students spend a day turning an idea into a project, with a focus on making space for people underrepresented in tech.",
+		answer: "CodeQuantum is a 12-hour, beginner-friendly hackathon hosted by ACM at UTSA. Bring your ideas and build a software or hardware project in a team of up to four people. You’ll have a chance to show mentors and judges what you made.",
 	},
 	{
 		id: "experience",
@@ -15,27 +15,42 @@ export const faqItems = [
 	{
 		id: "duration",
 		question: "How long does it last?",
-		answer: "CodeQuantum is traditionally a 12-hour event. The exact start and end times for 2027 are still to come.",
+		answer: "CodeQuantum lasts 12 hours.",
 	},
 	{
 		id: "date",
 		question: "When and where is it?",
-		answer: "The 2027 schedule lists February 20 at UTSA. Building, room, and check-in details are still to come.",
+		answer: "February 20, 2027, at UTSA.",
 	},
 	{
 		id: "eligibility",
-		question: "Who can participate?",
-		answer: "The 2027 registration form currently requires participants to be at least 18. Eligibility for high school students and students from other universities is still being confirmed.",
+		question: "How old do I need to be to participate?",
+		answer: "You must be 18 or older to register.",
+	},
+	{
+		id: "schools",
+		question: "Can students from other universities participate?",
+		answer: "",
 	},
 	{
 		id: "teams",
 		question: "Do I need a team to sign up?",
-		answer: "Team sizes, solo participation, and how to find teammates are still to be confirmed for 2027.",
+		answer: "",
 	},
 	{
 		id: "registration",
 		question: "How do I register, and is it free?",
-		answer: "Registration dates, fees, and sign-up instructions for 2027 are still to be confirmed.",
+		answer: "",
+	},
+	{
+		id: "bring",
+		question: "What should I bring?",
+		answer: "Bring your laptop and charger, wear comfortable clothes, and pack any extras you like to use, such as a mouse. We’ll provide drinks and snacks.",
+	},
+	{
+		id: "start",
+		question: "Can I work on my project before CodeQuantum?",
+		answer: "No. Start building your project at the competition.",
 	},
 	{
 		id: "past-events",
