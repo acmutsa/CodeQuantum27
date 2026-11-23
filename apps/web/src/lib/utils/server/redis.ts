@@ -55,6 +55,25 @@ export async function getAllNavItems() {
 	};
 }
 
+// Keep the landing link available before organizers configure navigation in Redis.
+export async function getLandingNavItems() {
+	const { items } = await getAllNavItems();
+	const isAboutLink = (item: NavItemToggleType) =>
+		/^\/?#about$/i.test(item.url);
+
+	if (
+		items.some(
+			(item) =>
+				isAboutLink(item) || item.name.trim().toLowerCase() === "about",
+		)
+	) {
+		return items.map((item) =>
+			isAboutLink(item) ? { ...item, url: "/#About" } : item,
+		);
+	}
+	return [{ name: "About", url: "/#About", enabled: true }, ...items];
+}
+
 export function removeNavItem(name: string) {
 	console.log("Removing: ", includeEnvPrefix("config:navitemslist"));
 	const pipe = redis.pipeline();
