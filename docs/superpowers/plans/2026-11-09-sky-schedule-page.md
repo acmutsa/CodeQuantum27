@@ -10,68 +10,71 @@
 
 ## Global Constraints
 
-- Commit rules (apply to every subagent): never add `Co-Authored-By` lines, never add AI attribution lines, never include "Generated with Claude Code" or similar disclaimers in commits or PRs.
-- Commit message style: short imperative subject, no prefix, matching history (e.g. `unify form field colors`).
-- Never stage `.gitignore` (it has unrelated uncommitted edits). Always `git add` explicit paths.
-- Every code comment is tagged with the author name: `// Tri Nguyen: ...` or `{/* Tri Nguyen: ... */}` in JSX. Never use `--------` style divider comments.
-- Do not add or change any route. `apps/web/src/app/schedule/page.tsx` must be unchanged in every commit.
-- Keep the MLH badge working: the page renders `<MLHBadge />` directly after `<Navbar />` (same as `apps/web/src/app/page.tsx`), and no element on the page may use a z-index above `z-20` so the badge (`z-50`) always stays on top.
-- Security: no `dangerouslySetInnerHTML`, no new runtime dependencies (Vitest is devDependency only), all art served locally from `/public/img/schedule`, every `target="_blank"` link has `rel="noopener noreferrer"`, hidden events are filtered on the server.
-- All times shown in `c.hackathonTimezone` (`America/Chicago`), because the hero says "All times in CST".
-- Formatting: the repo uses Prettier with tabs. Run Prettier on touched files before each commit.
-- Palette (from Figma): plum `#68396B`, ink `#3D2340`, title `#4E2B4F`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`, sand `#EBDDBF`, path `#FFFDF3`, rope `#E2CC9C`.
-- Figma source: file key `9oqlic9CAVJ4uHbB8vb1C1`, frame node `19:2`.
+-   Commit rules (apply to every subagent): never add `Co-Authored-By` lines, never add AI attribution lines, never include "Generated with Claude Code" or similar disclaimers in commits or PRs.
+-   Commit message style: short imperative subject, no prefix, matching history (e.g. `unify form field colors`).
+-   Never stage `.gitignore` (it has unrelated uncommitted edits). Always `git add` explicit paths.
+-   Every code comment is tagged with the author name: `// Tri Nguyen: ...` or `{/* Tri Nguyen: ... */}` in JSX. Never use `--------` style divider comments.
+-   Do not add or change any route. `apps/web/src/app/schedule/page.tsx` must be unchanged in every commit.
+-   Keep the MLH badge working: the page renders `<MLHBadge />` directly after `<Navbar />` (same as `apps/web/src/app/page.tsx`), and no element on the page may use a z-index above `z-20` so the badge (`z-50`) always stays on top.
+-   Security: no `dangerouslySetInnerHTML`, no new runtime dependencies (Vitest is devDependency only), all art served locally from `/public/img/schedule`, every `target="_blank"` link has `rel="noopener noreferrer"`, hidden events are filtered on the server.
+-   All times shown in `c.hackathonTimezone` (`America/Chicago`), because the hero says "All times in CST".
+-   Formatting: the repo uses Prettier with tabs. Run Prettier on touched files before each commit.
+-   Palette (from Figma): plum `#68396B`, ink `#3D2340`, title `#4E2B4F`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`, sand `#EBDDBF`, path `#FFFDF3`, rope `#E2CC9C`.
+-   Figma source: file key `9oqlic9CAVJ4uHbB8vb1C1`, frame node `19:2`.
 
 ## File Structure
 
 All new files live in `apps/web/src/components/schedule/sky/` unless noted.
 
-| File | Responsibility |
-|---|---|
-| `schedule-data.ts` | Pure helpers: filter, sort, group events by day; format times and labels |
-| `schedule-data.test.ts` | Unit tests for the helpers above |
-| `sky-layout.ts` | Pure layout math: card positions, winding path, markers, scroll draw progress |
-| `sky-layout.test.ts` | Unit tests for layout math |
-| `content.ts` | All static page copy in one place |
-| `assets.ts` | Image paths, cloud variants, background decoration placements |
-| `fonts.ts` | `next/font` setup for Grenze and Grenze Gotisch |
-| `Reveal.tsx` | Client wrapper that fades content up when it scrolls into view |
-| `useScrollDrawProgress.ts` | Client hook returning 0..1 draw progress for the path |
-| `ScheduleHero.tsx` | Castle hero, dragons, title copy, cloud bank |
-| `DayHeader.tsx` | "Hack Day" heading plus plain-text date line |
-| `EventCloud.tsx` | One event card drawn on cloud art |
-| `WindingPath.tsx` | Client SVG path that draws itself while scrolling |
-| `SkyDecorations.tsx` | Peaks, drifting dragons, deco clouds, wind swirls |
-| `SkyTimeline.tsx` | Composes path, decorations, cards, finale for one day |
-| `ScheduleFooter.tsx` | Footer with copyright and Discord link |
-| `SkySchedulePage.tsx` | Server entry: fetch events and compose the page |
-| `README.md` | Short guide for teammates |
-| `apps/web/public/img/schedule/*` | Art exported from Figma |
-| Modify `apps/web/tailwind.config.js` | Add `cq` colors, fonts, keyframes |
-| Modify `apps/web/package.json` | Add Vitest and a `test` script |
-| Create `apps/web/vitest.config.ts` | Vitest config with the `@` alias |
+| File                                 | Responsibility                                                                |
+| ------------------------------------ | ----------------------------------------------------------------------------- |
+| `schedule-data.ts`                   | Pure helpers: filter, sort, group events by day; format times and labels      |
+| `schedule-data.test.ts`              | Unit tests for the helpers above                                              |
+| `sky-layout.ts`                      | Pure layout math: card positions, winding path, markers, scroll draw progress |
+| `sky-layout.test.ts`                 | Unit tests for layout math                                                    |
+| `content.ts`                         | All static page copy in one place                                             |
+| `assets.ts`                          | Image paths, cloud variants, background decoration placements                 |
+| `fonts.ts`                           | `next/font` setup for Grenze and Grenze Gotisch                               |
+| `Reveal.tsx`                         | Client wrapper that fades content up when it scrolls into view                |
+| `useScrollDrawProgress.ts`           | Client hook returning 0..1 draw progress for the path                         |
+| `ScheduleHero.tsx`                   | Castle hero, dragons, title copy, cloud bank                                  |
+| `DayHeader.tsx`                      | "Hack Day" heading plus plain-text date line                                  |
+| `EventCloud.tsx`                     | One event card drawn on cloud art                                             |
+| `WindingPath.tsx`                    | Client SVG path that draws itself while scrolling                             |
+| `SkyDecorations.tsx`                 | Peaks, drifting dragons, deco clouds, wind swirls                             |
+| `SkyTimeline.tsx`                    | Composes path, decorations, cards, finale for one day                         |
+| `ScheduleFooter.tsx`                 | Footer with copyright and Discord link                                        |
+| `SkySchedulePage.tsx`                | Server entry: fetch events and compose the page                               |
+| `README.md`                          | Short guide for teammates                                                     |
+| `apps/web/public/img/schedule/*`     | Art exported from Figma                                                       |
+| Modify `apps/web/tailwind.config.js` | Add `cq` colors, fonts, keyframes                                             |
+| Modify `apps/web/package.json`       | Add Vitest and a `test` script                                                |
+| Create `apps/web/vitest.config.ts`   | Vitest config with the `@` alias                                              |
 
 ---
 
 ### Task 1: Vitest setup and schedule date helpers
 
 **Files:**
-- Modify: `apps/web/package.json`
-- Create: `apps/web/vitest.config.ts`
-- Create: `apps/web/src/components/schedule/sky/schedule-data.ts`
-- Test: `apps/web/src/components/schedule/sky/schedule-data.test.ts`
+
+-   Modify: `apps/web/package.json`
+-   Create: `apps/web/vitest.config.ts`
+-   Create: `apps/web/src/components/schedule/sky/schedule-data.ts`
+-   Test: `apps/web/src/components/schedule/sky/schedule-data.test.ts`
 
 **Interfaces:**
-- Consumes: `EventType` from `@/lib/types/events` (fields: `id`, `title`, `startTime: Date`, `endTime: Date`, `location: string | null`, `description`, `type`, `host: string | null`, `hidden: boolean`).
-- Produces:
-  - `type ScheduleDay = { dayKey: string; events: EventType[] }`
-  - `groupEventsByDay(events: EventType[], timezone: string): ScheduleDay[]`
-  - `formatTimeRange(start: Date, end: Date, timezone: string): string`
-  - `formatDayLabel(day: ScheduleDay, timezone: string): string`
-  - `formatHeroDate(date: Date, timezone: string): string`
-  - `getDayTitle(index: number, totalDays: number): string`
 
-- [ ] **Step 1: Install Vitest and add the test script**
+-   Consumes: `EventType` from `@/lib/types/events` (fields: `id`, `title`, `startTime: Date`, `endTime: Date`, `location: string | null`, `description`, `type`, `host: string | null`, `hidden: boolean`).
+-   Produces:
+
+    -   `type ScheduleDay = { dayKey: string; events: EventType[] }`
+    -   `groupEventsByDay(events: EventType[], timezone: string): ScheduleDay[]`
+    -   `formatTimeRange(start: Date, end: Date, timezone: string): string`
+    -   `formatDayLabel(day: ScheduleDay, timezone: string): string`
+    -   `formatHeroDate(date: Date, timezone: string): string`
+    -   `getDayTitle(index: number, totalDays: number): string`
+
+-   [ ] **Step 1: Install Vitest and add the test script**
 
 Run from repo root:
 
@@ -86,7 +89,7 @@ Then add `"test": "vitest run"` to `apps/web/package.json` scripts, right after 
 		"test": "vitest run",
 ```
 
-- [ ] **Step 2: Create `apps/web/vitest.config.ts`**
+-   [ ] **Step 2: Create `apps/web/vitest.config.ts`**
 
 ```ts
 import { fileURLToPath } from "node:url";
@@ -106,7 +109,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 3: Write the failing tests**
+-   [ ] **Step 3: Write the failing tests**
 
 Create `apps/web/src/components/schedule/sky/schedule-data.test.ts`:
 
@@ -217,9 +220,9 @@ describe("formatDayLabel", () => {
 
 describe("formatHeroDate", () => {
 	it("writes the full date for the hero", () => {
-		expect(
-			formatHeroDate(new Date("2027-02-20T14:00:00Z"), TIMEZONE),
-		).toBe("Saturday, February 20, 2027");
+		expect(formatHeroDate(new Date("2027-02-20T14:00:00Z"), TIMEZONE)).toBe(
+			"Saturday, February 20, 2027",
+		);
 	});
 });
 
@@ -235,12 +238,12 @@ describe("getDayTitle", () => {
 });
 ```
 
-- [ ] **Step 4: Run tests to verify they fail**
+-   [ ] **Step 4: Run tests to verify they fail**
 
 Run: `pnpm --filter web test`
 Expected: FAIL with `Failed to resolve import "./schedule-data"`.
 
-- [ ] **Step 5: Write the implementation**
+-   [ ] **Step 5: Write the implementation**
 
 Create `apps/web/src/components/schedule/sky/schedule-data.ts`:
 
@@ -265,7 +268,11 @@ export function groupEventsByDay(
 
 	const days: ScheduleDay[] = [];
 	for (const event of visibleEvents) {
-		const dayKey = formatInTimeZone(event.startTime, timezone, "yyyy-MM-dd");
+		const dayKey = formatInTimeZone(
+			event.startTime,
+			timezone,
+			"yyyy-MM-dd",
+		);
 		const currentDay = days[days.length - 1];
 
 		if (currentDay && currentDay.dayKey === dayKey) {
@@ -293,7 +300,11 @@ export function formatTimeRange(
 // Tri Nguyen: Short clock text that drops ":00", e.g. "8 AM" but "5:30 PM".
 function formatShortClock(date: Date, timezone: string): string {
 	const minutes = formatInTimeZone(date, timezone, "mm");
-	return formatInTimeZone(date, timezone, minutes === "00" ? "h a" : "h:mm a");
+	return formatInTimeZone(
+		date,
+		timezone,
+		minutes === "00" ? "h a" : "h:mm a",
+	);
 }
 
 // Tri Nguyen: Line next to the day title, e.g. "Saturday · Feb 20 · 8 AM – 8 PM".
@@ -321,12 +332,12 @@ export function getDayTitle(index: number, totalDays: number): string {
 }
 ```
 
-- [ ] **Step 6: Run tests to verify they pass**
+-   [ ] **Step 6: Run tests to verify they pass**
 
 Run: `pnpm --filter web test`
 Expected: PASS, 9 tests.
 
-- [ ] **Step 7: Format and commit**
+-   [ ] **Step 7: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/vitest.config.ts apps/web/package.json apps/web/src/components/schedule/sky/schedule-data.ts apps/web/src/components/schedule/sky/schedule-data.test.ts
@@ -339,19 +350,22 @@ git commit -m "add vitest and schedule date helpers"
 ### Task 2: Sky layout math
 
 **Files:**
-- Create: `apps/web/src/components/schedule/sky/sky-layout.ts`
-- Test: `apps/web/src/components/schedule/sky/sky-layout.test.ts`
+
+-   Create: `apps/web/src/components/schedule/sky/sky-layout.ts`
+-   Test: `apps/web/src/components/schedule/sky/sky-layout.test.ts`
 
 **Interfaces:**
-- Consumes: nothing.
-- Produces:
-  - `LANE_WIDTH = 480`, `CARD_WIDTH = 560`, `CARD_HEIGHT = 246`
-  - `type SkyPoint = { x: number; y: number }`
-  - `type SkyLayout = { height: number; path: string; markers: SkyPoint[]; cardTops: number[] }`
-  - `buildSkyLayout(eventCount: number): SkyLayout` (path and marker x values are in a 480px wide lane centered on the page)
-  - `getDrawProgress(rectTop: number, rectHeight: number, viewportHeight: number): number` (0..1)
 
-- [ ] **Step 1: Write the failing tests**
+-   Consumes: nothing.
+-   Produces:
+
+    -   `LANE_WIDTH = 480`, `CARD_WIDTH = 560`, `CARD_HEIGHT = 246`
+    -   `type SkyPoint = { x: number; y: number }`
+    -   `type SkyLayout = { height: number; path: string; markers: SkyPoint[]; cardTops: number[] }`
+    -   `buildSkyLayout(eventCount: number): SkyLayout` (path and marker x values are in a 480px wide lane centered on the page)
+    -   `getDrawProgress(rectTop: number, rectHeight: number, viewportHeight: number): number` (0..1)
+
+-   [ ] **Step 1: Write the failing tests**
 
 Create `apps/web/src/components/schedule/sky/sky-layout.test.ts`:
 
@@ -415,12 +429,12 @@ describe("getDrawProgress", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+-   [ ] **Step 2: Run tests to verify they fail**
 
 Run: `pnpm --filter web test`
 Expected: FAIL with `Failed to resolve import "./sky-layout"`.
 
-- [ ] **Step 3: Write the implementation**
+-   [ ] **Step 3: Write the implementation**
 
 Create `apps/web/src/components/schedule/sky/sky-layout.ts`:
 
@@ -502,12 +516,12 @@ export function getDrawProgress(
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+-   [ ] **Step 4: Run tests to verify they pass**
 
 Run: `pnpm --filter web test`
 Expected: PASS, 19 tests total.
 
-- [ ] **Step 5: Format and commit**
+-   [ ] **Step 5: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/src/components/schedule/sky/sky-layout.ts apps/web/src/components/schedule/sky/sky-layout.test.ts
@@ -520,12 +534,14 @@ git commit -m "add sky schedule layout math"
 ### Task 3: Export the art from Figma
 
 **Files:**
-- Create: 24 PNG images plus 1 SVG in `apps/web/public/img/schedule/`
+
+-   Create: 24 PNG images plus 1 SVG in `apps/web/public/img/schedule/`
 
 **Interfaces:**
-- Produces: the exact file names listed below. Task 4 `assets.ts` references them with a `.png` extension.
 
-- [ ] **Step 1: Download each raw image**
+-   Produces: the exact file names listed below. Task 4 `assets.ts` references them with a `.png` extension.
+
+-   [ ] **Step 1: Download each raw image**
 
 For each row, call the Figma MCP tool `download_assets` with `fileKey: "9oqlic9CAVJ4uHbB8vb1C1"` and the node id. Take `rawImages[0].url` from the response and save it:
 
@@ -534,36 +550,36 @@ mkdir -p apps/web/public/img/schedule
 curl -fL -o "apps/web/public/img/schedule/<file name>" "<rawImages[0].url>"
 ```
 
-| Node | File name |
-|---|---|
-| `19:18` | `castle-art.png` |
-| `45:2` | `cloud-bank.png` |
-| `19:718` | `dragon-plum.png` |
-| `19:719` | `dragon-gold.png` |
-| `19:720` | `dragon-ice.png` |
-| `19:721` | `dragon-chestnut.png` |
-| `26:4` | `peaks-a.png` |
-| `26:5` | `peaks-b.png` |
-| `21:3` | `finale-landscape.png` |
-| `44:2` | `cloud-01.png` |
-| `44:3` | `cloud-02.png` |
-| `44:4` | `cloud-03.png` |
-| `44:5` | `cloud-04.png` |
-| `44:6` | `cloud-05.png` |
-| `44:7` | `cloud-06.png` |
-| `44:8` | `cloud-07.png` |
-| `44:9` | `cloud-08.png` |
-| `44:10` | `cloud-09.png` |
-| `44:11` | `cloud-10.png` |
-| `44:12` | `deco-cloud-01.png` |
-| `44:13` | `deco-cloud-02.png` |
-| `44:14` | `deco-cloud-03.png` |
-| `44:15` | `deco-cloud-04.png` |
-| `44:16` | `deco-cloud-05.png` |
+| Node     | File name              |
+| -------- | ---------------------- |
+| `19:18`  | `castle-art.png`       |
+| `45:2`   | `cloud-bank.png`       |
+| `19:718` | `dragon-plum.png`      |
+| `19:719` | `dragon-gold.png`      |
+| `19:720` | `dragon-ice.png`       |
+| `19:721` | `dragon-chestnut.png`  |
+| `26:4`   | `peaks-a.png`          |
+| `26:5`   | `peaks-b.png`          |
+| `21:3`   | `finale-landscape.png` |
+| `44:2`   | `cloud-01.png`         |
+| `44:3`   | `cloud-02.png`         |
+| `44:4`   | `cloud-03.png`         |
+| `44:5`   | `cloud-04.png`         |
+| `44:6`   | `cloud-05.png`         |
+| `44:7`   | `cloud-06.png`         |
+| `44:8`   | `cloud-07.png`         |
+| `44:9`   | `cloud-08.png`         |
+| `44:10`  | `cloud-09.png`         |
+| `44:11`  | `cloud-10.png`         |
+| `44:12`  | `deco-cloud-01.png`    |
+| `44:13`  | `deco-cloud-02.png`    |
+| `44:14`  | `deco-cloud-03.png`    |
+| `44:15`  | `deco-cloud-04.png`    |
+| `44:16`  | `deco-cloud-05.png`    |
 
 If a response reports `format` other than `png`, convert it to PNG instead of changing the name: `sips -s format png <file> --out <file>.png && mv <file>.png <file>`.
 
-- [ ] **Step 2: Export the wind swirls as SVG**
+-   [ ] **Step 2: Export the wind swirls as SVG**
 
 Run `use_figma` on the same file with this script. It clones the frame without its white background, exports, and deletes the clone:
 
@@ -578,7 +594,7 @@ return svg;
 
 Save the returned string to `apps/web/public/img/schedule/wind-swirls.svg`.
 
-- [ ] **Step 3: Verify the files**
+-   [ ] **Step 3: Verify the files**
 
 Run:
 
@@ -590,7 +606,7 @@ du -sh apps/web/public/img/schedule
 
 Expected: `25`, then `all png`. Note the total size in the commit body if it is above 10 MB so reviewers know.
 
-- [ ] **Step 4: Commit**
+-   [ ] **Step 4: Commit**
 
 ```bash
 git add apps/web/public/img/schedule
@@ -602,21 +618,24 @@ git commit -m "add sky schedule art from figma"
 ### Task 4: Theme tokens, fonts, copy, and asset map
 
 **Files:**
-- Modify: `apps/web/tailwind.config.js` (inside `theme.extend`)
-- Create: `apps/web/src/components/schedule/sky/fonts.ts`
-- Create: `apps/web/src/components/schedule/sky/content.ts`
-- Create: `apps/web/src/components/schedule/sky/assets.ts`
+
+-   Modify: `apps/web/tailwind.config.js` (inside `theme.extend`)
+-   Create: `apps/web/src/components/schedule/sky/fonts.ts`
+-   Create: `apps/web/src/components/schedule/sky/content.ts`
+-   Create: `apps/web/src/components/schedule/sky/assets.ts`
 
 **Interfaces:**
-- Produces:
-  - Tailwind colors `cq-plum`, `cq-ink`, `cq-title`, `cq-muted`, `cq-gold`, `cq-parchment`, `cq-sand`, `cq-path`, `cq-rope`
-  - Tailwind fonts `font-grenze`, `font-gotisch`
-  - Tailwind animations `animate-cq-float`, `animate-cq-float-slow`, `animate-cq-drift`, `animate-cq-bob`, `animate-cq-rise`
-  - `grenze`, `grenzeGotisch` (next/font objects with `.variable`)
-  - `SCHEDULE_COPY` object (keys below)
-  - `HERO_ART`, `DRAGONS`, `FINALE_LANDSCAPE`, `CLOUD_VARIANTS: CloudVariant[]`, `SKY_DECORATIONS: Decoration[]`, types `CloudVariant`, `Decoration`
 
-- [ ] **Step 1: Extend Tailwind**
+-   Produces:
+
+    -   Tailwind colors `cq-plum`, `cq-ink`, `cq-title`, `cq-muted`, `cq-gold`, `cq-parchment`, `cq-sand`, `cq-path`, `cq-rope`
+    -   Tailwind fonts `font-grenze`, `font-gotisch`
+    -   Tailwind animations `animate-cq-float`, `animate-cq-float-slow`, `animate-cq-drift`, `animate-cq-bob`, `animate-cq-rise`
+    -   `grenze`, `grenzeGotisch` (next/font objects with `.variable`)
+    -   `SCHEDULE_COPY` object (keys below)
+    -   `HERO_ART`, `DRAGONS`, `FINALE_LANDSCAPE`, `CLOUD_VARIANTS: CloudVariant[]`, `SKY_DECORATIONS: Decoration[]`, types `CloudVariant`, `Decoration`
+
+-   [ ] **Step 1: Extend Tailwind**
 
 In `apps/web/tailwind.config.js`, inside `theme.extend.colors`, add after the `sidebar` block:
 
@@ -677,7 +696,7 @@ Inside `theme.extend.fontFamily`, add after `oswald`:
 				gotisch: ["var(--font-grenze-gotisch)"],
 ```
 
-- [ ] **Step 2: Create `fonts.ts`**
+-   [ ] **Step 2: Create `fonts.ts`**
 
 ```ts
 import { Grenze, Grenze_Gotisch } from "next/font/google";
@@ -698,7 +717,7 @@ export const grenzeGotisch = Grenze_Gotisch({
 });
 ```
 
-- [ ] **Step 3: Create `content.ts`**
+-   [ ] **Step 3: Create `content.ts`**
 
 ```ts
 // Tri Nguyen: Every piece of static text on the schedule page. Edit wording here instead of inside components.
@@ -715,7 +734,7 @@ export const SCHEDULE_COPY = {
 } as const;
 ```
 
-- [ ] **Step 4: Create `assets.ts`**
+-   [ ] **Step 4: Create `assets.ts`**
 
 ```ts
 // Tri Nguyen: Every image the sky schedule uses lives in /public/img/schedule. Swapping art is a one line change here.
@@ -756,7 +775,13 @@ export const CLOUD_VARIANTS: CloudVariant[] = [
 	{ src: `${ART_DIR}/cloud-02.png`, x: -32, y: -15, width: 495, height: 237 },
 	{ src: `${ART_DIR}/cloud-03.png`, x: -86, y: -14, width: 507, height: 238 },
 	{ src: `${ART_DIR}/cloud-04.png`, x: -30, y: -38, width: 513, height: 254 },
-	{ src: `${ART_DIR}/cloud-05.png`, x: -102, y: -26, width: 512, height: 248 },
+	{
+		src: `${ART_DIR}/cloud-05.png`,
+		x: -102,
+		y: -26,
+		width: 512,
+		height: 248,
+	},
 	{ src: `${ART_DIR}/cloud-06.png`, x: -27, y: -34, width: 558, height: 258 },
 	{ src: `${ART_DIR}/cloud-07.png`, x: -19, y: -26, width: 521, height: 250 },
 	{ src: `${ART_DIR}/cloud-08.png`, x: -55, y: -75, width: 676, height: 327 },
@@ -778,7 +803,14 @@ export type Decoration = {
 
 export const SKY_DECORATIONS: Decoration[] = [
 	{ src: PEAKS.a, left: 0, top: 353, width: 580, height: 227, opacity: 0.9 },
-	{ src: PEAKS.b, left: 840, top: 968, width: 600, height: 212, opacity: 0.9 },
+	{
+		src: PEAKS.b,
+		left: 840,
+		top: 968,
+		width: 600,
+		height: 212,
+		opacity: 0.9,
+	},
 	{ src: PEAKS.a, left: 0, top: 1503, width: 580, height: 227, opacity: 0.9 },
 	{
 		src: DRAGONS.ice,
@@ -864,12 +896,12 @@ export const SKY_DECORATIONS: Decoration[] = [
 ];
 ```
 
-- [ ] **Step 5: Type check**
+-   [ ] **Step 5: Type check**
 
 Run: `pnpm --filter web exec tsc --noEmit 2>&1 | grep "schedule/sky" || echo "no sky errors"`
 Expected: `no sky errors`.
 
-- [ ] **Step 6: Format and commit**
+-   [ ] **Step 6: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/tailwind.config.js apps/web/src/components/schedule/sky/fonts.ts apps/web/src/components/schedule/sky/content.ts apps/web/src/components/schedule/sky/assets.ts
@@ -882,21 +914,30 @@ git commit -m "add sky schedule theme, fonts, copy, and asset map"
 ### Task 5: Motion primitives
 
 **Files:**
-- Create: `apps/web/src/components/schedule/sky/Reveal.tsx`
-- Create: `apps/web/src/components/schedule/sky/useScrollDrawProgress.ts`
+
+-   Create: `apps/web/src/components/schedule/sky/Reveal.tsx`
+-   Create: `apps/web/src/components/schedule/sky/useScrollDrawProgress.ts`
 
 **Interfaces:**
-- Consumes: `getDrawProgress` from `./sky-layout`, `cn` from `@/lib/utils/client/cn`.
-- Produces:
-  - `Reveal` default export, props `{ children: ReactNode; className?: string; style?: CSSProperties; delayMs?: number }`
-  - `useScrollDrawProgress(ref: RefObject<Element>): number`
 
-- [ ] **Step 1: Create `Reveal.tsx`**
+-   Consumes: `getDrawProgress` from `./sky-layout`, `cn` from `@/lib/utils/client/cn`.
+-   Produces:
+
+    -   `Reveal` default export, props `{ children: ReactNode; className?: string; style?: CSSProperties; delayMs?: number }`
+    -   `useScrollDrawProgress(ref: RefObject<Element>): number`
+
+-   [ ] **Step 1: Create `Reveal.tsx`**
 
 ```tsx
 "use client";
 
-import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
+import {
+	type CSSProperties,
+	type ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { cn } from "@/lib/utils/client/cn";
 
 type RevealProps = {
@@ -939,7 +980,9 @@ export default function Reveal({
 			ref={ref}
 			className={cn(
 				className,
-				isVisible ? "motion-safe:animate-cq-rise" : "motion-safe:opacity-0",
+				isVisible
+					? "motion-safe:animate-cq-rise"
+					: "motion-safe:opacity-0",
 			)}
 			style={{ ...style, animationDelay: `${delayMs}ms` }}
 		>
@@ -949,7 +992,7 @@ export default function Reveal({
 }
 ```
 
-- [ ] **Step 2: Create `useScrollDrawProgress.ts`**
+-   [ ] **Step 2: Create `useScrollDrawProgress.ts`**
 
 ```ts
 "use client";
@@ -975,7 +1018,9 @@ export function useScrollDrawProgress(ref: RefObject<Element>): number {
 		const update = () => {
 			frame = 0;
 			const rect = element.getBoundingClientRect();
-			setProgress(getDrawProgress(rect.top, rect.height, window.innerHeight));
+			setProgress(
+				getDrawProgress(rect.top, rect.height, window.innerHeight),
+			);
 		};
 		const scheduleUpdate = () => {
 			if (frame === 0) frame = requestAnimationFrame(update);
@@ -995,12 +1040,12 @@ export function useScrollDrawProgress(ref: RefObject<Element>): number {
 }
 ```
 
-- [ ] **Step 3: Type check and tests**
+-   [ ] **Step 3: Type check and tests**
 
 Run: `pnpm --filter web exec tsc --noEmit 2>&1 | grep "schedule/sky" || echo "no sky errors"` then `pnpm --filter web test`
 Expected: `no sky errors`, then PASS, 19 tests.
 
-- [ ] **Step 4: Format and commit**
+-   [ ] **Step 4: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/src/components/schedule/sky/Reveal.tsx apps/web/src/components/schedule/sky/useScrollDrawProgress.ts
@@ -1013,18 +1058,21 @@ git commit -m "add scroll reveal and path draw helpers"
 ### Task 6: Hero, day header, and footer
 
 **Files:**
-- Create: `apps/web/src/components/schedule/sky/ScheduleHero.tsx`
-- Create: `apps/web/src/components/schedule/sky/DayHeader.tsx`
-- Create: `apps/web/src/components/schedule/sky/ScheduleFooter.tsx`
+
+-   Create: `apps/web/src/components/schedule/sky/ScheduleHero.tsx`
+-   Create: `apps/web/src/components/schedule/sky/DayHeader.tsx`
+-   Create: `apps/web/src/components/schedule/sky/ScheduleFooter.tsx`
 
 **Interfaces:**
-- Consumes: `HERO_ART`, `DRAGONS` from `./assets`; `SCHEDULE_COPY` from `./content`; `Reveal` from `./Reveal`; `c` from `config` (`c.links.discord`).
-- Produces:
-  - `ScheduleHero` default export, props `{ dateText: string }`
-  - `DayHeader` default export, props `{ headingId: string; title: string; label: string; isFirst: boolean }`
-  - `ScheduleFooter` default export, no props
 
-- [ ] **Step 1: Create `ScheduleHero.tsx`**
+-   Consumes: `HERO_ART`, `DRAGONS` from `./assets`; `SCHEDULE_COPY` from `./content`; `Reveal` from `./Reveal`; `c` from `config` (`c.links.discord`).
+-   Produces:
+
+    -   `ScheduleHero` default export, props `{ dateText: string }`
+    -   `DayHeader` default export, props `{ headingId: string; title: string; label: string; isFirst: boolean }`
+    -   `ScheduleFooter` default export, no props
+
+-   [ ] **Step 1: Create `ScheduleHero.tsx`**
 
 ```tsx
 import Image from "next/image";
@@ -1038,7 +1086,11 @@ type ScheduleHeroProps = {
 // Tri Nguyen: Top of the page. Castle art, two floating dragons, the title copy, and the cloud bank that blends into the schedule.
 // Tri Nguyen: Keep every z-index at z-20 or below so the MLH badge (z-50) always stays on top.
 export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
-	const metaItems = [dateText, SCHEDULE_COPY.location, SCHEDULE_COPY.timezoneNote];
+	const metaItems = [
+		dateText,
+		SCHEDULE_COPY.location,
+		SCHEDULE_COPY.timezoneNote,
+	];
 
 	return (
 		<section
@@ -1063,13 +1115,25 @@ export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
 				aria-hidden
 				className="absolute right-[3.5%] top-[70px] hidden aspect-[330/197] w-[23%] opacity-[0.92] motion-safe:animate-cq-float md:block"
 			>
-				<Image src={DRAGONS.plum} alt="" fill sizes="25vw" className="object-contain" />
+				<Image
+					src={DRAGONS.plum}
+					alt=""
+					fill
+					sizes="25vw"
+					className="object-contain"
+				/>
 			</div>
 			<div
 				aria-hidden
 				className="absolute left-[10.4%] top-[150px] hidden aspect-[230/124] w-[16%] opacity-[0.85] motion-safe:animate-cq-float-slow md:block"
 			>
-				<Image src={DRAGONS.gold} alt="" fill sizes="16vw" className="object-contain" />
+				<Image
+					src={DRAGONS.gold}
+					alt=""
+					fill
+					sizes="16vw"
+					className="object-contain"
+				/>
 			</div>
 
 			{/* Tri Nguyen: Soft glow behind the title, same radial fade as Figma. */}
@@ -1102,7 +1166,10 @@ export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
 					{metaItems.map((item, index) => (
 						<li key={item} className="flex items-center gap-3">
 							{index > 0 && (
-								<span aria-hidden className="h-[5px] w-[5px] rounded-full bg-cq-gold" />
+								<span
+									aria-hidden
+									className="h-[5px] w-[5px] rounded-full bg-cq-gold"
+								/>
 							)}
 							{item}
 						</li>
@@ -1128,7 +1195,7 @@ export default function ScheduleHero({ dateText }: ScheduleHeroProps) {
 }
 ```
 
-- [ ] **Step 2: Create `DayHeader.tsx`**
+-   [ ] **Step 2: Create `DayHeader.tsx`**
 
 ```tsx
 import { cn } from "@/lib/utils/client/cn";
@@ -1171,7 +1238,7 @@ export default function DayHeader({
 }
 ```
 
-- [ ] **Step 3: Create `ScheduleFooter.tsx`**
+-   [ ] **Step 3: Create `ScheduleFooter.tsx`**
 
 ```tsx
 import c from "config";
@@ -1197,12 +1264,12 @@ export default function ScheduleFooter() {
 }
 ```
 
-- [ ] **Step 4: Type check**
+-   [ ] **Step 4: Type check**
 
 Run: `pnpm --filter web exec tsc --noEmit 2>&1 | grep "schedule/sky" || echo "no sky errors"`
 Expected: `no sky errors`.
 
-- [ ] **Step 5: Format and commit**
+-   [ ] **Step 5: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/src/components/schedule/sky/ScheduleHero.tsx apps/web/src/components/schedule/sky/DayHeader.tsx apps/web/src/components/schedule/sky/ScheduleFooter.tsx
@@ -1215,20 +1282,23 @@ git commit -m "add sky schedule hero, day header, and footer"
 ### Task 7: Event clouds, winding path, decorations, timeline
 
 **Files:**
-- Create: `apps/web/src/components/schedule/sky/EventCloud.tsx`
-- Create: `apps/web/src/components/schedule/sky/WindingPath.tsx`
-- Create: `apps/web/src/components/schedule/sky/SkyDecorations.tsx`
-- Create: `apps/web/src/components/schedule/sky/SkyTimeline.tsx`
+
+-   Create: `apps/web/src/components/schedule/sky/EventCloud.tsx`
+-   Create: `apps/web/src/components/schedule/sky/WindingPath.tsx`
+-   Create: `apps/web/src/components/schedule/sky/SkyDecorations.tsx`
+-   Create: `apps/web/src/components/schedule/sky/SkyTimeline.tsx`
 
 **Interfaces:**
-- Consumes: `buildSkyLayout`, `SkyLayout`, `LANE_WIDTH`, `CARD_WIDTH`, `CARD_HEIGHT` from `./sky-layout`; `formatTimeRange` from `./schedule-data`; `CLOUD_VARIANTS`, `SKY_DECORATIONS`, `HERO_ART`, `FINALE_LANDSCAPE` from `./assets`; `Reveal`; `useScrollDrawProgress`; `EventType`.
-- Produces:
-  - `EventCloud` default export, props `{ event: EventType; index: number; top: number; timezone: string }`
-  - `WindingPath` default export, props `{ layout: SkyLayout }`
-  - `SkyDecorations` default export, no props
-  - `SkyTimeline` default export, props `{ events: EventType[]; timezone: string; showFinale: boolean }`
 
-- [ ] **Step 1: Create `EventCloud.tsx`**
+-   Consumes: `buildSkyLayout`, `SkyLayout`, `LANE_WIDTH`, `CARD_WIDTH`, `CARD_HEIGHT` from `./sky-layout`; `formatTimeRange` from `./schedule-data`; `CLOUD_VARIANTS`, `SKY_DECORATIONS`, `HERO_ART`, `FINALE_LANDSCAPE` from `./assets`; `Reveal`; `useScrollDrawProgress`; `EventType`.
+-   Produces:
+
+    -   `EventCloud` default export, props `{ event: EventType; index: number; top: number; timezone: string }`
+    -   `WindingPath` default export, props `{ layout: SkyLayout }`
+    -   `SkyDecorations` default export, no props
+    -   `SkyTimeline` default export, props `{ events: EventType[]; timezone: string; showFinale: boolean }`
+
+-   [ ] **Step 1: Create `EventCloud.tsx`**
 
 ```tsx
 import type { CSSProperties } from "react";
@@ -1253,7 +1323,12 @@ function toPercent(pixels: number, total: number): string {
 }
 
 // Tri Nguyen: One event drawn on cloud art. Stacked on mobile, zigzagging left and right from the lg breakpoint up.
-export default function EventCloud({ event, index, top, timezone }: EventCloudProps) {
+export default function EventCloud({
+	event,
+	index,
+	top,
+	timezone,
+}: EventCloudProps) {
 	const cloud = CLOUD_VARIANTS[index % CLOUD_VARIANTS.length];
 	const isLeft = index % 2 === 0;
 
@@ -1295,7 +1370,11 @@ export default function EventCloud({ event, index, top, timezone }: EventCloudPr
 				<div className="absolute inset-y-0 left-[19%] right-[14%] flex flex-col justify-center gap-1.5">
 					<p className="font-grenze text-lg font-semibold text-cq-plum lg:text-[22px]">
 						<time dateTime={event.startTime.toISOString()}>
-							{formatTimeRange(event.startTime, event.endTime, timezone)}
+							{formatTimeRange(
+								event.startTime,
+								event.endTime,
+								timezone,
+							)}
 						</time>
 					</p>
 					<h3 className="font-gotisch text-2xl font-semibold leading-[1.15] text-cq-ink lg:text-[30px]">
@@ -1313,7 +1392,7 @@ export default function EventCloud({ event, index, top, timezone }: EventCloudPr
 }
 ```
 
-- [ ] **Step 2: Create `WindingPath.tsx`**
+-   [ ] **Step 2: Create `WindingPath.tsx`**
 
 ```tsx
 "use client";
@@ -1377,14 +1456,24 @@ export default function WindingPath({ layout }: WindingPathProps) {
 
 			{layout.markers.map((marker, index) => (
 				<g key={`${marker.x}-${marker.y}`}>
-					<circle cx={marker.x} cy={marker.y + 34} r={5} className="fill-cq-plum/70" />
-					<g transform={`translate(${marker.x + (index % 2 === 0 ? 46 : -46)} ${marker.y - 14})`}>
+					<circle
+						cx={marker.x}
+						cy={marker.y + 34}
+						r={5}
+						className="fill-cq-plum/70"
+					/>
+					<g
+						transform={`translate(${marker.x + (index % 2 === 0 ? 46 : -46)} ${marker.y - 14})`}
+					>
 						<path
 							d={SWIRL_PATH}
 							className="stroke-cq-gold motion-safe:animate-[spin_14s_linear_infinite]"
 							strokeWidth={2}
 							strokeLinecap="round"
-							style={{ transformBox: "fill-box", transformOrigin: "center" }}
+							style={{
+								transformBox: "fill-box",
+								transformOrigin: "center",
+							}}
 						/>
 					</g>
 				</g>
@@ -1394,7 +1483,7 @@ export default function WindingPath({ layout }: WindingPathProps) {
 }
 ```
 
-- [ ] **Step 3: Create `SkyDecorations.tsx`**
+-   [ ] **Step 3: Create `SkyDecorations.tsx`**
 
 ```tsx
 import Image from "next/image";
@@ -1411,7 +1500,10 @@ function toPercent(pixels: number): string {
 // Tri Nguyen: Background art behind the event clouds. Purely decorative, so it is hidden from screen readers and only shown on large screens.
 export default function SkyDecorations() {
 	return (
-		<div aria-hidden className="pointer-events-none absolute inset-0 z-0 hidden lg:block">
+		<div
+			aria-hidden
+			className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
+		>
 			<Image
 				src={HERO_ART.windSwirls}
 				alt=""
@@ -1434,7 +1526,13 @@ export default function SkyDecorations() {
 						opacity: decoration.opacity,
 					}}
 				>
-					<Image src={decoration.src} alt="" fill sizes="25vw" className="object-contain" />
+					<Image
+						src={decoration.src}
+						alt=""
+						fill
+						sizes="25vw"
+						className="object-contain"
+					/>
 				</div>
 			))}
 		</div>
@@ -1442,7 +1540,7 @@ export default function SkyDecorations() {
 }
 ```
 
-- [ ] **Step 4: Create `SkyTimeline.tsx`**
+-   [ ] **Step 4: Create `SkyTimeline.tsx`**
 
 ```tsx
 import type { CSSProperties } from "react";
@@ -1461,14 +1559,20 @@ type SkyTimelineProps = {
 };
 
 // Tri Nguyen: One day of events. Large screens get the absolute positioned Figma layout. Small screens get a simple stacked list.
-export default function SkyTimeline({ events, timezone, showFinale }: SkyTimelineProps) {
+export default function SkyTimeline({
+	events,
+	timezone,
+	showFinale,
+}: SkyTimelineProps) {
 	const layout = buildSkyLayout(events.length);
 
 	return (
 		<div className="relative overflow-hidden">
 			<div
 				className="relative mx-auto max-w-[1440px] lg:h-[var(--sky-height)]"
-				style={{ "--sky-height": `${layout.height}px` } as CSSProperties}
+				style={
+					{ "--sky-height": `${layout.height}px` } as CSSProperties
+				}
 			>
 				<SkyDecorations />
 				<WindingPath layout={layout} />
@@ -1493,7 +1597,13 @@ export default function SkyTimeline({ events, timezone, showFinale }: SkyTimelin
 						className="pointer-events-none relative ml-[-15.76%] w-[118.06%] lg:absolute lg:bottom-0 lg:left-0"
 						style={{ aspectRatio: "1700 / 411" }}
 					>
-						<Image src={FINALE_LANDSCAPE} alt="" fill sizes="118vw" className="object-cover" />
+						<Image
+							src={FINALE_LANDSCAPE}
+							alt=""
+							fill
+							sizes="118vw"
+							className="object-cover"
+						/>
 					</div>
 				)}
 			</div>
@@ -1502,12 +1612,12 @@ export default function SkyTimeline({ events, timezone, showFinale }: SkyTimelin
 }
 ```
 
-- [ ] **Step 5: Type check and tests**
+-   [ ] **Step 5: Type check and tests**
 
 Run: `pnpm --filter web exec tsc --noEmit 2>&1 | grep "schedule/sky" || echo "no sky errors"` then `pnpm --filter web test`
 Expected: `no sky errors`, then PASS, 19 tests.
 
-- [ ] **Step 6: Format and commit**
+-   [ ] **Step 6: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/src/components/schedule/sky/EventCloud.tsx apps/web/src/components/schedule/sky/WindingPath.tsx apps/web/src/components/schedule/sky/SkyDecorations.tsx apps/web/src/components/schedule/sky/SkyTimeline.tsx
@@ -1520,15 +1630,17 @@ git commit -m "add sky schedule event clouds, path, and decorations"
 ### Task 8: Page entry, teammate README, and visual check
 
 **Files:**
-- Create: `apps/web/src/components/schedule/sky/SkySchedulePage.tsx`
-- Create: `apps/web/src/components/schedule/sky/README.md`
-- Temporarily modify (never commit): `apps/web/src/app/schedule/page.tsx`
+
+-   Create: `apps/web/src/components/schedule/sky/SkySchedulePage.tsx`
+-   Create: `apps/web/src/components/schedule/sky/README.md`
+-   Temporarily modify (never commit): `apps/web/src/app/schedule/page.tsx`
 
 **Interfaces:**
-- Consumes: everything above; `getAllEvents` from `db/functions`; `Navbar` from `@/components/shared/Navbar`; `MLHBadge` from `@/components/landing/MLHBadge`; `c` from `config`.
-- Produces: `SkySchedulePage` default export (async server component, no props).
 
-- [ ] **Step 1: Create `SkySchedulePage.tsx`**
+-   Consumes: everything above; `getAllEvents` from `db/functions`; `Navbar` from `@/components/shared/Navbar`; `MLHBadge` from `@/components/landing/MLHBadge`; `c` from `config`.
+-   Produces: `SkySchedulePage` default export (async server component, no props).
+
+-   [ ] **Step 1: Create `SkySchedulePage.tsx`**
 
 ```tsx
 import c from "config";
@@ -1540,7 +1652,12 @@ import DayHeader from "./DayHeader";
 import { grenze, grenzeGotisch } from "./fonts";
 import ScheduleFooter from "./ScheduleFooter";
 import ScheduleHero from "./ScheduleHero";
-import { formatDayLabel, formatHeroDate, getDayTitle, groupEventsByDay } from "./schedule-data";
+import {
+	formatDayLabel,
+	formatHeroDate,
+	getDayTitle,
+	groupEventsByDay,
+} from "./schedule-data";
 import SkyTimeline from "./SkyTimeline";
 
 // Tri Nguyen: Server entry for the sky schedule. Reads events on the server, so hidden events never reach the browser.
@@ -1572,7 +1689,10 @@ export default async function SkySchedulePage() {
 					days.map((day, index) => {
 						const headingId = `schedule-day-${day.dayKey}`;
 						return (
-							<section key={day.dayKey} aria-labelledby={headingId}>
+							<section
+								key={day.dayKey}
+								aria-labelledby={headingId}
+							>
 								<DayHeader
 									headingId={headingId}
 									title={getDayTitle(index, days.length)}
@@ -1596,7 +1716,7 @@ export default async function SkySchedulePage() {
 }
 ```
 
-- [ ] **Step 2: Create `README.md`**
+-   [ ] **Step 2: Create `README.md`**
 
 ```markdown
 # Sky Schedule
@@ -1605,12 +1725,12 @@ Storybook themed schedule page built from the Figma file "CodeQuantum 27 – Sch
 
 ## Where things live
 
-- `SkySchedulePage.tsx` is the entry. It loads events on the server and builds the page.
-- Change wording in `content.ts`.
-- Change or swap art in `assets.ts`. Images are in `apps/web/public/img/schedule`.
-- Change spacing of the cards and the path in `sky-layout.ts`.
-- Date and time formatting is in `schedule-data.ts`.
-- Colors and animations are the `cq` tokens in `apps/web/tailwind.config.js`.
+-   `SkySchedulePage.tsx` is the entry. It loads events on the server and builds the page.
+-   Change wording in `content.ts`.
+-   Change or swap art in `assets.ts`. Images are in `apps/web/public/img/schedule`.
+-   Change spacing of the cards and the path in `sky-layout.ts`.
+-   Date and time formatting is in `schedule-data.ts`.
+-   Colors and animations are the `cq` tokens in `apps/web/tailwind.config.js`.
 
 ## Events
 
@@ -1633,12 +1753,12 @@ Not routed yet. To ship it, make `apps/web/src/app/schedule/page.tsx` render `<S
 `pnpm --filter web test`
 ```
 
-- [ ] **Step 3: Run tests and type check**
+-   [ ] **Step 3: Run tests and type check**
 
 Run: `pnpm --filter web test` then `pnpm --filter web exec tsc --noEmit 2>&1 | grep "schedule/sky" || echo "no sky errors"`
 Expected: PASS, 19 tests, then `no sky errors`.
 
-- [ ] **Step 4: Temporarily route the page for a visual check (do not commit)**
+-   [ ] **Step 4: Temporarily route the page for a visual check (do not commit)**
 
 Replace the body of `apps/web/src/app/schedule/page.tsx` with:
 
@@ -1655,20 +1775,21 @@ export const revalidate = 60;
 Run: `pnpm --filter web dev` and open `http://localhost:3000/schedule`. If the events table is empty, add a few events at `/admin/events/new` first.
 
 Check, at 1440px width, side by side with Figma node `19:2`:
-- Hero art, dragons, title, meta row with gold dots, cloud bank overlap.
-- "Hack Day" title with the plain date line next to it, clear of the clouds.
-- Cards zigzag left and right, the path winds between them, and the finale landscape sits at the bottom.
-- The MLH badge shows at the top right, above the hero dragon.
-- Scroll: cards fade up, the path draws, dragons and small clouds move.
-- With macOS "Reduce motion" on, nothing animates and everything is visible.
-- At 390px width: cards stack in one column, no horizontal scroll.
 
-- [ ] **Step 5: Restore the route**
+-   Hero art, dragons, title, meta row with gold dots, cloud bank overlap.
+-   "Hack Day" title with the plain date line next to it, clear of the clouds.
+-   Cards zigzag left and right, the path winds between them, and the finale landscape sits at the bottom.
+-   The MLH badge shows at the top right, above the hero dragon.
+-   Scroll: cards fade up, the path draws, dragons and small clouds move.
+-   With macOS "Reduce motion" on, nothing animates and everything is visible.
+-   At 390px width: cards stack in one column, no horizontal scroll.
+
+-   [ ] **Step 5: Restore the route**
 
 Run: `git checkout -- apps/web/src/app/schedule/page.tsx && git status --short apps/web/src/app`
 Expected: no output from `git status`.
 
-- [ ] **Step 6: Format and commit**
+-   [ ] **Step 6: Format and commit**
 
 ```bash
 pnpm exec prettier --write apps/web/src/components/schedule/sky/SkySchedulePage.tsx apps/web/src/components/schedule/sky/README.md

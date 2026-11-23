@@ -10,37 +10,37 @@
 
 ## Global Constraints
 
-- Branch: `tri-card`. Commit after every task. Commit subject style: short imperative lowercase, no prefix (e.g. `add hacker class themes`).
-- **Never** add `Co-Authored-By` lines, AI attribution, or "Generated with Claude Code" to any commit message or PR description.
-- Every important comment starts with `// Tri Nguyen:` (or `{/* Tri Nguyen: ... */}` in JSX) and says what the code connects to. Never use `--------` divider lines.
-- Source of truth is Figma file `9oqlic9CAVJ4uHbB8vb1C1`, page `Cards` (60:2): card component `Class=Knight, Crest=Simple` (69:185), mobile frame `Hacker Pass / Mobile — Knight` (64:3), desktop frame `Hacker Pass / Desktop — Knight` (65:109). Use the Simple crest only.
-- Palette (Tailwind `cq` tokens already exist): ink `#3D2340`, plum `#68396B`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`. Card-only extras: paper panel `#FBF5E6`, line `#D3BC8E`, nav border `#D9C49A`, brand text `#A7866A`, on-accent text `#FFFCF4`.
-- Fonts: Grenze (body) and Grenze Gotisch (display) from `apps/web/src/components/schedule/sky/fonts.ts`.
-- No fixed page widths. The card is `max-w-[366px]` and scales down with container query units; desktop layout starts at Tailwind `lg` (1024px).
-- Keep functions small and plain. No new npm dependencies.
-- Run commands from `apps/web` unless stated: tests `pnpm test`, types `pnpm exec tsc --noEmit`, lint `pnpm lint`.
+-   Branch: `tri-card`. Commit after every task. Commit subject style: short imperative lowercase, no prefix (e.g. `add hacker class themes`).
+-   **Never** add `Co-Authored-By` lines, AI attribution, or "Generated with Claude Code" to any commit message or PR description.
+-   Every important comment starts with `// Tri Nguyen:` (or `{/* Tri Nguyen: ... */}` in JSX) and says what the code connects to. Never use `--------` divider lines.
+-   Source of truth is Figma file `9oqlic9CAVJ4uHbB8vb1C1`, page `Cards` (60:2): card component `Class=Knight, Crest=Simple` (69:185), mobile frame `Hacker Pass / Mobile — Knight` (64:3), desktop frame `Hacker Pass / Desktop — Knight` (65:109). Use the Simple crest only.
+-   Palette (Tailwind `cq` tokens already exist): ink `#3D2340`, plum `#68396B`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`. Card-only extras: paper panel `#FBF5E6`, line `#D3BC8E`, nav border `#D9C49A`, brand text `#A7866A`, on-accent text `#FFFCF4`.
+-   Fonts: Grenze (body) and Grenze Gotisch (display) from `apps/web/src/components/schedule/sky/fonts.ts`.
+-   No fixed page widths. The card is `max-w-[366px]` and scales down with container query units; desktop layout starts at Tailwind `lg` (1024px).
+-   Keep functions small and plain. No new npm dependencies.
+-   Run commands from `apps/web` unless stated: tests `pnpm test`, types `pnpm exec tsc --noEmit`, lint `pnpm lint`.
 
 ---
 
 ## File Structure
 
-| File | Responsibility |
-|---|---|
-| `apps/web/public/img/pass/*.webp` | Card art: 3 crests, 3 wax seals, 3 scroll slices (top, middle, bottom) |
-| `packages/config/hackkit.config.ts` (modify) | `groups` become Knights, Wizards, Archers (order = class index) |
-| `packages/db/functions/scans.ts` (new) + `index.ts` (modify) | `getScansForUser(userID)` |
-| `apps/web/src/components/schedule/sky/fonts.ts` (modify) | add Grenze weight 700 |
-| `apps/web/src/components/pass/classes.ts` + test | class theme table and `getHackerClass(group)` |
-| `apps/web/src/components/pass/quest-log.ts` + test | `buildQuestLog(events, scans, tz)` and placeholder rows |
-| `apps/web/src/components/pass/content.ts` | all static copy |
-| `apps/web/src/components/pass/PassQr.tsx` | client: `PassQrCode`, `QrDialog`, `SavePassButton` |
-| `apps/web/src/components/pass/QuestScroll.tsx` | the scroll card |
-| `apps/web/src/components/pass/ClassPanel.tsx` | desktop panel: class title, lore, Quest Log, actions |
-| `apps/web/src/components/pass/PassNav.tsx` | top bar (mobile) / nav (desktop) |
-| `apps/web/src/components/pass/PassBackdrop.tsx` | peaks, cloud bank, dragon |
-| `apps/web/src/components/pass/PassPage.tsx` | server entry: auth, data, layout |
-| `apps/web/src/app/pass/page.tsx` | route |
-| `apps/web/src/components/pass/README.md` | docs |
+| File                                                         | Responsibility                                                         |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| `apps/web/public/img/pass/*.webp`                            | Card art: 3 crests, 3 wax seals, 3 scroll slices (top, middle, bottom) |
+| `packages/config/hackkit.config.ts` (modify)                 | `groups` become Knights, Wizards, Archers (order = class index)        |
+| `packages/db/functions/scans.ts` (new) + `index.ts` (modify) | `getScansForUser(userID)`                                              |
+| `apps/web/src/components/schedule/sky/fonts.ts` (modify)     | add Grenze weight 700                                                  |
+| `apps/web/src/components/pass/classes.ts` + test             | class theme table and `getHackerClass(group)`                          |
+| `apps/web/src/components/pass/quest-log.ts` + test           | `buildQuestLog(events, scans, tz)` and placeholder rows                |
+| `apps/web/src/components/pass/content.ts`                    | all static copy                                                        |
+| `apps/web/src/components/pass/PassQr.tsx`                    | client: `PassQrCode`, `QrDialog`, `SavePassButton`                     |
+| `apps/web/src/components/pass/QuestScroll.tsx`               | the scroll card                                                        |
+| `apps/web/src/components/pass/ClassPanel.tsx`                | desktop panel: class title, lore, Quest Log, actions                   |
+| `apps/web/src/components/pass/PassNav.tsx`                   | top bar (mobile) / nav (desktop)                                       |
+| `apps/web/src/components/pass/PassBackdrop.tsx`              | peaks, cloud bank, dragon                                              |
+| `apps/web/src/components/pass/PassPage.tsx`                  | server entry: auth, data, layout                                       |
+| `apps/web/src/app/pass/page.tsx`                             | route                                                                  |
+| `apps/web/src/components/pass/README.md`                     | docs                                                                   |
 
 The route is `/pass` (not inside `/dash`) because the dash layout draws its own header, and Figma has its own nav. `/pass` is not in `publicRoutes`, so `apps/web/src/middleware.ts` already forces sign-in. The old `/dash/pass` page is left untouched.
 
@@ -49,20 +49,24 @@ The route is `/pass` (not inside `/dash`) because the dash layout draws its own 
 ### Task 1: Card art assets
 
 **Files:**
-- Create: `apps/web/public/img/pass/crest-knight.webp`, `crest-wizard.webp`, `crest-archer.webp`, `seal-knight.webp`, `seal-wizard.webp`, `seal-archer.webp`, `scroll-top.webp`, `scroll-middle.webp`, `scroll-bottom.webp`
+
+-   Create: `apps/web/public/img/pass/crest-knight.webp`, `crest-wizard.webp`, `crest-archer.webp`, `seal-knight.webp`, `seal-wizard.webp`, `seal-archer.webp`, `scroll-top.webp`, `scroll-middle.webp`, `scroll-bottom.webp`
 
 **Interfaces:**
-- Produces: the nine files above, used by Task 4 (`classes.ts`) and Task 6 (`QuestScroll.tsx`).
+
+-   Produces: the nine files above, used by Task 4 (`classes.ts`) and Task 6 (`QuestScroll.tsx`).
 
 Sources (already cut out, transparent PNGs, same images as in Figma):
 `SCRATCH=/private/tmp/claude-501/-Users-tringuyen2007-Documents-Projects-CQ27-CodeQuantum27/372c69bb-6387-4ec7-a940-5ea8ff3cf220/scratchpad`
-- crests: `$SCRATCH/crests/{knight,wizard,archer}-simple.png`
-- seals (storybook style): `$SCRATCH/seals2/{knight,wizard,archer}.png`
-- scroll: `$SCRATCH/scroll/scroll-{top,mid,bot}.png` (732 px wide = 2x the 366 px card)
 
-- [ ] **Step 1: Convert to 2x-size WebP**
+-   crests: `$SCRATCH/crests/{knight,wizard,archer}-simple.png`
+-   seals (storybook style): `$SCRATCH/seals2/{knight,wizard,archer}.png`
+-   scroll: `$SCRATCH/scroll/scroll-{top,mid,bot}.png` (732 px wide = 2x the 366 px card)
+
+-   [ ] **Step 1: Convert to 2x-size WebP**
 
 Run from repo root:
+
 ```bash
 SCRATCH=/private/tmp/claude-501/-Users-tringuyen2007-Documents-Projects-CQ27-CodeQuantum27/372c69bb-6387-4ec7-a940-5ea8ff3cf220/scratchpad
 mkdir -p apps/web/public/img/pass
@@ -83,9 +87,11 @@ for a, b in [("top", "top"), ("mid", "middle"), ("bot", "bottom")]:
 EOF
 ls -la apps/web/public/img/pass
 ```
+
 Expected: 9 files; crests 316 wide, seals 148 wide, scroll slices 732 wide (top/bottom 732×177, middle 732×689). Each under ~120 KB.
 
-- [ ] **Step 2: Commit**
+-   [ ] **Step 2: Commit**
+
 ```bash
 git add apps/web/public/img/pass
 git commit -m "add hacker pass card art"
@@ -96,19 +102,22 @@ git commit -m "add hacker pass card art"
 ### Task 2: Classes in config, scans query, bold Grenze
 
 **Files:**
-- Modify: `packages/config/hackkit.config.ts` (the `groups` object, lines ~66-91)
-- Create: `packages/db/functions/scans.ts`
-- Modify: `packages/db/functions/index.ts`
-- Modify: `apps/web/src/components/schedule/sky/fonts.ts`
+
+-   Modify: `packages/config/hackkit.config.ts` (the `groups` object, lines ~66-91)
+-   Create: `packages/db/functions/scans.ts`
+-   Modify: `packages/db/functions/index.ts`
+-   Modify: `apps/web/src/components/schedule/sky/fonts.ts`
 
 **Interfaces:**
-- Produces: `getScansForUser(userID: string): Promise<{ eventID: number; updatedAt: Date }[]>` exported from `db/functions`.
-- Produces: `c.groups` keys in order `"Knights"`, `"Wizards"`, `"Archers"` (registration assigns `count % 3`, so `hackerData.group` is 0, 1 or 2).
-- Produces: `grenze` font now includes weight 700 (`font-bold`).
 
-- [ ] **Step 1: Replace `groups` in `packages/config/hackkit.config.ts`**
+-   Produces: `getScansForUser(userID: string): Promise<{ eventID: number; updatedAt: Date }[]>` exported from `db/functions`.
+-   Produces: `c.groups` keys in order `"Knights"`, `"Wizards"`, `"Archers"` (registration assigns `count % 3`, so `hackerData.group` is 0, 1 or 2).
+-   Produces: `grenze` font now includes weight 700 (`font-bold`).
+
+-   [ ] **Step 1: Replace `groups` in `packages/config/hackkit.config.ts`**
 
 Replace the whole `groups: { ... },` block with:
+
 ```ts
 	// Tri Nguyen: Hacker classes. Registration puts each new hacker in the next one (count % 3), and the hacker pass (apps/web/src/components/pass/classes.ts) reads them in this exact order.
 	groups: {
@@ -124,7 +133,8 @@ Replace the whole `groups: { ... },` block with:
 	},
 ```
 
-- [ ] **Step 2: Create `packages/db/functions/scans.ts`**
+-   [ ] **Step 2: Create `packages/db/functions/scans.ts`**
+
 ```ts
 import { db, eq } from "..";
 import { scans } from "../schema";
@@ -138,23 +148,25 @@ export function getScansForUser(userID: string) {
 }
 ```
 
-- [ ] **Step 3: Export it from `packages/db/functions/index.ts`**
+-   [ ] **Step 3: Export it from `packages/db/functions/index.ts`**
 
 Add the line `export * from "./scans";` after `export * from "./events";`.
 
-- [ ] **Step 4: Add weight 700 in `apps/web/src/components/schedule/sky/fonts.ts`**
+-   [ ] **Step 4: Add weight 700 in `apps/web/src/components/schedule/sky/fonts.ts`**
 
 Change `weight: ["400", "500", "600"],` to `weight: ["400", "500", "600", "700"],` and update the comment above it to:
+
 ```ts
 // Tri Nguyen: Body font for the schedule and hacker pass pages. Weights match the Figma text styles (Regular, Medium, SemiBold, Bold, Italic).
 ```
 
-- [ ] **Step 5: Type check**
+-   [ ] **Step 5: Type check**
 
 Run: `cd apps/web && pnpm exec tsc --noEmit`
 Expected: no new errors (note any pre-existing ones before this task and compare).
 
-- [ ] **Step 6: Commit**
+-   [ ] **Step 6: Commit**
+
 ```bash
 git add packages/config/hackkit.config.ts packages/db/functions/scans.ts packages/db/functions/index.ts apps/web/src/components/schedule/sky/fonts.ts
 git commit -m "set hacker classes and add scans query"
@@ -165,25 +177,35 @@ git commit -m "set hacker classes and add scans query"
 ### Task 3: Class themes (`classes.ts`)
 
 **Files:**
-- Create: `apps/web/src/components/pass/classes.ts`
-- Test: `apps/web/src/components/pass/classes.test.ts`
+
+-   Create: `apps/web/src/components/pass/classes.ts`
+-   Test: `apps/web/src/components/pass/classes.test.ts`
 
 **Interfaces:**
-- Consumes: `DRAGONS` from `@/components/schedule/sky/assets`.
-- Produces:
+
+-   Consumes: `DRAGONS` from `@/components/schedule/sky/assets`.
+-   Produces:
+
 ```ts
 export type HackerClass = {
 	id: "knight" | "wizard" | "archer";
-	title: string; motto: string; order: string; lore: string;
-	accent: string; tint: string; avatarFrom: string;
-	crest: string; seal: string;
+	title: string;
+	motto: string;
+	order: string;
+	lore: string;
+	accent: string;
+	tint: string;
+	avatarFrom: string;
+	crest: string;
+	seal: string;
 	dragon: { src: string; width: number; height: number };
 };
 export const HACKER_CLASSES: readonly HackerClass[];
 export function getHackerClass(group: number): HackerClass;
 ```
 
-- [ ] **Step 1: Write the failing test** `apps/web/src/components/pass/classes.test.ts`
+-   [ ] **Step 1: Write the failing test** `apps/web/src/components/pass/classes.test.ts`
+
 ```ts
 import { describe, expect, it } from "vitest";
 import { HACKER_CLASSES, getHackerClass } from "./classes";
@@ -211,12 +233,13 @@ describe("getHackerClass", () => {
 });
 ```
 
-- [ ] **Step 2: Run it to see it fail**
+-   [ ] **Step 2: Run it to see it fail**
 
 Run: `cd apps/web && pnpm test src/components/pass/classes.test.ts`
 Expected: FAIL, cannot find module `./classes`.
 
-- [ ] **Step 3: Implement** `apps/web/src/components/pass/classes.ts`
+-   [ ] **Step 3: Implement** `apps/web/src/components/pass/classes.ts`
+
 ```ts
 import { DRAGONS } from "@/components/schedule/sky/assets";
 
@@ -291,12 +314,13 @@ export function getHackerClass(group: number): HackerClass {
 }
 ```
 
-- [ ] **Step 4: Run the test**
+-   [ ] **Step 4: Run the test**
 
 Run: `cd apps/web && pnpm test src/components/pass/classes.test.ts`
 Expected: 4 passed.
 
-- [ ] **Step 5: Commit**
+-   [ ] **Step 5: Commit**
+
 ```bash
 git add apps/web/src/components/pass/classes.ts apps/web/src/components/pass/classes.test.ts
 git commit -m "add hacker class themes"
@@ -307,13 +331,16 @@ git commit -m "add hacker class themes"
 ### Task 4: Quest Log data (`quest-log.ts`) and page copy (`content.ts`)
 
 **Files:**
-- Create: `apps/web/src/components/pass/quest-log.ts`
-- Create: `apps/web/src/components/pass/content.ts`
-- Test: `apps/web/src/components/pass/quest-log.test.ts`
+
+-   Create: `apps/web/src/components/pass/quest-log.ts`
+-   Create: `apps/web/src/components/pass/content.ts`
+-   Test: `apps/web/src/components/pass/quest-log.test.ts`
 
 **Interfaces:**
-- Consumes: `EventType` from `@/lib/types/events`; scan rows shaped like `getScansForUser` output.
-- Produces:
+
+-   Consumes: `EventType` from `@/lib/types/events`; scan rows shaped like `getScansForUser` output.
+-   Produces:
+
 ```ts
 export type ScanRecord = { eventID: number; updatedAt: Date };
 export type QuestRow = { id: number; title: string; scanned: boolean; note: string };
@@ -323,7 +350,8 @@ export const PLACEHOLDER_QUEST_LOG: QuestLogData;
 export const PASS_COPY: { ...string constants };
 ```
 
-- [ ] **Step 1: Write the failing test** `apps/web/src/components/pass/quest-log.test.ts`
+-   [ ] **Step 1: Write the failing test** `apps/web/src/components/pass/quest-log.test.ts`
+
 ```ts
 import { describe, expect, it } from "vitest";
 import type { EventType } from "@/lib/types/events";
@@ -355,24 +383,43 @@ describe("buildQuestLog", () => {
 			TIMEZONE,
 		);
 		expect(log.rows).toEqual([
-			{ id: 7, title: "Check-in & Breakfast", scanned: true, note: "Scanned · 8:12 AM" },
+			{
+				id: 7,
+				title: "Check-in & Breakfast",
+				scanned: true,
+				note: "Scanned · 8:12 AM",
+			},
 		]);
 		expect(log.scannedCount).toBe(1);
 	});
 
 	it("shows the start time for events not scanned yet", () => {
 		const log = buildQuestLog(
-			[makeEvent({ id: 2, title: "Dinner", startTime: new Date("2027-02-21T00:00:00Z") })],
+			[
+				makeEvent({
+					id: 2,
+					title: "Dinner",
+					startTime: new Date("2027-02-21T00:00:00Z"),
+				}),
+			],
 			[],
 			TIMEZONE,
 		);
-		expect(log.rows[0]).toEqual({ id: 2, title: "Dinner", scanned: false, note: "Opens 6:00 PM" });
+		expect(log.rows[0]).toEqual({
+			id: 2,
+			title: "Dinner",
+			scanned: false,
+			note: "Opens 6:00 PM",
+		});
 		expect(log.scannedCount).toBe(0);
 	});
 
 	it("keeps the event order and ignores scans for other events", () => {
 		const log = buildQuestLog(
-			[makeEvent({ id: 1, title: "A" }), makeEvent({ id: 2, title: "B" })],
+			[
+				makeEvent({ id: 1, title: "A" }),
+				makeEvent({ id: 2, title: "B" }),
+			],
 			[{ eventID: 99, updatedAt: new Date() }],
 			TIMEZONE,
 		);
@@ -389,12 +436,13 @@ describe("PLACEHOLDER_QUEST_LOG", () => {
 });
 ```
 
-- [ ] **Step 2: Run it to see it fail**
+-   [ ] **Step 2: Run it to see it fail**
 
 Run: `cd apps/web && pnpm test src/components/pass/quest-log.test.ts`
 Expected: FAIL, cannot find module `./quest-log`.
 
-- [ ] **Step 3: Implement** `apps/web/src/components/pass/quest-log.ts`
+-   [ ] **Step 3: Implement** `apps/web/src/components/pass/quest-log.ts`
+
 ```ts
 import { formatInTimeZone } from "date-fns-tz";
 import type { EventType } from "@/lib/types/events";
@@ -418,7 +466,9 @@ export function buildQuestLog(
 	scans: ScanRecord[],
 	timezone: string,
 ): QuestLogData {
-	const scannedAt = new Map(scans.map((scan) => [scan.eventID, scan.updatedAt]));
+	const scannedAt = new Map(
+		scans.map((scan) => [scan.eventID, scan.updatedAt]),
+	);
 	const rows = events.map((event) => {
 		const scanTime = scannedAt.get(event.id);
 		return {
@@ -436,8 +486,18 @@ export function buildQuestLog(
 // Tri Nguyen: Shown until the real schedule is added in /admin/events. Same rows as the Figma mock.
 export const PLACEHOLDER_QUEST_LOG: QuestLogData = {
 	rows: [
-		{ id: -1, title: "Check-in & Breakfast", scanned: true, note: "Scanned · 8:12 AM" },
-		{ id: -2, title: "Opening Ceremony", scanned: true, note: "Scanned · 9:04 AM" },
+		{
+			id: -1,
+			title: "Check-in & Breakfast",
+			scanned: true,
+			note: "Scanned · 8:12 AM",
+		},
+		{
+			id: -2,
+			title: "Opening Ceremony",
+			scanned: true,
+			note: "Scanned · 9:04 AM",
+		},
 		{ id: -3, title: "Lunch", scanned: true, note: "Scanned · 12:41 PM" },
 		{ id: -4, title: "Dinner", scanned: false, note: "Opens 6:00 PM" },
 	],
@@ -445,7 +505,8 @@ export const PLACEHOLDER_QUEST_LOG: QuestLogData = {
 };
 ```
 
-- [ ] **Step 4: Create** `apps/web/src/components/pass/content.ts`
+-   [ ] **Step 4: Create** `apps/web/src/components/pass/content.ts`
+
 ```ts
 // Tri Nguyen: Every piece of static text on the hacker pass page. Edit wording here instead of inside components.
 export const PASS_COPY = {
@@ -465,12 +526,13 @@ export const PASS_COPY = {
 } as const;
 ```
 
-- [ ] **Step 5: Run the tests**
+-   [ ] **Step 5: Run the tests**
 
 Run: `cd apps/web && pnpm test src/components/pass`
 Expected: all pass (classes + quest-log).
 
-- [ ] **Step 6: Commit**
+-   [ ] **Step 6: Commit**
+
 ```bash
 git add apps/web/src/components/pass/quest-log.ts apps/web/src/components/pass/quest-log.test.ts apps/web/src/components/pass/content.ts
 git commit -m "add quest log data and pass copy"
@@ -481,19 +543,26 @@ git commit -m "add quest log data and pass copy"
 ### Task 5: QR code, full-screen dialog, save button (client)
 
 **Files:**
-- Create: `apps/web/src/components/pass/PassQr.tsx`
+
+-   Create: `apps/web/src/components/pass/PassQr.tsx`
 
 **Interfaces:**
-- Consumes: `Dialog, DialogContent, DialogTitle, DialogTrigger` from `@/components/shadcn/ui/dialog`; `QRCode` from `react-qr-code`; `PASS_COPY`.
-- Produces:
+
+-   Consumes: `Dialog, DialogContent, DialogTitle, DialogTrigger` from `@/components/shadcn/ui/dialog`; `QRCode` from `react-qr-code`; `PASS_COPY`.
+-   Produces:
+
 ```ts
-export function PassQrCode(props: { payload: string }): JSX.Element;      // square SVG, fills its parent width
-export function QrDialog(props: { payload: string; children: React.ReactNode }): JSX.Element; // children = trigger button
+export function PassQrCode(props: { payload: string }): JSX.Element; // square SVG, fills its parent width
+export function QrDialog(props: {
+	payload: string;
+	children: React.ReactNode;
+}): JSX.Element; // children = trigger button
 export function SavePassButton(props: { className?: string }): JSX.Element; // downloads #pass-qr svg as PNG
 export const PASS_QR_ID = "pass-qr";
 ```
 
-- [ ] **Step 1: Implement** `apps/web/src/components/pass/PassQr.tsx`
+-   [ ] **Step 1: Implement** `apps/web/src/components/pass/PassQr.tsx`
+
 ```tsx
 "use client";
 
@@ -580,12 +649,13 @@ export function SavePassButton({ className }: { className?: string }) {
 }
 ```
 
-- [ ] **Step 2: Type check**
+-   [ ] **Step 2: Type check**
 
 Run: `cd apps/web && pnpm exec tsc --noEmit`
 Expected: no new errors. (If `DialogContent` has no `className` merge for `max-w-none`, it uses `cn`, so the override works.)
 
-- [ ] **Step 3: Commit**
+-   [ ] **Step 3: Commit**
+
 ```bash
 git add apps/web/src/components/pass/PassQr.tsx
 git commit -m "add pass qr dialog and save button"
@@ -596,19 +666,32 @@ git commit -m "add pass qr dialog and save button"
 ### Task 6: The quest scroll card (`QuestScroll.tsx`)
 
 **Files:**
-- Create: `apps/web/src/components/pass/QuestScroll.tsx`
+
+-   Create: `apps/web/src/components/pass/QuestScroll.tsx`
 
 **Interfaces:**
-- Consumes: `HackerClass` (Task 3), `PASS_COPY` (Task 4), `PassQrCode`, `QrDialog`, `PASS_QR_ID` (Task 5).
-- Produces:
+
+-   Consumes: `HackerClass` (Task 3), `PASS_COPY` (Task 4), `PassQrCode`, `QrDialog`, `PASS_QR_ID` (Task 5).
+-   Produces:
+
 ```ts
-export type PassHacker = { firstName: string; lastName: string; hackerTag: string; profilePhoto: string | null };
-export default function QuestScroll(props: { hacker: PassHacker; hackerClass: HackerClass; qrPayload: string }): JSX.Element;
+export type PassHacker = {
+	firstName: string;
+	lastName: string;
+	hackerTag: string;
+	profilePhoto: string | null;
+};
+export default function QuestScroll(props: {
+	hacker: PassHacker;
+	hackerClass: HackerClass;
+	qrPayload: string;
+}): JSX.Element;
 ```
 
 Layout notes (from Figma 69:185, card 366 × 864): all spacing that sits on the scroll art is written in `cqw` (1cqw = 1% of the card width), so at 366 px it equals the Figma pixels and on narrow phones it shrinks with the art. Text stays in px. Conversions: top roll 88 px = 24.2cqw, paddings top 76 = 20.77cqw, bottom 82 = 22.4cqw, left 54 = 14.75cqw, right 50 = 13.66cqw, seal 74 px = 20.2cqw at 54 px (14.75cqw) from the right and bottom.
 
-- [ ] **Step 1: Implement** `apps/web/src/components/pass/QuestScroll.tsx`
+-   [ ] **Step 1: Implement** `apps/web/src/components/pass/QuestScroll.tsx`
+
 ```tsx
 import Image from "next/image";
 import type { CSSProperties } from "react";
@@ -632,7 +715,11 @@ type QuestScrollProps = {
 
 // Tri Nguyen: The hacker pass card, a quest scroll from Figma (Cards page, "Hacker Card" Class=*, Crest=Simple).
 // Tri Nguyen: The scroll is 3 images: top and bottom rolls keep their shape, the middle stretches to fit the content.
-export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScrollProps) {
+export default function QuestScroll({
+	hacker,
+	hackerClass,
+	qrPayload,
+}: QuestScrollProps) {
 	const { accent, tint } = hackerClass;
 	const fullName = `${hacker.firstName} ${hacker.lastName}`;
 
@@ -706,19 +793,42 @@ export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScr
 					<h2 className="font-gotisch text-[40px] font-bold leading-[1.05] text-cq-ink">
 						{fullName}
 					</h2>
-					<p className="text-[15px] font-medium text-cq-muted">@{hacker.hackerTag}</p>
+					<p className="text-[15px] font-medium text-cq-muted">
+						@{hacker.hackerTag}
+					</p>
 					<p className="py-0.5 text-[15px] font-bold uppercase tracking-[0.1em] text-[var(--accent)]">
 						{hackerClass.title}
 					</p>
-					<p className="pt-1.5 text-[17px] italic text-cq-plum">{hackerClass.motto}</p>
+					<p className="pt-1.5 text-[17px] italic text-cq-plum">
+						{hackerClass.motto}
+					</p>
 				</div>
 
 				{/* Tri Nguyen: Gold flourish divider, exported from Figma. */}
-				<div aria-hidden className="flex h-[30px] w-full items-center px-[5px]">
-					<svg viewBox="0 0 252 17" fill="none" className="h-auto w-full">
-						<path d="M3.73 8.4h100.8M147.47 8.4h100.8" stroke="#C9A35A" strokeWidth="1.5" strokeLinecap="round" />
-						<path d="M104.53 8.4c5.6-6.53 11.2-6.53 13.07 0-1.87 6.53-7.47 6.53-13.07 0ZM147.47 8.4c-5.6-6.53-11.2-6.53-13.07 0 1.87 6.53 7.47 6.53 13.07 0Z" fill="#D7A33D" />
-						<path d="m126 1.87 6.53 6.53L126 14.93l-6.53-6.53L126 1.87Z" fill="#D7A33D" stroke="#9C7A3A" />
+				<div
+					aria-hidden
+					className="flex h-[30px] w-full items-center px-[5px]"
+				>
+					<svg
+						viewBox="0 0 252 17"
+						fill="none"
+						className="h-auto w-full"
+					>
+						<path
+							d="M3.73 8.4h100.8M147.47 8.4h100.8"
+							stroke="#C9A35A"
+							strokeWidth="1.5"
+							strokeLinecap="round"
+						/>
+						<path
+							d="M104.53 8.4c5.6-6.53 11.2-6.53 13.07 0-1.87 6.53-7.47 6.53-13.07 0ZM147.47 8.4c-5.6-6.53-11.2-6.53-13.07 0 1.87 6.53 7.47 6.53 13.07 0Z"
+							fill="#D7A33D"
+						/>
+						<path
+							d="m126 1.87 6.53 6.53L126 14.93l-6.53-6.53L126 1.87Z"
+							fill="#D7A33D"
+							stroke="#9C7A3A"
+						/>
 						<circle cx="3.73" cy="8.4" r="1.87" fill="#D7A33D" />
 						<circle cx="248.27" cy="8.4" r="1.87" fill="#D7A33D" />
 					</svg>
@@ -736,7 +846,9 @@ export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScr
 							<PassQrCode payload={qrPayload} />
 						</button>
 					</QrDialog>
-					<p className="text-[15px] font-semibold text-cq-ink">{PASS_COPY.qrCaption}</p>
+					<p className="text-[15px] font-semibold text-cq-ink">
+						{PASS_COPY.qrCaption}
+					</p>
 					<p className="text-sm text-cq-muted">{PASS_COPY.qrHint}</p>
 				</div>
 
@@ -760,12 +872,13 @@ export default function QuestScroll({ hacker, hackerClass, qrPayload }: QuestScr
 }
 ```
 
-- [ ] **Step 2: Type check and lint**
+-   [ ] **Step 2: Type check and lint**
 
 Run: `cd apps/web && pnpm exec tsc --noEmit && pnpm lint`
 Expected: no new errors.
 
-- [ ] **Step 3: Commit**
+-   [ ] **Step 3: Commit**
+
 ```bash
 git add apps/web/src/components/pass/QuestScroll.tsx
 git commit -m "add quest scroll card"
@@ -776,15 +889,18 @@ git commit -m "add quest scroll card"
 ### Task 7: Desktop class panel with Quest Log (`ClassPanel.tsx`)
 
 **Files:**
-- Create: `apps/web/src/components/pass/ClassPanel.tsx`
+
+-   Create: `apps/web/src/components/pass/ClassPanel.tsx`
 
 **Interfaces:**
-- Consumes: `HackerClass`, `QuestLogData`, `PASS_COPY`, `QrDialog`, `SavePassButton`.
-- Produces: `export default function ClassPanel(props: { hackerClass: HackerClass; questLog: QuestLogData; qrPayload: string }): JSX.Element;` (rendered only at `lg` and up).
+
+-   Consumes: `HackerClass`, `QuestLogData`, `PASS_COPY`, `QrDialog`, `SavePassButton`.
+-   Produces: `export default function ClassPanel(props: { hackerClass: HackerClass; questLog: QuestLogData; qrPayload: string }): JSX.Element;` (rendered only at `lg` and up).
 
 Figma (65:109 "Class Panel", 560 wide): gap 20; "YOUR CLASS" Grenze SemiBold 16 tracking 18% plum; title Grenze Gotisch Bold 72 lh 100% ink; lore Grenze Medium 20 lh 150% muted; Quest Log box bg `#FBF5E6` 94%, 1.5 px `#D3BC8E` border, radius 16, padding 18/24/10/24; header row 44 + 8 bottom padding; rows 52 tall, 1 px top border `#D3BC8E` 70%, gap 14, 24 px icon; actions gap 12, buttons radius 10, padding 14/24, Grenze SemiBold 17.
 
-- [ ] **Step 1: Implement** `apps/web/src/components/pass/ClassPanel.tsx`
+-   [ ] **Step 1: Implement** `apps/web/src/components/pass/ClassPanel.tsx`
+
 ```tsx
 import type { HackerClass } from "./classes";
 import { PASS_COPY } from "./content";
@@ -797,10 +913,15 @@ type ClassPanelProps = {
 	qrPayload: string;
 };
 
-const BUTTON = "rounded-[10px] px-6 py-3.5 text-[17px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
+const BUTTON =
+	"rounded-[10px] px-6 py-3.5 text-[17px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]";
 
 // Tri Nguyen: Right side of the desktop pass. The Quest Log rows come from buildQuestLog (quest-log.ts), which reads schedule events and this hacker's scans.
-export default function ClassPanel({ hackerClass, questLog, qrPayload }: ClassPanelProps) {
+export default function ClassPanel({
+	hackerClass,
+	questLog,
+	qrPayload,
+}: ClassPanelProps) {
 	return (
 		<section
 			aria-labelledby="pass-class-title"
@@ -815,14 +936,19 @@ export default function ClassPanel({ hackerClass, questLog, qrPayload }: ClassPa
 			>
 				{hackerClass.order}
 			</h1>
-			<p className="text-xl font-medium leading-normal text-cq-muted">{hackerClass.lore}</p>
+			<p className="text-xl font-medium leading-normal text-cq-muted">
+				{hackerClass.lore}
+			</p>
 
 			{/* Tri Nguyen: Quest Log. Scanned events get a filled check in the class color; upcoming ones a dashed circle and the start time. */}
 			<div className="rounded-2xl border-[1.5px] border-[#D3BC8E] bg-[#FBF5E6]/95 px-6 pb-2.5 pt-[18px]">
 				<div className="flex items-center justify-between pb-2">
-					<h2 className="font-gotisch text-[30px] font-semibold text-cq-ink">{PASS_COPY.questLog}</h2>
+					<h2 className="font-gotisch text-[30px] font-semibold text-cq-ink">
+						{PASS_COPY.questLog}
+					</h2>
 					<p className="text-sm font-medium text-cq-muted">
-						{questLog.scannedCount} of {questLog.rows.length} scanned
+						{questLog.scannedCount} of {questLog.rows.length}{" "}
+						scanned
 					</p>
 				</div>
 				<ol>
@@ -832,10 +958,14 @@ export default function ClassPanel({ hackerClass, questLog, qrPayload }: ClassPa
 							className="flex items-center gap-3.5 border-t border-[#D3BC8E]/70 py-3"
 						>
 							<QuestIcon scanned={row.scanned} />
-							<span className={`flex-1 text-lg font-semibold ${row.scanned ? "text-cq-ink" : "text-cq-muted"}`}>
+							<span
+								className={`flex-1 text-lg font-semibold ${row.scanned ? "text-cq-ink" : "text-cq-muted"}`}
+							>
 								{row.title}
 							</span>
-							<span className={`text-[15px] font-medium text-cq-muted ${row.scanned ? "" : "italic"}`}>
+							<span
+								className={`text-[15px] font-medium text-cq-muted ${row.scanned ? "" : "italic"}`}
+							>
 								{row.note}
 							</span>
 						</li>
@@ -846,7 +976,10 @@ export default function ClassPanel({ hackerClass, questLog, qrPayload }: ClassPa
 			{/* Tri Nguyen: Same QR dialog as tapping the card, plus a PNG download of the code. */}
 			<div className="flex gap-3">
 				<QrDialog payload={qrPayload}>
-					<button type="button" className={`${BUTTON} bg-[var(--accent)] text-[#FFFCF4] hover:brightness-110`}>
+					<button
+						type="button"
+						className={`${BUTTON} bg-[var(--accent)] text-[#FFFCF4] hover:brightness-110`}
+					>
 						{PASS_COPY.showQr}
 					</button>
 				</QrDialog>
@@ -861,26 +994,45 @@ export default function ClassPanel({ hackerClass, questLog, qrPayload }: ClassPa
 // Tri Nguyen: Status icons exported from Figma. Decorative, the row note says the status in words.
 function QuestIcon({ scanned }: { scanned: boolean }) {
 	return (
-		<svg aria-hidden viewBox="0 0 24 24" fill="none" className="size-6 shrink-0">
+		<svg
+			aria-hidden
+			viewBox="0 0 24 24"
+			fill="none"
+			className="size-6 shrink-0"
+		>
 			{scanned ? (
 				<>
 					<circle cx="12" cy="12" r="11" fill="var(--accent)" />
-					<path d="M7 12.5l3.2 3.2L17 9" stroke="#FFFCF4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+					<path
+						d="M7 12.5l3.2 3.2L17 9"
+						stroke="#FFFCF4"
+						strokeWidth="2.2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
 				</>
 			) : (
-				<circle cx="12" cy="12" r="10" stroke="#6E5270" strokeWidth="1.8" strokeDasharray="3 3" />
+				<circle
+					cx="12"
+					cy="12"
+					r="10"
+					stroke="#6E5270"
+					strokeWidth="1.8"
+					strokeDasharray="3 3"
+				/>
 			)}
 		</svg>
 	);
 }
 ```
 
-- [ ] **Step 2: Type check and lint**
+-   [ ] **Step 2: Type check and lint**
 
 Run: `cd apps/web && pnpm exec tsc --noEmit && pnpm lint`
 Expected: no new errors.
 
-- [ ] **Step 3: Commit**
+-   [ ] **Step 3: Commit**
+
 ```bash
 git add apps/web/src/components/pass/ClassPanel.tsx
 git commit -m "add class panel with quest log"
@@ -891,16 +1043,19 @@ git commit -m "add class panel with quest log"
 ### Task 8: Nav, backdrop, page entry and route
 
 **Files:**
-- Create: `apps/web/src/components/pass/PassNav.tsx`
-- Create: `apps/web/src/components/pass/PassBackdrop.tsx`
-- Create: `apps/web/src/components/pass/PassPage.tsx`
-- Create: `apps/web/src/app/pass/page.tsx`
+
+-   Create: `apps/web/src/components/pass/PassNav.tsx`
+-   Create: `apps/web/src/components/pass/PassBackdrop.tsx`
+-   Create: `apps/web/src/components/pass/PassPage.tsx`
+-   Create: `apps/web/src/app/pass/page.tsx`
 
 **Interfaces:**
-- Consumes: everything above; `getHacker`, `getAllEvents`, `getScansForUser` from `db/functions`; `buildHackDay` from `@/components/schedule/sky/schedule-data`; `createQRpayload` from `@/lib/utils/shared/qr`; `auth` from `@clerk/nextjs/server`; `grenze`, `grenzeGotisch` from `@/components/schedule/sky/fonts`.
-- Produces: route `/pass`.
 
-- [ ] **Step 1: Implement** `apps/web/src/components/pass/PassNav.tsx`
+-   Consumes: everything above; `getHacker`, `getAllEvents`, `getScansForUser` from `db/functions`; `buildHackDay` from `@/components/schedule/sky/schedule-data`; `createQRpayload` from `@/lib/utils/shared/qr`; `auth` from `@clerk/nextjs/server`; `grenze`, `grenzeGotisch` from `@/components/schedule/sky/fonts`.
+-   Produces: route `/pass`.
+
+-   [ ] **Step 1: Implement** `apps/web/src/components/pass/PassNav.tsx`
+
 ```tsx
 import c from "config";
 import Image from "next/image";
@@ -920,8 +1075,17 @@ export default function PassNav() {
 	return (
 		<header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-[#D9C49A] bg-cq-parchment/90 px-4 backdrop-blur-sm lg:h-16 lg:px-10">
 			<Link href="/" className="flex items-center gap-2 lg:gap-2.5">
-				<Image src={c.icon.sm} alt="" width={32} height={32} unoptimized className="size-7 rounded-md lg:size-8" />
-				<span className="font-gotisch text-lg font-bold text-[#A7866A]">{c.hackathonName}</span>
+				<Image
+					src={c.icon.sm}
+					alt=""
+					width={32}
+					height={32}
+					unoptimized
+					className="size-7 rounded-md lg:size-8"
+				/>
+				<span className="font-gotisch text-lg font-bold text-[#A7866A]">
+					{c.hackathonName}
+				</span>
 			</Link>
 
 			<nav aria-label="Main" className="hidden gap-7 lg:flex">
@@ -930,7 +1094,11 @@ export default function PassNav() {
 						key={link.label}
 						href={link.href}
 						aria-current={"active" in link ? "page" : undefined}
-						className={"active" in link ? "text-sm font-semibold text-cq-plum" : "text-sm font-medium text-cq-muted hover:text-cq-plum"}
+						className={
+							"active" in link
+								? "text-sm font-semibold text-cq-plum"
+								: "text-sm font-medium text-cq-muted hover:text-cq-plum"
+						}
 					>
 						{link.label}
 					</Link>
@@ -943,13 +1111,16 @@ export default function PassNav() {
 			>
 				Dashboard
 			</Link>
-			<p className="text-[15px] font-semibold text-cq-plum lg:hidden">{PASS_COPY.pageTitle}</p>
+			<p className="text-[15px] font-semibold text-cq-plum lg:hidden">
+				{PASS_COPY.pageTitle}
+			</p>
 		</header>
 	);
 }
 ```
 
-- [ ] **Step 2: Implement** `apps/web/src/components/pass/PassBackdrop.tsx`
+-   [ ] **Step 2: Implement** `apps/web/src/components/pass/PassBackdrop.tsx`
+
 ```tsx
 import Image from "next/image";
 import { HERO_ART } from "@/components/schedule/sky/assets";
@@ -960,20 +1131,56 @@ const PEAKS_LEFT = "/img/schedule/peaks-a.png";
 const PEAKS_RIGHT = "/img/schedule/peaks-b.png";
 
 // Tri Nguyen: Decorative art behind the pass, pinned to the bottom of the page like the Figma frames. Phones only get the faint peaks.
-export default function PassBackdrop({ dragon }: { dragon: HackerClass["dragon"] }) {
+export default function PassBackdrop({
+	dragon,
+}: {
+	dragon: HackerClass["dragon"];
+}) {
 	return (
-		<div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-			<Image src={PEAKS_LEFT} alt="" width={580} height={227} unoptimized className="absolute -bottom-7 left-1/2 w-[580px] max-w-none -translate-x-1/2 opacity-55 lg:bottom-[97px] lg:left-0 lg:translate-x-0 lg:opacity-60" />
-			<Image src={PEAKS_RIGHT} alt="" width={600} height={212} unoptimized className="absolute bottom-[92px] right-0 hidden w-[600px] opacity-60 lg:block" />
-			<Image src={HERO_ART.cloudBank} alt="" width={1440} height={280} unoptimized className="absolute -bottom-14 left-0 hidden h-[280px] w-full object-cover opacity-90 lg:block" />
+		<div
+			aria-hidden
+			className="pointer-events-none absolute inset-0 overflow-hidden"
+		>
+			<Image
+				src={PEAKS_LEFT}
+				alt=""
+				width={580}
+				height={227}
+				unoptimized
+				className="absolute -bottom-7 left-1/2 w-[580px] max-w-none -translate-x-1/2 opacity-55 lg:bottom-[97px] lg:left-0 lg:translate-x-0 lg:opacity-60"
+			/>
+			<Image
+				src={PEAKS_RIGHT}
+				alt=""
+				width={600}
+				height={212}
+				unoptimized
+				className="absolute bottom-[92px] right-0 hidden w-[600px] opacity-60 lg:block"
+			/>
+			<Image
+				src={HERO_ART.cloudBank}
+				alt=""
+				width={1440}
+				height={280}
+				unoptimized
+				className="absolute -bottom-14 left-0 hidden h-[280px] w-full object-cover opacity-90 lg:block"
+			/>
 			{/* Tri Nguyen: Class dragon floats on the right. Motion stops for people who ask for reduced motion. */}
-			<Image src={dragon.src} alt="" width={dragon.width} height={dragon.height} unoptimized className="absolute right-6 top-[46%] hidden opacity-75 motion-safe:animate-cq-bob lg:block" />
+			<Image
+				src={dragon.src}
+				alt=""
+				width={dragon.width}
+				height={dragon.height}
+				unoptimized
+				className="absolute right-6 top-[46%] hidden opacity-75 motion-safe:animate-cq-bob lg:block"
+			/>
 		</div>
 	);
 }
 ```
 
-- [ ] **Step 3: Implement** `apps/web/src/components/pass/PassPage.tsx`
+-   [ ] **Step 3: Implement** `apps/web/src/components/pass/PassPage.tsx`
+
 ```tsx
 import { auth } from "@clerk/nextjs/server";
 import c from "config";
@@ -997,19 +1204,30 @@ export default async function PassPage() {
 
 	const hacker = await getHacker(userId);
 	if (!hacker?.hackerData) redirect("/register");
-	if ((c.featureFlags.core.requireUsersApproval as boolean) === true && !hacker.isApproved) {
+	if (
+		(c.featureFlags.core.requireUsersApproval as boolean) === true &&
+		!hacker.isApproved
+	) {
 		redirect("/i/approval");
 	}
 
 	// Tri Nguyen: The Quest Log uses the same events as the schedule page (hidden ones are removed by buildHackDay). With no events yet it shows the Figma placeholder.
 	const timezone = c.hackathonTimezone;
-	const [events, scans] = await Promise.all([getAllEvents(), getScansForUser(userId)]);
+	const [events, scans] = await Promise.all([
+		getAllEvents(),
+		getScansForUser(userId),
+	]);
 	const hackDay = buildHackDay(events, timezone);
-	const questLog = hackDay ? buildQuestLog(hackDay.events, scans, timezone) : PLACEHOLDER_QUEST_LOG;
+	const questLog = hackDay
+		? buildQuestLog(hackDay.events, scans, timezone)
+		: PLACEHOLDER_QUEST_LOG;
 
 	const hackerClass = getHackerClass(hacker.hackerData.group);
 	// Tri Nguyen: Same QR payload as the old pass, so the admin scanner keeps working.
-	const qrPayload = createQRpayload({ userID: userId, createdAt: new Date() });
+	const qrPayload = createQRpayload({
+		userID: userId,
+		createdAt: new Date(),
+	});
 
 	return (
 		<div
@@ -1032,7 +1250,11 @@ export default async function PassPage() {
 							qrPayload={qrPayload}
 						/>
 					</div>
-					<ClassPanel hackerClass={hackerClass} questLog={questLog} qrPayload={qrPayload} />
+					<ClassPanel
+						hackerClass={hackerClass}
+						questLog={questLog}
+						qrPayload={qrPayload}
+					/>
 				</div>
 			</main>
 		</div>
@@ -1040,7 +1262,8 @@ export default async function PassPage() {
 }
 ```
 
-- [ ] **Step 4: Create the route** `apps/web/src/app/pass/page.tsx`
+-   [ ] **Step 4: Create the route** `apps/web/src/app/pass/page.tsx`
+
 ```tsx
 import type { Metadata } from "next";
 import PassPage from "@/components/pass/PassPage";
@@ -1053,12 +1276,13 @@ export default function Page() {
 }
 ```
 
-- [ ] **Step 5: Verify build health**
+-   [ ] **Step 5: Verify build health**
 
 Run: `cd apps/web && pnpm test && pnpm exec tsc --noEmit && pnpm lint`
 Expected: all tests pass, no new type or lint errors.
 
-- [ ] **Step 6: Commit**
+-   [ ] **Step 6: Commit**
+
 ```bash
 git add apps/web/src/components/pass/PassNav.tsx apps/web/src/components/pass/PassBackdrop.tsx apps/web/src/components/pass/PassPage.tsx apps/web/src/app/pass/page.tsx
 git commit -m "add login-only hacker pass page"
@@ -1069,16 +1293,18 @@ git commit -m "add login-only hacker pass page"
 ### Task 9: Visual check against Figma and README
 
 **Files:**
-- Create: `apps/web/src/components/pass/README.md`
-- Modify: any pass component where the visual check finds a mismatch
 
-- [ ] **Step 1: Check the page in the browser**
+-   Create: `apps/web/src/components/pass/README.md`
+-   Modify: any pass component where the visual check finds a mismatch
+
+-   [ ] **Step 1: Check the page in the browser**
 
 With the dev server on `http://localhost:3000` and a signed-in hacker in Chrome, open `/pass` at 390 px wide, 1440 × 1024, and also 320, 768 and 1024 widths. Compare with the Figma screenshots of 64:3 (mobile) and 65:109 (desktop). Check: scroll rolls line up, QR is fully visible on a 390 × 844 screen, no horizontal scroll, the QR dialog opens from the card and from "Show QR full screen", "Save pass to phone" downloads a PNG, signed-out visit redirects to sign-in.
 
-- [ ] **Step 2: Fix mismatches** in the component files, re-run `pnpm exec tsc --noEmit && pnpm lint`, and commit each fix separately, e.g. `git commit -m "fix pass seal position"`.
+-   [ ] **Step 2: Fix mismatches** in the component files, re-run `pnpm exec tsc --noEmit && pnpm lint`, and commit each fix separately, e.g. `git commit -m "fix pass seal position"`.
 
-- [ ] **Step 3: Write** `apps/web/src/components/pass/README.md`
+-   [ ] **Step 3: Write** `apps/web/src/components/pass/README.md`
+
 ```md
 # Hacker Pass
 
@@ -1105,7 +1331,8 @@ The desktop Quest Log lists the same events as the schedule page (`buildHackDay`
 The card is at most 366 px wide. Spacing on the scroll art uses `cqw` units so the art and content shrink together on narrow phones. Desktop layout starts at 1024 px.
 ```
 
-- [ ] **Step 4: Commit**
+-   [ ] **Step 4: Commit**
+
 ```bash
 git add apps/web/src/components/pass/README.md
 git commit -m "document hacker pass page"

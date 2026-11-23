@@ -6,15 +6,15 @@ Branch: `tree/sword-cursor` (off `tree/schedule`). PR into `dev`.
 
 ## Global Constraints
 
-- Palette (Tailwind `cq` tokens in `apps/web/tailwind.config.js`): plum `#68396B`, ink `#3D2340`, title `#4E2B4F`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`, sand `#EBDDBF`, path `#FFFDF3`, rope `#E2CC9C`. Storybook / illuminated-manuscript look: ink outlines, flat fills, a little highlight.
-- Assets live in `apps/web/public/img/cursor/` as hand-written SVG (no external tools, no raster).
-- Cursor art is drawn pointing up-left like a normal arrow cursor: the sword TIP and the staff ORB TOP are at the top-left of the image, so the hotspot is the tip.
-- Code comments are tagged `// Tri Nguyen: ...`, plain sentences, no `----` divider lines. Match the existing sky components' style (tabs, double quotes).
-- Commits: short imperative lowercase subject, no prefix (e.g. "add sword and staff cursor art"). NEVER add a `Co-Authored-By` line, any AI/Claude attribution, or "Generated with Claude Code" to commits or PR text.
-- Do not touch or commit the user's unrelated uncommitted changes: `.gitignore`, `apps/web/src/app/schedule/page.tsx`, `docs/`. Stage only your own files by explicit path.
-- Keep every page z-index at `z-20` or lower EXCEPT the cursor layer, which is `pointer-events-none` and must sit above everything (MLH badge included).
-- Respect `prefers-reduced-motion`: cursor still replaced, but no swing/burst animation.
-- Only replace the cursor on devices with a fine pointer that can hover (`(hover: hover) and (pointer: fine)`). Touch devices keep default behavior and render nothing.
+-   Palette (Tailwind `cq` tokens in `apps/web/tailwind.config.js`): plum `#68396B`, ink `#3D2340`, title `#4E2B4F`, muted `#6E5270`, gold `#D7A33D`, parchment `#F6ECD6`, sand `#EBDDBF`, path `#FFFDF3`, rope `#E2CC9C`. Storybook / illuminated-manuscript look: ink outlines, flat fills, a little highlight.
+-   Assets live in `apps/web/public/img/cursor/` as hand-written SVG (no external tools, no raster).
+-   Cursor art is drawn pointing up-left like a normal arrow cursor: the sword TIP and the staff ORB TOP are at the top-left of the image, so the hotspot is the tip.
+-   Code comments are tagged `// Tri Nguyen: ...`, plain sentences, no `----` divider lines. Match the existing sky components' style (tabs, double quotes).
+-   Commits: short imperative lowercase subject, no prefix (e.g. "add sword and staff cursor art"). NEVER add a `Co-Authored-By` line, any AI/Claude attribution, or "Generated with Claude Code" to commits or PR text.
+-   Do not touch or commit the user's unrelated uncommitted changes: `.gitignore`, `apps/web/src/app/schedule/page.tsx`, `docs/`. Stage only your own files by explicit path.
+-   Keep every page z-index at `z-20` or lower EXCEPT the cursor layer, which is `pointer-events-none` and must sit above everything (MLH badge included).
+-   Respect `prefers-reduced-motion`: cursor still replaced, but no swing/burst animation.
+-   Only replace the cursor on devices with a fine pointer that can hover (`(hover: hover) and (pointer: fine)`). Touch devices keep default behavior and render nothing.
 
 ## Task 1: Cursor art
 
@@ -32,14 +32,14 @@ Each file under 3 KB, valid standalone SVG with `xmlns`, no scripts, no external
 1. `apps/web/src/components/schedule/sky/cursor-weapons.ts` — exports `type CursorWeapon = "sword" | "staff"` and `CURSOR_WEAPONS: Record<CursorWeapon, { src: string; effectSrc: string; size: number; hotspotX: number; hotspotY: number; clickAnimation: string; effectAnimation: string; effectSize: number }>` with paths from Task 1 (`/img/cursor/...`), size 40 (px rendered), hotspot matching the tip in rendered pixels, Tailwind animation class names from step 3. Also export a pure helper `cursorTransform(x: number, y: number, weapon: CursorWeapon): string` returning `translate3d(${x - hotspotX}px, ${y - hotspotY}px, 0)`.
 2. `apps/web/src/components/schedule/sky/cursor-weapons.test.ts` (vitest, same style as `sky-layout.test.ts`): hotspot inside the rendered box for each weapon; `cursorTransform` math; every `src`/`effectSrc` file exists under `apps/web/public`.
 3. Tailwind keyframes/animations in `apps/web/tailwind.config.js` next to the other `cq-*` ones, each with a `// Tri Nguyen:` comment:
-   - `cq-sword-swing` (~280ms): rotate around the grip from 0 → -40deg (wind up) → 25deg (strike) → 0. Transform origin at the pommel (bottom-right) — set via the element's `origin-[...]` class.
-   - `cq-staff-cast` (~320ms): small tilt back then forward with a brief scale 1.1 pulse.
-   - `cq-slash` (~350ms): effect fades in, scales 0.6 → 1.15, rotates slightly, fades out.
-   - `cq-spark` (~450ms): effect scales 0.3 → 1.4, rotates 45deg, fades out.
+    - `cq-sword-swing` (~280ms): rotate around the grip from 0 → -40deg (wind up) → 25deg (strike) → 0. Transform origin at the pommel (bottom-right) — set via the element's `origin-[...]` class.
+    - `cq-staff-cast` (~320ms): small tilt back then forward with a brief scale 1.1 pulse.
+    - `cq-slash` (~350ms): effect fades in, scales 0.6 → 1.15, rotates slightly, fades out.
+    - `cq-spark` (~450ms): effect scales 0.3 → 1.4, rotates 45deg, fades out.
 4. `apps/web/src/components/schedule/sky/ThemedCursor.tsx` — `"use client"`, props `{ weapon?: CursorWeapon }` default `"sword"`.
-   - On mount, only if `matchMedia("(hover: hover) and (pointer: fine)")` matches: add class `cq-themed-cursor` to `document.documentElement`; remove on unmount. Listen to `pointermove` on window and write `style.transform = cursorTransform(...)` directly to a ref (no React state per move; batch with requestAnimationFrame). Hide the layer until the first move and when the pointer leaves the window (`document` `pointerleave`/`mouseout` with no relatedTarget), show again on move.
-   - On `pointerdown` (primary button): restart the weapon's click animation (remove class, force reflow or toggle a key, re-add) and spawn an effect `<img>` at the click point (centered on the hotspot) that removes itself on `animationend`. Keep at most a few effects alive (state array capped, e.g. 6). Skip both when `prefers-reduced-motion: reduce`.
-   - Render a `fixed left-0 top-0 pointer-events-none z-[9999]` layer with `aria-hidden`. Use plain `<img>` (decorative, `alt=""`, `draggable={false}`); follow existing repo lint rules (check how other sky components render images and match).
+    - On mount, only if `matchMedia("(hover: hover) and (pointer: fine)")` matches: add class `cq-themed-cursor` to `document.documentElement`; remove on unmount. Listen to `pointermove` on window and write `style.transform = cursorTransform(...)` directly to a ref (no React state per move; batch with requestAnimationFrame). Hide the layer until the first move and when the pointer leaves the window (`document` `pointerleave`/`mouseout` with no relatedTarget), show again on move.
+    - On `pointerdown` (primary button): restart the weapon's click animation (remove class, force reflow or toggle a key, re-add) and spawn an effect `<img>` at the click point (centered on the hotspot) that removes itself on `animationend`. Keep at most a few effects alive (state array capped, e.g. 6). Skip both when `prefers-reduced-motion: reduce`.
+    - Render a `fixed left-0 top-0 pointer-events-none z-[9999]` layer with `aria-hidden`. Use plain `<img>` (decorative, `alt=""`, `draggable={false}`); follow existing repo lint rules (check how other sky components render images and match).
 5. `apps/web/src/app/globals.css`: `.cq-themed-cursor, .cq-themed-cursor * { cursor: none !important; }` with a Tri Nguyen comment.
 6. Render `<ThemedCursor weapon="sword" />` inside `SkySchedulePage.tsx` (comment: switch to `"staff"` for the magic staff).
 7. README.md in the sky folder: short "Cursor" section (what it does, how to switch to staff, where the art lives, the z-index exception, reduced motion/touch behavior).
