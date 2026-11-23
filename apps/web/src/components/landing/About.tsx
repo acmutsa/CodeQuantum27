@@ -4,16 +4,16 @@ import { grenze, grenzeGotisch } from "../schedule/sky/fonts";
 
 const chapters = [
 	{
-		title: "Our mission",
-		body: "CodeQuantum makes room for students from marginalized communities in tech to build projects and learn from one another. Past events have brought ACM at UTSA and ACM-W together around that goal.",
+		title: "Our Mission",
+		body: "CodeQuantum exists to give students from marginalized and underrepresented communities in tech a place to shape what gets built. That purpose has guided past collaborations with ACM-W. We want students to feel comfortable sharing an untested idea, learning a skill from a peer, and passing on something they know.",
 	},
 	{
-		title: "What to expect",
-		body: "Bring an idea you’ve wanted to try, or find one by talking with other students. You can sketch it out together, try a new tool, and ask for a hand when your code gets stuck.",
+		title: "What to Expect",
+		body: "Start with a question you’d like to answer or a problem you’ve noticed. Compare ideas with other students, choose one piece you can build, and try it out. As you test and revise your project, you’ll practice breaking down problems and discover how other builders approach the same challenge.",
 	},
 	{
-		title: "Who can participate?",
-		body: "First-time hackers and experienced coders are welcome. The organizers will announce specific eligibility requirements for CodeQuantum 2027.",
+		title: "Why CodeQuantum?",
+		body: "Your project can start with something small that matters to you. If you’re new to coding, seeing your first feature work can give you the confidence to keep going. If you’ve built projects before, working alongside someone with different interests can take a familiar idea in a direction you wouldn’t have found alone.",
 	},
 ];
 
@@ -39,8 +39,11 @@ export default function About() {
 					</h2>
 					<p className="mb-7 mt-5 max-w-xl text-xl leading-snug sm:text-2xl">
 						CodeQuantum is a 12-hour, student-run hackathon hosted
-						by ACM at UTSA. It’s a day to meet other builders and
-						turn an idea into something you can try.
+						by ACM at UTSA. Whether you’re writing your first lines
+						of code or bringing experience from past projects,
+						you’ll meet students who share your curiosity and learn
+						from each other as you turn a creative idea into a
+						working project.
 					</p>
 					<div className="space-y-2">
 						{chapters.map(({ title, body }, index) => (
