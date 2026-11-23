@@ -37,6 +37,9 @@ export default function Hero() {
 				<Link href={"/schedule"}>
 					<Button size={"lg"}>Schedule</Button>
 				</Link>
+				<Button asChild variant="outline" size="lg">
+					<a href="#faq">FAQ</a>
+				</Button>
 				<Link href={"https://github.com/acmutsa/hackkit"}>
 					<Button variant={"outline"} size={"lg"}>
 						GitHub

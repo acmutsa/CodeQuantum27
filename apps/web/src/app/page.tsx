@@ -3,6 +3,7 @@ import Hero from "@/components/landing/Hero";
 import About from "@/components/landing/About";
 
 import Partners from "@/components/landing/Partners";
+import Faq from "@/components/landing/Faq";
 import Footer from "@/components/landing/Footer";
 import MLHBadge from "@/components/landing/MLHBadge";
 
@@ -24,6 +25,7 @@ export default function Home() {
 
 				<About />
 				<Partners />
+				<Faq />
 				<WorkWithUs />
 				<Footer />
 			</main>
