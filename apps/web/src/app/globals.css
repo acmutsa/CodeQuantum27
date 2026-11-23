@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
+	/* Tri Nguyen: .cq-light re-applies the parchment colors on themed pages (register) even when the body has .dark. */
+	:root,
+	.cq-light {
 		--background: 38 100% 92%;
 		--foreground: 298 27% 19%;
 
