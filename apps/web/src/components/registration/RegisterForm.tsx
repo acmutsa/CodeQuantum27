@@ -1649,7 +1649,6 @@ export default function RegisterForm({
 															? ""
 															: "cursor-pointer"
 													} flex min-h-[200px] flex-col items-center justify-center rounded-lg border-2 border-dashed border-input bg-background`}
-													
 												>
 													<input
 														type="file"

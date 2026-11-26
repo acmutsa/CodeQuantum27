@@ -8,6 +8,8 @@ import { redisMGet } from "@/lib/utils/server/redis";
 import { parseRedisBoolean } from "@/lib/utils/server/redis";
 import { Button } from "@/components/shadcn/ui/button";
 import { getUser } from "db/functions";
+import RegisterBackdrop from "@/components/registration/RegisterBackdrop";
+import { grenze, grenzeGotisch } from "@/components/schedule/sky/fonts";
 
 export default async function Page() {
 	const { userId } = await auth();
@@ -27,26 +29,35 @@ export default async function Page() {
 		return (
 			<>
 				<Navbar />
-				<main className="overflow-x-hidden dark:bg-zinc-950">
-					<div className="mx-auto min-h-screen max-w-5xl px-5 pb-10 pt-[20vh] font-sans dark:text-white">
-						<h1 className="text-6xl font-black md:text-8xl">
+				{/* Tri Nguyen: cq-light keeps the parchment theme here even when the site is in dark mode (see globals.css). Fonts and art match the schedule page. */}
+				<main
+					className={`${grenze.variable} ${grenzeGotisch.variable} cq-light relative overflow-x-hidden bg-cq-parchment font-grenze text-cq-ink`}
+				>
+					<RegisterBackdrop />
+					<div className="relative mx-auto min-h-screen max-w-5xl px-5 pb-40 pt-[14vh]">
+						<h1 className="font-gotisch text-6xl font-bold leading-none text-cq-title motion-safe:animate-cq-rise md:text-8xl">
 							Register
 						</h1>
-						<p className="mt-5 font-medium">
+						<p className="mt-5 text-lg font-medium">
 							<span className="font-bold">Welcome Hacker!</span>{" "}
 							Please fill out the form below to complete your
 							registration for {c.hackathonName}.
 						</p>
-						<p className="pb-10 pt-5 text-xs">
+						<p className="pb-10 pt-3 text-sm text-cq-muted">
 							Psttt... Running into a issue? Please let us know on{" "}
-							<Link className="underline" href={c.links.discord}>
+							<Link
+								className="text-cq-plum underline"
+								href={c.links.discord}
+							>
 								Discord
 							</Link>
 							!
 						</p>
-						<div className="registration-form rounded-xl border border-border bg-card p-5 shadow-md md:p-8">
+						<div className="registration-form rounded-xl border border-[#D9C49A] bg-card/90 p-5 text-lg shadow-md backdrop-blur-sm md:p-8">
 							<RegisterForm
-								defaultEmail={user.emailAddresses[0]?.emailAddress || ""}
+								defaultEmail={
+									user.emailAddresses[0]?.emailAddress || ""
+								}
 							/>
 						</div>
 					</div>

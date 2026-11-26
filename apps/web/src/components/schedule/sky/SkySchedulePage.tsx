@@ -9,7 +9,6 @@ import ScheduleFooter from "./ScheduleFooter";
 import ScheduleHero from "./ScheduleHero";
 import { buildHackDay } from "./schedule-data";
 import SkyTimeline from "./SkyTimeline";
-import ThemedCursor from "./ThemedCursor";
 
 const HACK_DAY_HEADING_ID = "schedule-hack-day";
 
@@ -23,8 +22,6 @@ export default async function SkySchedulePage() {
 		<div
 			className={`${grenze.variable} ${grenzeGotisch.variable} w-full overflow-x-hidden bg-cq-parchment font-grenze text-cq-ink`}
 		>
-			{/* Tri Nguyen: Sword cursor. Switch weapon to "staff" for the magic staff. */}
-			<ThemedCursor weapon="sword" />
 			<Navbar />
 			{/* Tri Nguyen: MLH season badge goes right after the navbar, same as the landing page. Nothing on this page goes above z-20 so it stays on top. */}
 			<MLHBadge />

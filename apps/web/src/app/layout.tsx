@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
 import c, { defaultTheme } from "config";
+import ThemedCursor from "@/components/schedule/sky/ThemedCursor";
 
 // Tri Nguyen: Title, description, and link preview for browser tabs, Google, and shared links. Tab icons come from icon.png, apple-icon.png, and favicon.ico in this folder.
 // Tri Nguyen: metadataBase uses siteUrl from the config, so set siteUrl to the live domain or link previews will point at localhost.
@@ -38,6 +39,8 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={theme === "dark" ? "dark" : ""}>
+					{/* Tri Nguyen: Sword cursor on every page (schedule, hacker pass, dashboard). Switch weapon to "staff" for the magic staff. Touch screens keep the normal cursor. */}
+					<ThemedCursor weapon="sword" />
 					{children}
 				</body>
 			</html>

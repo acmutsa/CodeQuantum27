@@ -144,8 +144,14 @@ module.exports = {
 				},
 				// Tri Nguyen: Magic burst at the click point. Grows, spins a quarter turn, fades out.
 				"cq-spark": {
-					"0%": { opacity: "1", transform: "scale(0.3) rotate(0deg)" },
-					"100%": { opacity: "0", transform: "scale(1.4) rotate(45deg)" },
+					"0%": {
+						opacity: "1",
+						transform: "scale(0.3) rotate(0deg)",
+					},
+					"100%": {
+						opacity: "0",
+						transform: "scale(1.4) rotate(45deg)",
+					},
 				},
 			},
 			animation: {
@@ -156,7 +162,8 @@ module.exports = {
 				"cq-drift": "cq-drift 18s ease-in-out infinite",
 				"cq-bob": "cq-bob 6s ease-in-out infinite",
 				"cq-rise": "cq-rise 0.8s ease-out both",
-				"cq-sword-swing": "cq-sword-swing 170ms cubic-bezier(0.2, 0.9, 0.3, 1)",
+				"cq-sword-swing":
+					"cq-sword-swing 170ms cubic-bezier(0.2, 0.9, 0.3, 1)",
 				"cq-staff-cast": "cq-staff-cast 180ms ease-out",
 				"cq-slash": "cq-slash 140ms steps(4, end) forwards",
 				"cq-spark": "cq-spark 320ms ease-out forwards",
